@@ -10,16 +10,7 @@ npm install
 yarn install
 ```
 
-3. Go to `src/core/config.js` and replace `FIREBASE_CONFIG` with your own firebase config.
-
-```js
-export const FIREBASE_CONFIG = {
-  apiKey: 'xxx-yyy-zzz', // etc.
-  // rest of your firebase config
-}
-```
-
-4. Run project on iOS / Android.
+3. Run project on iOS / Android.
 
 ```js
  npm run ios // npm run android
