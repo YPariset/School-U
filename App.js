@@ -13,6 +13,7 @@ import {
   ResetPasswordScreen,
   Dashboard,
   CarnetScreen,
+  DiscussionList,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 
@@ -39,6 +40,7 @@ export default function App() {
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="DiscussionList" component={DiscussionList} />
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}

@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Paragraph from '../components/Paragraph'
 import Button from '../components/Button'
 import { logoutUser } from '../api/auth-api'
+import { DiscussionList } from './DiscussionList'
 
 export default function Dashboard() {
   return (
@@ -17,7 +18,7 @@ export default function Dashboard() {
       <Button mode="outlined">
         Blog
       </Button>
-      <Button mode="outlined">
+      <Button mode="outlined" onPress={() => navigation.navigate('DiscussionList')}>
         Messagerie
       </Button>
       <Button mode="outlined">
