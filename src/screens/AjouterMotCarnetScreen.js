@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
-import { ListItem, Button } from 'react-native-elements';
-
+import { ListItem } from 'react-native-elements';
+import Button from '../components/Button'
 
 
 export default function AjouterMotCarnetScreen({ navigation }){
@@ -24,17 +24,36 @@ export default function AjouterMotCarnetScreen({ navigation }){
     />
   </View>
 
-  <Button 
-    title='Valider'
-    onPress={() => navigation.navigate('StartScreen')}/>
+  <Button
+        mode="contained"
+        labelStyle={{ 
+          color: "white",
+          fontWeight: 'bold',
+          fontSize: 15,
+          lineHeight: 26,
+        }}
+        onPress={() => navigation.navigate('CarnetScreen')}
+      >
+        <Text>Valider</Text>
+      </Button>
 
     <Button 
-    title='Back to menu'
-    onPress={() => navigation.navigate('StartScreen')}/>
+    mode="outlined"
+    onPress={() => navigation.navigate('StartScreen')}>
+      <Text>Retour au menu</Text>
+    </Button>
 
     <Button 
-    title='Retour au carnet'
-    onPress={() => navigation.navigate('CarnetScreen')}/>
+    mode='contained'
+    labelStyle={{ 
+      color: "white",
+      fontWeight: 'bold',
+      fontSize: 15,
+      lineHeight: 26,
+    }}
+    onPress={() => navigation.navigate('CarnetScreen')}>
+      <Text>Retour au carnet</Text>
+    </Button>
 
 
 </View>

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { ListItem, Button } from 'react-native-elements';
-
+import { ListItem } from 'react-native-elements';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { MaterialIcons, Ionicons  } from '@expo/vector-icons'; 
+import Button from '../components/Button'
 
 export default function CarnetScreen({ navigation }){
 
@@ -36,12 +38,22 @@ export default function CarnetScreen({ navigation }){
   }
 
     <Button 
-    title='Retour au menu'
-    onPress={() => navigation.navigate('StartScreen')}/>
+            mode="contained"
+            labelStyle={{ 
+              color: "white",
+              fontWeight: 'bold',
+              fontSize: 15,
+              lineHeight: 26,
+            }}
+    onPress={() => navigation.navigate('StartScreen')}>
+        <Text>Retour au menu </Text>
+    </Button>
 
-    <Button 
-    title='Ajouter un mot dans le carnet'
-    onPress={() => navigation.navigate('AjouterMotCarnetScreen')}/>
+    <TouchableOpacity 
+    style={{justifyContent:'center', alignItems:'center'}}
+    onPress={() => navigation.navigate('AjouterMotCarnetScreen')}>
+        <Ionicons name="add-circle-outline" size={30} style={{color:'grey'}}></Ionicons>
+        </TouchableOpacity>
 
 
 </View>
