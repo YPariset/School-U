@@ -13,7 +13,11 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 import { signUpUser } from '../api/auth-api'
 import Toast from '../components/Toast'
-import Switch from '../components/Switch'
+import RadioButtonRN from 'radio-buttons-react-native'
+import { Container } from 'native-base'
+import { CheckBox } from 'react-native-elements'
+
+
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
@@ -21,11 +25,21 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState({ value: '', error: '' })
   const [loading, setLoading] = useState()
   const [error, setError] = useState()
+  const data = [
+    {
+      label: 'Parent'
+     },
+     {
+      label: 'Professeur'
+     }
+    ];
 
   const onSignUpPressed = async () => {
     const nameError = nameValidator(name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
+
+
     if (emailError || passwordError || nameError) {
       setName({ ...name, error: nameError })
       setEmail({ ...email, error: emailError })
@@ -44,19 +58,30 @@ export default function RegisterScreen({ navigation }) {
     setLoading(false)
   }
 
+ 
+
   return (
-    <Background>
+    <Container>
       <BackButton goBack={navigation.goBack} />
-      <Logo />
+      <Logo/>
+  
       <Header>Créer un compte</Header>
-      <View style={styles.container}>
-        <Text style={styles.textStyle}>This is an Example of Switch</Text>
-        <Switch>yo</Switch>
-        <Switch>yo</Switch>
-      </View>
       
+  <RadioButtonRN
+  data={data}
+  style={{ resizeMode: 'cover',}}
+  />
+
+<CheckBox
+  center
+  title='M.'/>
+
+<CheckBox
+  center
+  title='Mme'/>
+
       <TextInput
-        label="Name"
+        label="Username"
         returnKeyType="next"
         value={name.value}
         onChangeText={(text) => setName({ value: text, error: '' })}
@@ -76,7 +101,7 @@ export default function RegisterScreen({ navigation }) {
         keyboardType="email-address"
       />
       <TextInput
-        label="Password"
+        label="Mot de passe"
         returnKeyType="done"
         value={password.value}
         onChangeText={(text) => setPassword({ value: text, error: '' })}
@@ -84,6 +109,17 @@ export default function RegisterScreen({ navigation }) {
         errorText={password.error}
         secureTextEntry
       />
+
+      <TextInput
+        label="Vérifiez votre mot de passe"
+        returnKeyType="done"
+        value={password.value}
+        onChangeText={(text) => setPassword({ value: text, error: '' })}
+        error={!!password.error}
+        errorText={password.error}
+        secureTextEntry
+      />
+
       <Button
         loading={loading}
         mode="contained"
@@ -105,7 +141,8 @@ export default function RegisterScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <Toast message={error} onDismiss={() => setError('')} />
-    </Background>
+
+    </Container>
   )
 }
 
