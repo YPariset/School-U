@@ -1,71 +1,64 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Text } from 'react-native-paper'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import TextInput from '../components/TextInput'
-import BackButton from '../components/BackButton'
-import { theme } from '../core/theme'
-import { emailValidator } from '../helpers/emailValidator'
-import { passwordValidator } from '../helpers/passwordValidator'
-import { nameValidator } from '../helpers/nameValidator'
-import { signUpUser } from '../api/auth-api'
-import Toast from '../components/Toast'
-import Switch from '../components/Switch'
+import React, {Component} from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { ListItem, Button } from 'react-native-elements';
 
-export default function CarnetScreen({ navigation }) {
-  const [name, setName] = useState({ value: '', error: '' })
-  const [email, setEmail] = useState({ value: '', error: '' })
-  const [password, setPassword] = useState({ value: '', error: '' })
-  const [loading, setLoading] = useState()
-  const [error, setError] = useState()
 
-  const onSignUpPressed = async () => {
-    const nameError = nameValidator(name.value)
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError })
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
-    }
-    setLoading(true)
-    const response = await signUpUser({
-      name: name.value,
-      email: email.value,
-      password: password.value,
-    })
-    if (response.error) {
-      setError(response.error)
-    }
-    setLoading(false)
-  }
+export default function CarnetScreen({ navigation }){
 
-  return (
-    <Background>
-    
-      <Text>Carnet</Text>
 
+    const list = [
+        {
+          name: 'Mot du prof 1',
+          subtitle: 'date',
+        },
+        {
+          name: 'Mot du prof 2',
+          subtitle: 'date',
+        },
+      ]
       
 
-    </Background>
-  )
+    return (
+
+<View style={styles.container}>
+
+
+  {
+    list.map((l, i) => (
+      <ListItem style={styles.itemContainer} key={i} bottomDivider>
+        <ListItem.Content>
+          <ListItem.Title style={{fontSize:18, paddingBottom:10}}>{l.name}</ListItem.Title>
+          <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+    ))
+  }
+
+    <Button 
+    title='Retour au menu'
+    onPress={() => navigation.navigate('StartScreen')}/>
+
+    <Button 
+    title='Ajouter un mot dans le carnet'
+    onPress={() => navigation.navigate('AjouterMotCarnetScreen')}/>
+
+
+</View>
+
+)
+
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection: 'row',
-    alignItems: 'center', justifyContent: 'center',
+    container:{ 
+        backgroundColor: '#FFF9EC',
+        flex: 1,
+        resizeMode: 'cover',
     },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  }
-})
+    itemContainer: {
+        marginTop: 50,
+
+    }
+}
+  )
