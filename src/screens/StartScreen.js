@@ -10,18 +10,16 @@ export default function StartScreen({ navigation }) {
     <Background>
       <Logo />
       <Header>School & U</Header>
-      <Paragraph>
-          La vie de classe en 3 clics
-      </Paragraph>
+      <Paragraph>La vie de classe en 3 clics</Paragraph>
       <Button
         mode="contained"
-        labelStyle={{ 
-          color: "white",
+        labelStyle={{
+          color: 'white',
           fontWeight: 'bold',
           fontSize: 15,
           lineHeight: 26,
         }}
-        onPress={() => navigation.navigate('Dashboard')}
+        onPress={() => navigation.navigate('Blog')}
       >
         Se connecter
       </Button>
