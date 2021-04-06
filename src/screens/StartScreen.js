@@ -21,7 +21,7 @@ export default function StartScreen({ navigation }) {
           fontSize: 15,
           lineHeight: 26,
         }}
-        onPress={() => navigation.navigate('Dashboard')}
+        onPress={() => navigation.navigate('DiscussionList')}
       >
         Se connecter
       </Button>

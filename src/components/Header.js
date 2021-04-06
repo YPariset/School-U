@@ -14,4 +14,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: 12,
   },
+  headerDiscussion: {
+    fontSize: 21,
+    flex: 1,
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 })
