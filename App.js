@@ -14,6 +14,8 @@ import {
   Dashboard,
   CarnetScreen, 
   AjouterMotCarnetScreen,
+  ProfilScreen,
+  EditProfilScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 
@@ -46,6 +48,8 @@ export default function App() {
           />
           <Stack.Screen name="CarnetScreen" component={CarnetScreen} />
           <Stack.Screen name="AjouterMotCarnetScreen" component={AjouterMotCarnetScreen} />
+          <Stack.Screen name="ProfilScreen" component={ProfilScreen} />
+          <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
