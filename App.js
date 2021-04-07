@@ -1,4 +1,5 @@
 import React from 'react'
+import 'react-native-gesture-handler';
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -12,11 +13,13 @@ import {
   RegisterScreen,
   ResetPasswordScreen,
   Dashboard,
-  CarnetScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Stack = createStackNavigator()
+const Drawer = createDrawerNavigator();
+
 if (!firebase.apps.length) {
   firebase.initializeApp(FIREBASE_CONFIG)
 }
@@ -25,26 +28,25 @@ export default function App() {
   return (
     <Provider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator
+        <Drawer.Navigator
           initialRouteName="AuthLoadingScreen"
           screenOptions={{
             headerShown: false,
           }}
         >
-          <Stack.Screen
+          <Drawer.Screen
             name="AuthLoadingScreen"
             component={AuthLoadingScreen}
           />
-          <Stack.Screen name="StartScreen" component={StartScreen} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="Dashboard" component={Dashboard} />
-          <Stack.Screen
+          <Drawer.Screen name="StartScreen" component={StartScreen} />
+          <Drawer.Screen name="LoginScreen" component={LoginScreen} />
+          <Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Drawer.Screen name="Dashboard" component={Dashboard} />
+          <Drawer.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
           />
-          <Stack.Screen name="CarnetScreen" component={CarnetScreen} />
-        </Stack.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
     </Provider>
   )

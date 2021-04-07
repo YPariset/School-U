@@ -25,10 +25,9 @@ export default function Toast({ type = 'error', message, onDismiss }) {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 80 + getStatusBarHeight(),
     width: '100%',
   },
   content: {
-    fontWeight: '500',
+    fontWeight: '100',
   },
 })
