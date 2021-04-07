@@ -26,14 +26,14 @@ export default class Dashboard extends React.Component {
       <CardImageExample style={styles.card}></CardImageExample>
       <View style={styles.container}></View>
      
-      <Button style={styles.blog} labelStyle={styles.text1} mode="outlined">
+      <Button style={styles.blog} labelStyle={styles.text} mode="outlined">
         Blog
       </Button>
       <View style={styles.row}>
-      <Button style={styles.carnet} labelStyle={styles.text1} mode="outlined">
+      <Button style={styles.carnet} labelStyle={styles.text} mode="outlined">
         Carnet
       </Button>
-      <Button style={styles.messagerie} labelStyle={styles.text1} mode="outlined">
+      <Button style={styles.messagerie} labelStyle={styles.text} mode="outlined">
         Messagerie
       </Button>
       </View>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
                     fontWeight: 'bold',
                     color: theme.colors.primary,
                   },
-                  text1: {
+                  text: {
                     color: "white",
                     fontWeight: 'bold',
                     fontSize: 15,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
                     alignItems: 'center',
                     justifyContent: 'center',
                   },
-                  text1: {
+                  text: {
                     color: "white",
                     fontWeight: 'bold',
                     fontSize: 15,

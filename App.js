@@ -13,6 +13,7 @@ import {
   RegisterScreen,
   ResetPasswordScreen,
   Dashboard,
+  Classroom
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -42,6 +43,7 @@ export default function App() {
           <Drawer.Screen name="LoginScreen" component={LoginScreen} />
           <Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
           <Drawer.Screen name="Dashboard" component={Dashboard} />
+          <Drawer.Screen name="Classroom" component={Classroom} />
           <Drawer.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
