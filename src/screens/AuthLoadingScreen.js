@@ -10,7 +10,7 @@ export default function AuthLoadingScreen({ navigation }) {
       // User is logged in
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Dashboard' }],
+        routes: [{ name: 'Message' }],
       })
     } else {
       // User is not logged in

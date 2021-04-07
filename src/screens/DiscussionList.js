@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, Color } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { MaterialIcons, Ionicons  } from '@expo/vector-icons'; 
-import Button from '../components/Button'
 import TouchableScale from 'react-native-touchable-scale';
 
 
-export default function Dashboard({ navigation }){
+export default function DiscussionList({ navigation }){
 
 
     const list = [

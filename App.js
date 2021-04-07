@@ -14,6 +14,7 @@ import {
   Dashboard,
   CarnetScreen,
   DiscussionList,
+  Message,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 
@@ -41,11 +42,13 @@ export default function App() {
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
           <Stack.Screen name="DiscussionList" component={DiscussionList} />
+          <Stack.Screen name="Message" component={Message} />
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
           />
           <Stack.Screen name="CarnetScreen" component={CarnetScreen} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
