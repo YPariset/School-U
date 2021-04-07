@@ -15,11 +15,12 @@ import { signUpUser } from '../api/auth-api'
 import Toast from '../components/Toast'
 import RadioButtonRN from 'radio-buttons-react-native'
 import { Container } from 'native-base'
-import { CheckBox } from 'react-native-elements'
-
+import { Checkbox } from 'react-native-paper';
+import { MaterialIcons } from "@expo/vector-icons";
 
 
 export default function RegisterScreen({ navigation }) {
+
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
@@ -33,6 +34,13 @@ export default function RegisterScreen({ navigation }) {
       label: 'Professeur'
      }
     ];
+  
+const [genderIndex, setGenderIndex] = useState(0);   
+const genderList = ["M.", "Mme"];
+const genderChangeHandler = 
+(index) => {
+  setGenderIndex((preIndex) => index);
+}
 
   const onSignUpPressed = async () => {
     const nameError = nameValidator(name.value)
@@ -61,24 +69,48 @@ export default function RegisterScreen({ navigation }) {
  
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <BackButton goBack={navigation.goBack} />
-      <Logo/>
+
   
       <Header>Créer un compte</Header>
-      
+  
+  <View> 
+  <Text>Vous êtes ?</Text>   
   <RadioButtonRN
   data={data}
   style={{ resizeMode: 'cover',}}
   />
+  </View>
 
-<CheckBox
-  center
-  title='M.'/>
 
-<CheckBox
-  center
-  title='Mme'/>
+  <View style={{ flexDirection: "row", paddingTop:10 }}>
+                    {genderList.map((data, index) => (
+                      <TouchableOpacity
+                        key={data}
+                        style={{
+                          flexDirection: "row",
+                          margin: 10,
+                          flex: 3,
+                          justifyContent: "space-evenly",
+                        }}
+                        onPress={genderChangeHandler.bind(this, index)}
+                      >
+                        <MaterialIcons
+                          name={
+                            index === genderIndex
+                              ? "radio-button-checked"
+                              : "radio-button-unchecked"
+                          }
+                          size={18}
+                          color='#ccc'
+                        />
+                        <Text style={styles.termsText}>{data}</Text>
+                      </TouchableOpacity>
+                    ))}
+</View> 
+
+
 
       <TextInput
         label="Username"
@@ -127,15 +159,16 @@ export default function RegisterScreen({ navigation }) {
           color: "white",
           fontWeight: 'bold',
           fontSize: 15,
-          lineHeight: 26,
+          lineHeight: 20,
         }}
         onPress={onSignUpPressed}
-        style={{ marginTop: 24 }}
+        style={{ marginTop: 20 }}
       >
         Créer un compte
       </Button>
       <View style={styles.row}>
-        <Text>Vous avez déja un compte ? </Text>
+      <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
+        <Text>Vous avez déja un compte ? </Text></TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
           <Text style={styles.link}>Se connecter</Text>
         </TouchableOpacity>
@@ -147,16 +180,11 @@ export default function RegisterScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection: 'row',
-    alignItems: 'center', justifyContent: 'center',
-    },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
+    container:{ 
+      backgroundColor: '#FFF9EC',
+      flex: 1,
+      resizeMode: 'cover',
+      padding: 75,
   },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  }
+
 })
