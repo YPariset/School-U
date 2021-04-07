@@ -20,7 +20,8 @@ import {
   Blog,
   AjouterArticle,
   AjouterMotCarnetScreen,
-  ProfilScreen
+  ProfilScreen,
+  EditProfilScreen
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -58,6 +59,7 @@ export default function App() {
           <Drawer.Screen name="AjouterArticle" component={AjouterArticle} />
           <Drawer.Screen name="AjouterMotCarnetScreen" component={AjouterMotCarnetScreen} />
           <Drawer.Screen name="ProfilScreen" component={ProfilScreen} />
+          <Drawer.Screen name="EditProfilScreen" component={EditProfilScreen} />
           <Drawer.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}

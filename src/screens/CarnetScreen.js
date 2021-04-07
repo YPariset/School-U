@@ -49,11 +49,11 @@ export default function CarnetScreen({ navigation }){
         <Text>Retour au menu </Text>
     </Button>
 
-    <TouchableOpacity 
-    style={{justifyContent:'center', alignItems:'center'}}
+    <Button 
+    style={styles.button}
     onPress={() => navigation.navigate('AjouterMotCarnetScreen')}>
         <Ionicons name="add-circle-outline" size={30} style={{color:'grey'}}></Ionicons>
-        </TouchableOpacity>
+        </Button>
 
 
 </View>
@@ -71,6 +71,10 @@ const styles = StyleSheet.create({
     itemContainer: {
         marginTop: 50,
 
+    },
+    button: {
+      backgroundColor: "transparent",
+   
     }
 }
   )

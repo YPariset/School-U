@@ -12,3 +12,5 @@ export { default as Blog } from './Blog'
 export { default as AjouterArticle } from './AjouterArticle'
 export { default as AjouterMotCarnetScreen } from './AjouterMotCarnetScreen'
 export { default as ProfilScreen } from './ProfilScreen'
+export { default as EditProfilScreen } from './EditProfilScreen'
+

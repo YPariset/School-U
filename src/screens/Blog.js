@@ -8,7 +8,6 @@ import {
   Content,
   Card,
   CardItem,
-  Thumbnail,
   Text,
   Button,
   Icon,
@@ -83,8 +82,8 @@ export default class Blog extends Component {
           </Card>
         </Content>
         <Footer style={styles.icon}>
-          <TouchableOpacity
-            style={{ justifyContent: 'center', alignItems: 'center' }}
+          <Button
+            style={styles.button}
             onPress={() => this.props.navigation.navigate('AjouterArticle')}
           >
             <Ionicons
@@ -92,7 +91,7 @@ export default class Blog extends Component {
               size={50}
               style={{ color: 'grey' }}
             ></Ionicons>
-          </TouchableOpacity>
+          </Button>
         </Footer>
       </Container>
     )
@@ -101,6 +100,10 @@ export default class Blog extends Component {
 const styles = StyleSheet.create({
   fond: {
     backgroundColor: '#fff9eb',
+  },
+  button: {
+    backgroundColor: "transparent",
+    color: "grey"
   },
 
   icon: {

@@ -26,14 +26,14 @@ export default class Dashboard extends React.Component {
       <CardImageExample style={styles.card}></CardImageExample>
       <View style={styles.container}></View>
      
-      <Button style={styles.blog} labelStyle={styles.text} mode="outlined">
+      <Button style={styles.blog} onPress={() => this.props.navigation.navigate('Blog')} labelStyle={styles.text} mode="outlined">
         Blog
       </Button>
       <View style={styles.row}>
-      <Button style={styles.carnet} labelStyle={styles.text} mode="outlined">
+      <Button style={styles.carnet} onPress={() => this.props.navigation.navigate('CarnetScreen')} labelStyle={styles.text} mode="outlined">
         Carnet
       </Button>
-      <Button style={styles.messagerie} labelStyle={styles.text} mode="outlined">
+      <Button style={styles.messagerie} onPress={() => this.props.navigation.navigate('DiscussionList')} labelStyle={styles.text} mode="outlined">
         Messagerie
       </Button>
       </View>
