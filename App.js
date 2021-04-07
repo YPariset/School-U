@@ -14,6 +14,7 @@ import {
   Dashboard,
   CarnetScreen,
   Blog,
+  AjouterArticle,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 
@@ -37,6 +38,7 @@ export default function App() {
             component={AuthLoadingScreen}
           />
           <Stack.Screen name="Blog" component={Blog} />
+          <Stack.Screen name="AjouterArticle" component={AjouterArticle} />
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet } from 'react-native'
+import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import {
   Container,
   Header,
@@ -14,6 +16,7 @@ import {
   Body,
   Footer,
 } from 'native-base'
+
 export default class Blog extends Component {
   render() {
     return (
@@ -80,7 +83,16 @@ export default class Blog extends Component {
           </Card>
         </Content>
         <Footer style={styles.icon}>
-          <Icon style={styles.plus} name="add-circle-outline"></Icon>
+          <TouchableOpacity
+            style={{ justifyContent: 'center', alignItems: 'center' }}
+            onPress={() => this.props.navigation.navigate('AjouterArticle')}
+          >
+            <Ionicons
+              name="add-circle-outline"
+              size={50}
+              style={{ color: 'grey' }}
+            ></Ionicons>
+          </TouchableOpacity>
         </Footer>
       </Container>
     )
@@ -89,10 +101,6 @@ export default class Blog extends Component {
 const styles = StyleSheet.create({
   fond: {
     backgroundColor: '#fff9eb',
-  },
-
-  plus: {
-    fontSize: 50,
   },
 
   icon: {
