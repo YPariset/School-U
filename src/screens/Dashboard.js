@@ -37,6 +37,10 @@ export default class Dashboard extends React.Component {
         Messagerie
       </Button>
       </View>
+
+      <Button mode="outlined" onPress={() => this.props.navigation.navigate('StartScreen') && logoutUser}>
+        Logout
+      </Button>
     </View>
   )
 }

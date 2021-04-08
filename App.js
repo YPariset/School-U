@@ -49,7 +49,12 @@ function CustomDrawerContent(props) {
 
 function StackNavigator({navigation}) {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator 
+    initialRouteName="AuthLoadingScreen"
+    screenOptions={{
+    headerShown: false,
+    }}
+    >
       <Stack.Screen name="Dashboard" component={Dashboard} options={{ title: 'Home' }}/>
       <Stack.Screen name="Blog" component={Blog} options={{ title: 'Blog' }}  />
       <Stack.Screen name="CarnetScreen" component={CarnetScreen} options={{ title: 'Carnet de liaison' }} />
