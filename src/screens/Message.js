@@ -12,12 +12,12 @@ export default function Message({ navigation }){
     setMessages([
       {
         _id: 1,
-        text: 'Hello developer',
+        text: 'Bonjour, comment allez vous?',
         createdAt: new Date(),
         user: {
           _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: 'Raymonde',
+          avatar: 'https://storage-dating.euranka.com/uploads/sites/5/2018/12/photo-profil-rencontre-2019.jpg',
         },
       },
     ])

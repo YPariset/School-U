@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Text, Color } from 'react-native';
-import { ListItem, Avatar, Header } from 'react-native-elements';
+import { ListItem, Avatar, Header, Button } from 'react-native-elements';
 import { Icon } from 'native-base';
 
 
@@ -31,6 +31,16 @@ export default function DiscussionList({ navigation }){
 
     return (
 <View style={styles.backgroundColor}>
+        <Header 
+      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
+      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
+      containerStyle={{
+        backgroundColor: 'transparent',
+        width: '100%'
+        
+      }}
+      
+      />
 <View style={styles.title}>
 <Text style={styles.titre}>Discussions</Text>
   {
@@ -42,7 +52,8 @@ export default function DiscussionList({ navigation }){
           <ListItem.Title style={styles.name}>{l.name}</ListItem.Title>
           <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
         </ListItem.Content>
-        <ListItem.Chevron />
+        <ListItem.Chevron onPress={() => navigation.navigate('Message')} />
+        
       </ListItem>
     ))
   }
