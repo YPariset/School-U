@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-native'
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -22,14 +22,18 @@ import {
   AjouterArticle,
   AjouterMotCarnetScreen,
   ProfilScreen,
-  EditProfilScreen
-
+  EditProfilScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+} from '@react-navigation/drawer'
+import { Icon } from 'native-base'
 
 const Stack = createStackNavigator()
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
 if (!firebase.apps.length) {
   firebase.initializeApp(FIREBASE_CONFIG)
@@ -38,49 +42,108 @@ if (!firebase.apps.length) {
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
-      <DrawerItem label="Home" onPress={() => props.navigation.navigate('Dashboard')} />
-      <DrawerItem label="Blog" onPress={() => props.navigation.navigate('Blog')} />
-      <DrawerItem label="Carnet de liaison" onPress={() => props.navigation.navigate('CarnetScreen')} />
-      <DrawerItem label="Messagerie" onPress={() => props.navigation.navigate('DiscussionList')} />
-      <DrawerItem label="Profile" onPress={() => props.navigation.navigate('ProfilScreen')} />
+      <DrawerItem
+        label="Home"
+        onPress={() => props.navigation.navigate('Dashboard')}
+      />
+      <DrawerItem
+        label="Blog"
+        onPress={() => props.navigation.navigate('Blog')}
+      />
+      <DrawerItem
+        label="Carnet de liaison"
+        onPress={() => props.navigation.navigate('CarnetScreen')}
+      />
+      <DrawerItem
+        label="Messagerie"
+        onPress={() => props.navigation.navigate('DiscussionList')}
+      />
+      <DrawerItem
+        label="Profile"
+        onPress={() => props.navigation.navigate('ProfilScreen')}
+      />
     </DrawerContentScrollView>
-  );
+  )
 }
 
-function StackNavigator({navigation}) {
+function StackNavigator({ navigation }) {
   return (
-    <Stack.Navigator 
-    initialRouteName="AuthLoadingScreen"
-    screenOptions={{
-    headerShown: false,
-    }}
-    >
-      <Stack.Screen name="Dashboard" component={Dashboard} options={{ title: 'Home' }}/>
-      <Stack.Screen name="Blog" component={Blog} options={{ title: 'Blog' }}  />
-      <Stack.Screen name="CarnetScreen" component={CarnetScreen} options={{ title: 'Carnet de liaison' }} />
-      <Stack.Screen name="DiscussionList" component={DiscussionList} options={{ title: 'Messagerie' }} />
-      <Stack.Screen name="ProfilScreen" component={ProfilScreen} options={{ title: 'Profile' }} />
-      <Stack.Screen name="AuthLoadingScreen" component={AuthLoadingScreen} />
-      <Stack.Screen name="StartScreen" component={StartScreen} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-      <Stack.Screen name="Classroom" component={Classroom} />
+    <Stack.Navigator initialRouteName="AuthLoadingScreen" screenOptions={{}}>
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          title: 'Home',
+          headerLeft: () => (
+            <Icon name="menu" onPress={() => navigation.openDrawer()} />
+          ),
+        }}
+      />
+      <Stack.Screen name="Blog" component={Blog} options={{ title: 'Blog' }} />
+      <Stack.Screen
+        name="CarnetScreen"
+        component={CarnetScreen}
+        options={{ title: 'Carnet de liaison' }}
+      />
+      <Stack.Screen
+        name="DiscussionList"
+        component={DiscussionList}
+        options={{ title: 'Messagerie' }}
+      />
+      <Stack.Screen
+        name="ProfilScreen"
+        component={ProfilScreen}
+        options={{ title: 'Profile' }}
+      />
+      <Stack.Screen
+        name="AuthLoadingScreen"
+        component={AuthLoadingScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="StartScreen"
+        component={StartScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="RegisterScreen"
+        component={RegisterScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Classroom"
+        component={Classroom}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Message" component={Message} />
-      <Stack.Screen name="AjouterMotCarnetScreen" component={AjouterMotCarnetScreen} />
+      <Stack.Screen
+        name="AjouterMotCarnetScreen"
+        component={AjouterMotCarnetScreen}
+      />
       <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
-      <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
+      <Stack.Screen
+        name="ResetPasswordScreen"
+        component={ResetPasswordScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="AjouterArticle" component={AjouterArticle} />
     </Stack.Navigator>
-  );
+  )
 }
 
-function DrawerNavigator({navigation, route}) {
+function DrawerNavigator({ navigation, route }) {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+    >
       <Drawer.Screen name="Stack" component={StackNavigator} />
     </Drawer.Navigator>
-  );
+  )
 }
 
 const App = () => {
@@ -88,6 +151,6 @@ const App = () => {
     <NavigationContainer>
       <DrawerNavigator />
     </NavigationContainer>
-  );
-};
-export default App;
+  )
+}
+export default App
