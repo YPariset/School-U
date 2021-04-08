@@ -4,6 +4,8 @@ import { ListItem } from 'react-native-elements';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { MaterialIcons, Ionicons  } from '@expo/vector-icons'; 
 import Button from '../components/Button'
+import { Header } from 'react-native-elements';
+import { Icon } from 'native-base';
 
 export default function CarnetScreen({ navigation }){
 
@@ -23,6 +25,16 @@ export default function CarnetScreen({ navigation }){
     return (
 
 <View style={styles.container}>
+<Header 
+      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
+      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
+      containerStyle={{
+        backgroundColor: 'transparent',
+        width: '100%'
+        
+      }}
+      
+      />
 
 
   {

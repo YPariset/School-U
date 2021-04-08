@@ -9,6 +9,8 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Header } from 'react-native-elements';
+
 
 export default function ProfilScreen({ navigation }){
 
@@ -16,6 +18,16 @@ export default function ProfilScreen({ navigation }){
     return (
 
 <SafeAreaView style={styles.container}>
+<Header 
+      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
+      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
+      containerStyle={{
+        backgroundColor: 'transparent',
+        width: '100%'
+        
+      }}
+      
+      />
 <View style={styles.userInfoSection}>
 <View style={{flexDirection: 'row', marginTop:15}}>
 <Avatar.Image 

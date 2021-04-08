@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import { Icon } from 'native-base';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import {
   Container,
-  Header,
   Content,
   Card,
   CardItem,
   Text,
   Button,
-  Icon,
   Left,
   Body,
   Footer,
 } from 'native-base'
+import { Header } from 'react-native-elements';
 
 export default class Blog extends Component {
   render() {
     return (
       <Container style={styles.fond}>
-        <Header />
+        <Header 
+      leftComponent={<Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />}
+      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
+      containerStyle={{
+        backgroundColor: 'transparent',
+        width: '100%'
+        
+      }}
+      
+      />
         <Content>
           <Card style={{ flex: 0 }}>
             <CardItem>

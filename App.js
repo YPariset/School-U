@@ -7,21 +7,12 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import { theme } from './src/core/theme'
 import {
-  AuthLoadingScreen,
-  StartScreen,
-  LoginScreen,
-  RegisterScreen,
-  ResetPasswordScreen,
   Dashboard,
-  Classroom,
   CarnetScreen,
-  Message,
   DiscussionList,
   Blog,
-  AjouterArticle,
-  AjouterMotCarnetScreen,
   ProfilScreen,
-  EditProfilScreen
+  AjouterArticle,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -43,28 +34,18 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Drawer.Screen
-            name="AuthLoadingScreen"
-            component={AuthLoadingScreen}
-          />
-          <Drawer.Screen name="StartScreen" component={StartScreen} />
-          <Drawer.Screen name="LoginScreen" component={LoginScreen} />
-          <Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Drawer.Screen name="Dashboard" component={Dashboard} />
-          <Drawer.Screen name="Classroom" component={Classroom} />
-          <Drawer.Screen name="CarnetScreen" component={CarnetScreen} />
-          <Drawer.Screen name="Message" component={Message} />
-          <Drawer.Screen name="DiscussionList" component={DiscussionList} />
+          <Drawer.Screen name="Dashboard" component={Dashboard} options={{ title: 'Home' }} />
+          <Drawer.Screen name="Carnet" component={CarnetScreen} options={{ title: 'Carnet de liaison' }} />
+          <Drawer.Screen name="DiscussionList" component={DiscussionList} options={{ title: 'Messagerie' }} />
           <Drawer.Screen name="Blog" component={Blog} />
-          <Drawer.Screen name="AjouterArticle" component={AjouterArticle} />
-          <Drawer.Screen name="AjouterMotCarnetScreen" component={AjouterMotCarnetScreen} />
-          <Drawer.Screen name="ProfilScreen" component={ProfilScreen} />
-          <Drawer.Screen name="EditProfilScreen" component={EditProfilScreen} />
-          <Drawer.Screen
-            name="ResetPasswordScreen"
-            component={ResetPasswordScreen}
-          />
+          <Drawer.Screen name="ProfilScreen" component={ProfilScreen} options={{ title: 'Profile' }} />
+          <Stack.Screen name="AjouterArticle" component={AjouterArticle}  options={{
+                drawerLabel: () => null,
+  
+            }}  />
+
         </Drawer.Navigator>
+        
       </NavigationContainer>
     </Provider>
   )

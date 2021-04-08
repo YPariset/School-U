@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet, Platform, Text} from 'react-native';
 import Button from '../components/Button'
 import { logoutUser } from '../api/auth-api'
@@ -8,15 +8,15 @@ import { Icon } from 'native-base';
 import { Header } from 'react-native-elements';
 
 
-export default class Classroom extends React.Component {
+export default class Classroom extends Component {
   render(){
   return (
     <View style={styles.container} >
       <Text>Welcome, User !</Text>  
-      <Button style={styles.classe1} labelStyle={styles.text} mode="outlined">
-        Classe 1
+      <Button style={styles.classe1} labelStyle={styles.text} mode="outlined" onPress={() => this.props.navigation.navigate('Dashboard')}>
+        Coding Factory
       </Button>
-      <Button style={styles.classe2} labelStyle={styles.text} mode="outlined">
+      <Button style={styles.classe2} onPress={() => navigation.navigate('Dashboard')} labelStyle={styles.text} mode="outlined">
         Classe 2
       </Button>
       </View>
