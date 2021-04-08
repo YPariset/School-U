@@ -76,7 +76,7 @@ function StackNavigator({ navigation }) {
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
           headerLeft: () => (
-            <Icon name="menu" onPress={() => navigation.openDrawer()} />
+            <Icon style={{paddingLeft:15}} name="menu" onPress={() => navigation.openDrawer()} />
           ),
         }}
       />
