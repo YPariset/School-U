@@ -148,7 +148,55 @@ const styles = StyleSheet.create({
                     width: '100%',
                     justifyContent: 'center',
                   }
-              
-                } 
+                },
+                android: {
+                  blog:{
+                    backgroundColor: "#6986C5",
+                    borderRadius: 10,
+                    borderWidth: 0
+                  },
+                  carnet: {
+                    backgroundColor: "#FABE7C",
+                    width: '50%',
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    marginRight: 15
+                  },
+                  messagerie: {
+                    backgroundColor: "#E46472",
+                    width: '47%',
+                    borderRadius: 10,
+                    borderWidth: 0
+                  },
+                  headerHome:{
+                    marginTop: 40,
+                    marginBottom: 20,
+                    fontSize: 21,
+                    fontWeight: 'bold',
+                    color: theme.colors.primary,
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  },
+                  text: {
+                    color: "white",
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    lineHeight: 26,
+                  },
+                  row: {
+                    flexDirection: "row",
+                    flexWrap: "nowrap",
+                    justifyContent: 'space-around'
+                  },
+                  container: {
+                    backgroundColor: '#FFF9EC',
+                    flex: 1,
+                    padding: 20,
+                    paddingBottom: 50,
+                    width: '100%',
+                    justifyContent: 'center',
+                  }
+                }
               }),
             });
