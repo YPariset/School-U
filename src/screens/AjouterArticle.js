@@ -18,8 +18,6 @@ export default class AjouterArticle extends Component {
   render() {
     return (
       <Container style={styles.fond}>
-        <Header />
-        <Text style={styles.ajout}>Ajoutez un Article</Text>
         <Content padder>
           <Item>
             <Input placeholder="Titre" style={styles.titre} />
@@ -54,9 +52,10 @@ export default class AjouterArticle extends Component {
               ></Ionicons>
             </TouchableOpacity>
           </View>
-          <View style={styles.valid}>
+          <View>
             <Button
               mode="contained"
+              style={styles.valid}
               labelStyle={{
                 color: 'white',
                 fontWeight: 'bold',
@@ -78,11 +77,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff9eb',
   },
 
-  ajout: {
-    textAlign: 'center',
-    marginTop: 20,
-  },
-
   titre: {
     marginTop: 20,
     backgroundColor: 'white',
@@ -98,10 +92,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   valid: {
-    flex: 1,
-    flexDirection: 'row',
     alignSelf: 'center',
     width: 200,
     marginTop: 30,
+    backgroundColor: '#6986C5',
+    borderRadius: 10,
+    borderWidth: 0,
   },
 })

@@ -73,27 +73,41 @@ function StackNavigator({ navigation }) {
         name="Dashboard"
         component={Dashboard}
         options={{
+          headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
           headerLeft: () => (
             <Icon name="menu" onPress={() => navigation.openDrawer()} />
           ),
         }}
       />
-      <Stack.Screen name="Blog" component={Blog} options={{ title: 'Blog' }} />
+      <Stack.Screen
+        name="Blog"
+        component={Blog}
+        options={{ title: 'Blog', headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
       <Stack.Screen
         name="CarnetScreen"
         component={CarnetScreen}
-        options={{ title: 'Carnet de liaison' }}
+        options={{
+          title: 'Carnet de liaison',
+          headerStyle: { backgroundColor: '#FFF9EC' },
+        }}
       />
       <Stack.Screen
         name="DiscussionList"
         component={DiscussionList}
-        options={{ title: 'Messagerie' }}
+        options={{
+          title: 'Messagerie',
+          headerStyle: { backgroundColor: '#FFF9EC' },
+        }}
       />
       <Stack.Screen
         name="ProfilScreen"
         component={ProfilScreen}
-        options={{ title: 'Profile' }}
+        options={{
+          title: 'Profile',
+          headerStyle: { backgroundColor: '#FFF9EC' },
+        }}
       />
       <Stack.Screen
         name="AuthLoadingScreen"
@@ -124,6 +138,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AjouterMotCarnetScreen"
         component={AjouterMotCarnetScreen}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
       <Stack.Screen
@@ -131,7 +146,11 @@ function StackNavigator({ navigation }) {
         component={ResetPasswordScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="AjouterArticle" component={AjouterArticle} />
+      <Stack.Screen
+        name="AjouterArticle"
+        component={AjouterArticle}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
     </Stack.Navigator>
   )
 }
