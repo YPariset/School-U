@@ -31,16 +31,6 @@ export default function DiscussionList({ navigation }){
 
     return (
 <View style={styles.backgroundColor}>
-        <Header 
-      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
-      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
-      containerStyle={{
-        backgroundColor: 'transparent',
-        width: '100%'
-        
-      }}
-      
-      />
 <View style={styles.title}>
 <Text style={styles.titre}>Discussions</Text>
   {

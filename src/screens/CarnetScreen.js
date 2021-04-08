@@ -25,16 +25,6 @@ export default function CarnetScreen({ navigation }){
     return (
 
 <View style={styles.container}>
-<Header 
-      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
-      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
-      containerStyle={{
-        backgroundColor: 'transparent',
-        width: '100%'
-        
-      }}
-      
-      />
 
 
   {

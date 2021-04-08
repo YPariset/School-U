@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet } from 'react-native'
-import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { Icon } from 'native-base';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import {
   Container,
   Content,
@@ -20,16 +19,6 @@ export default class Blog extends Component {
   render() {
     return (
       <Container style={styles.fond}>
-        <Header 
-      leftComponent={<Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />}
-      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
-      containerStyle={{
-        backgroundColor: 'transparent',
-        width: '100%'
-        
-      }}
-      
-      />
         <Content>
           <Card style={{ flex: 0 }}>
             <CardItem>

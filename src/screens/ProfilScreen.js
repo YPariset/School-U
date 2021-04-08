@@ -18,16 +18,6 @@ export default function ProfilScreen({ navigation }){
     return (
 
 <SafeAreaView style={styles.container}>
-<Header 
-      leftComponent={<Icon name="menu" onPress={() => navigation.openDrawer()} />}
-      centerComponent={{ text: 'Coding Factory', style: { color: 'black' } }}
-      containerStyle={{
-        backgroundColor: 'transparent',
-        width: '100%'
-        
-      }}
-      
-      />
 <View style={styles.userInfoSection}>
 <View style={{flexDirection: 'row', marginTop:15}}>
 <Avatar.Image 
