@@ -23,6 +23,7 @@ import {
   AjouterMotCarnetScreen,
   ProfilScreen,
   EditProfilScreen,
+  addChild,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -61,6 +62,10 @@ function CustomDrawerContent(props) {
       <DrawerItem
         label="Profile"
         onPress={() => props.navigation.navigate('ProfilScreen')}
+      />
+      <DrawerItem
+        label="addChild"
+        onPress={() => props.navigation.navigate('addChild')}
       />
     </DrawerContentScrollView>
   )
@@ -149,6 +154,11 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AjouterArticle"
         component={AjouterArticle}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
+      <Stack.Screen
+        name="addChild"
+        component={addChild}
         options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
     </Stack.Navigator>

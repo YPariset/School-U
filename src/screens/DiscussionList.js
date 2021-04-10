@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Color } from 'react-native'
+import { View, StyleSheet, Text, Color, Platform } from 'react-native'
 import { ListItem, Avatar, Header, Button } from 'react-native-elements'
 import { Icon } from 'native-base'
 
@@ -30,7 +30,7 @@ export default function DiscussionList({ navigation }) {
       <View style={styles.title}>
         <Text style={styles.titre}>Discussions</Text>
         {list.map((l, i) => (
-          <ListItem style={styles.listItem} key={i} bottomDivider>
+          <ListItem style={styles.listItem} key={i} bottomDivider onPress={() => navigation.navigate('Message')}>
             <Avatar rounded source={{ uri: l.avatar_url }} />
             <ListItem.Content>
               <ListItem.Title style={styles.name}>{l.name}</ListItem.Title>
@@ -45,34 +45,55 @@ export default function DiscussionList({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  titre: {
-    marginLeft: 120,
-    marginBottom: 60,
-    fontWeight: 'bold',
-    fontSize: 23,
-  },
-  backgroundColor: {
-    backgroundColor: '#fff9ec',
-  },
-  title: {
-    marginTop: 60,
-    marginBottom: 500,
-  },
-  listItem: {
-    marginBottom: 20,
-    marginRight: 20,
-    marginLeft: 20,
-    borderRadius: 10,
-  },
-  name: {
-    fontWeight: 'bold',
-  },
-  container: {
-    backgroundColor: '#FFF9EC',
-    flex: 1,
-    resizeMode: 'cover',
-  },
-  itemContainer: {
-    marginTop: 50,
-  },
-})
+  ...Platform.select({ 
+                  ios: {
+                    backgroundColor: {
+                      backgroundColor: '#fff9ec',
+                    },
+                    listItem: {
+                      marginBottom:20,
+                      marginRight:20,
+                      marginLeft:20,
+                      borderRadius:10
+                    },
+                    name: {
+                      fontWeight: 'bold',
+                    },
+                    titre: {
+                      marginLeft: 'auto',
+                      marginRight: 'auto', 
+                      marginBottom:60,
+                      fontWeight: 'bold',
+                      fontSize: 23,
+                  },
+                  title: {
+                    marginTop: 30,
+                    marginBottom: 500
+                  },
+                },
+                web: {
+                  backgroundColor: {
+                    backgroundColor: '#fff9ec',
+                  },
+                  listItem: {
+                    marginBottom:20,
+                    marginRight:450,
+                    marginLeft:450,
+                    borderRadius:10
+                  },
+                  name: {
+                    fontWeight: 'bold',
+                  },
+                  titre: {
+                    textAlign: 'center',
+                    marginBottom:60,
+                    fontWeight: 'bold',
+                    fontSize: 23,
+                },
+                title: {
+                  marginTop: 60,
+                  marginBottom: 500
+                },
+                }
+              }),
+            });
