@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Platform } from "react-native";
 import * as firebase from "firebase";
 
 export default class LoginScreen extends React.Component {
@@ -30,15 +30,15 @@ export default class LoginScreen extends React.Component {
                 <StatusBar barStyle="light-content"></StatusBar>
                 <Image
                     source={require("../assets/authHeader.png")}
-                    style={{ marginTop: -176, marginLeft: -50 }}
+                    style={styles.imageHeader}
                 ></Image>
                 <Image
                     source={require("../assets/authFooter.png")}
-                    style={{ position: "absolute", bottom: -325, right: -225 }}
+                    style={styles.imageFooter}
                 ></Image>
                 <Image
                     source={require("../assets/loginLogo.png")}
-                    style={{ marginTop: -110, alignSelf: "center" }}
+                    style={styles.loginLogo}
                 ></Image>
                 <Text style={styles.greeting}>{`Hello again.\nWelcome back.`}</Text>
 
@@ -75,7 +75,7 @@ export default class LoginScreen extends React.Component {
 
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
-                    onPress={() => this.props.navigation.navigate("Register")}
+                    onPress={() => this.props.navigation.navigate("RegisterScreen")}
                 >
                     <Text style={{ color: "#414959", fontSize: 13 }}>
                         New to SocialApp? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Sign up</Text>
@@ -87,49 +87,139 @@ export default class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    greeting: {
-        marginTop: -32,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    form: {
-        marginBottom: 48,
-        marginHorizontal: 30
-    },
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    },
-    button: {
-        marginHorizontal: 30,
-        backgroundColor: "#E9446A",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    errorMessage: {
-        height: 72,
-        alignItems: "center",
-        justifyContent: "center",
-        marginHorizontal: 30
-    },
-    error: {
-        color: "#E9446A",
-        fontSize: 13,
-        fontWeight: "600",
-        textAlign: "center"
-    }
-});
+    ...Platform.select({
+      web: {
+        container: {
+            flex: 1
+        },
+        imageHeader: {
+            flex: 1,
+            width: 450,
+            alignSelf: "center",
+        },
+        imageFooter: {
+            position: "absolute", 
+            flex: 1,
+            width: 450,
+            alignSelf: "center"
+        },
+        loginLogo: {
+            flex: 1,
+            width: 100,
+            maxWidth: 100,
+            alignSelf: "center",
+            zIndex: 1
+        
+        },
+        greeting: {
+           
+            fontSize: 18,
+            fontWeight: "400",
+            textAlign: "center"
+        },
+        form: {
+            marginBottom: 48,
+            marginHorizontal: 30
+        },
+        inputTitle: {
+            color: "#8A8F9E",
+            fontSize: 10,
+            textTransform: "uppercase"
+        },
+        input: {
+            borderBottomColor: "#8A8F9E",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            height: 40,
+            fontSize: 15,
+            color: "#161F3D"
+        },
+        button: {
+            marginHorizontal: 30,
+            backgroundColor: "#E9446A",
+            borderRadius: 4,
+            height: 52,
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        errorMessage: {
+            height: 72,
+            alignItems: "center",
+            justifyContent: "center",
+            marginHorizontal: 30
+        },
+        error: {
+            color: "#E9446A",
+            fontSize: 13,
+            fontWeight: "600",
+            textAlign: "center"
+        }
+  
+      },
+      ios: {
+        container: {
+            flex: 1
+        },
+        imageHeader: {
+            marginTop: -116, 
+            marginLeft: -50
+        },
+        imageFooter: {
+            position: "absolute", 
+            bottom: -325, 
+            right: -225
+        },
+        loginLogo: {
+            marginTop: -110, 
+            alignSelf: "center"
+        },
+        greeting: {
+            marginTop: -32,
+            fontSize: 18,
+            fontWeight: "400",
+            textAlign: "center"
+        },
+        form: {
+            marginBottom: 48,
+            marginHorizontal: 30
+        },
+        inputTitle: {
+            color: "#8A8F9E",
+            fontSize: 10,
+            textTransform: "uppercase"
+        },
+        input: {
+            borderBottomColor: "#8A8F9E",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            height: 40,
+            fontSize: 15,
+            color: "#161F3D"
+        },
+        button: {
+            marginHorizontal: 30,
+            backgroundColor: "#E9446A",
+            borderRadius: 4,
+            height: 52,
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        errorMessage: {
+            height: 72,
+            alignItems: "center",
+            justifyContent: "center",
+            marginHorizontal: 30
+        },
+        error: {
+            color: "#E9446A",
+            fontSize: 13,
+            fontWeight: "600",
+            textAlign: "center"
+        }
+  
+      },
+      android: {
+  
+      }
+    })
+  });
+
+

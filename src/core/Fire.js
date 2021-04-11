@@ -64,7 +64,8 @@ class Fire {
             db.set({
                 name: user.name,
                 email: user.email,
-                avatar: null
+                avatar: null,
+                role: user.role
             });
 
             if (user.avatar) {
