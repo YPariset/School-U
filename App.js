@@ -23,6 +23,7 @@ import {
   AjouterMotCarnetScreen,
   ProfilScreen,
   EditProfilScreen,
+  PostScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -83,7 +84,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="Blog"
         component={Blog}
-        options={{ title: 'Blog', headerStyle: { backgroundColor: '#FFF9EC' } }}
+        options={{ title: null, headerStyle: { backgroundColor: 'white' } }}
       />
       <Stack.Screen
         name="CarnetScreen"
@@ -149,8 +150,14 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AjouterArticle"
         component={AjouterArticle}
-        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+        options={{ headerShown: false } }
       />
+      <Stack.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={{ headerShown: false } }
+      />
+      
     </Stack.Navigator>
   )
 }
