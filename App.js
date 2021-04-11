@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-native'
+import { Button, View } from 'react-native'
 import 'react-native-gesture-handler'
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
@@ -32,6 +32,7 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer'
 import { Icon } from 'native-base'
+import { logoutUser } from './src/api/auth-api'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -66,6 +67,14 @@ function CustomDrawerContent(props) {
       <DrawerItem
         label="addChild"
         onPress={() => props.navigation.navigate('addChild')}
+      />
+
+      <DrawerItem
+        label="Se déconnecter"
+        onPress={logoutUser}
+        labelStyle={{
+          color: '#E46472',
+        }}
       />
     </DrawerContentScrollView>
   )
