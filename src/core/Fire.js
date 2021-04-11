@@ -6,6 +6,7 @@ class Fire {
         firebase.initializeApp(FIREBASE_CONFIG);
     }
 
+
     addMotCarnet = async ({ content }) => {
 
         return new Promise((res, rej) => {
@@ -13,7 +14,6 @@ class Fire {
                 .collection("carnet")
                 .add({
                     content,
-                    uid: this.uid,
                     timestamp: this.timestamp,
                 })
                 .then(ref => {
