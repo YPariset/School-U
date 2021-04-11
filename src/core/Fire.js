@@ -6,6 +6,26 @@ class Fire {
         firebase.initializeApp(FIREBASE_CONFIG);
     }
 
+    addMotCarnet = async ({ content }) => {
+
+        return new Promise((res, rej) => {
+            this.firestore
+                .collection("carnet")
+                .add({
+                    content,
+                    uid: this.uid,
+                    timestamp: this.timestamp,
+                })
+                .then(ref => {
+                    res(ref);
+                })
+                .catch(error => {
+                    rej(error);
+                });
+        });
+    };
+
+    
     addPost = async ({ text, localUri }) => {
         const remoteUri = await this.uploadPhotoAsync(localUri);
 
