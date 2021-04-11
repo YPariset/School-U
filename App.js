@@ -81,7 +81,11 @@ function StackNavigator({ navigation }) {
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
           headerLeft: () => (
-            <Icon style={{paddingLeft:15}} name="menu" onPress={() => navigation.openDrawer()} />
+            <Icon
+              style={{ paddingLeft: 15 }}
+              name="menu"
+              onPress={() => navigation.openDrawer()}
+            />
           ),
         }}
       />
@@ -139,7 +143,11 @@ function StackNavigator({ navigation }) {
         component={Classroom}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Message" component={Message} />
+      <Stack.Screen
+        name="Message"
+        component={Message}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
       <Stack.Screen
         name="AjouterMotCarnetScreen"
         component={AjouterMotCarnetScreen}
