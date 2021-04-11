@@ -40,6 +40,7 @@ export default function ResetPasswordScreen({ navigation }) {
       <Logo />
       <Header>Reinitialiser le mot de passe</Header>
       <TextInput
+        theme={{ colors: { primary: '#a4c9c8' } }}
         label="E-mail address"
         returnKeyType="done"
         value={email.value}

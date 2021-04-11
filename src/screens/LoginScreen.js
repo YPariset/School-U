@@ -44,6 +44,7 @@ export default function LoginScreen({ navigation }) {
       <Logo />
       <Header>Bienvenue</Header>
       <TextInput
+        theme={{ colors: { primary: '#a4c9c8' } }}
         label="Email"
         returnKeyType="next"
         value={email.value}
@@ -56,6 +57,7 @@ export default function LoginScreen({ navigation }) {
         keyboardType="email-address"
       />
       <TextInput
+        theme={{ colors: { primary: '#a4c9c8' } }}
         label="Password"
         returnKeyType="done"
         value={password.value}
