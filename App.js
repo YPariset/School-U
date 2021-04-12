@@ -25,6 +25,7 @@ import {
   EditProfilScreen,
   addChild,
   PostScreen,
+  CarnetScreen2
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -55,7 +56,7 @@ function CustomDrawerContent(props) {
       />
       <DrawerItem
         label="Carnet de liaison"
-        onPress={() => props.navigation.navigate('CarnetScreen')}
+        onPress={() => props.navigation.navigate('CarnetScreen2')}
       />
       <DrawerItem
         label="Messagerie"
@@ -115,6 +116,8 @@ function StackNavigator({ navigation }) {
           headerStyle: { backgroundColor: '#FFF9EC' },
         }}
       />
+
+
       <Stack.Screen
         name="DiscussionList"
         component={DiscussionList}

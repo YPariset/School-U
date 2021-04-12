@@ -1,96 +1,79 @@
-import React, { Component } from 'react'
-import { View, StyleSheet, TextInput, Text } from 'react-native'
-import { ListItem } from 'react-native-elements'
-import Button from '../components/Button'
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Image } from "react-native";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
+import { Ionicons } from "@expo/vector-icons";
+import Fire from "../core/Fire";
+import * as ImagePicker from "expo-image-picker";
 
-export default function AjouterMotCarnetScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.textAreaContainer}>
-        <TextInput
-          style={styles.textArea}
-          underlineColorAndroid="transparent"
-          placeholder="Écrivez votre mot dans le carnet de correspondance"
-          placeholderTextColor="grey"
-          numberOfLines={10}
-          multiline={true}
-        />
-      </View>
+const firebase = require("firebase");
+require("firebase/firestore");
 
-      <Button
-        mode="contained"
-        style={styles.bouton}
-        labelStyle={{
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: 15,
-          lineHeight: 26,
-        }}
-        onPress={() => navigation.navigate('CarnetScreen')}
-      >
-        <Text>Valider</Text>
-      </Button>
+export default class AjouterMotCarnetScreen extends React.Component {
+    state = {
+        content: "",
+    };
 
-      <Button
-        mode="outlined"
-        style={styles.bouton_ret}
-        labelStyle={{
-          color: '#FABE7C',
-          fontWeight: 'bold',
-          fontSize: 15,
-          lineHeight: 26,
-        }}
-        onPress={() => navigation.navigate('StartScreen')}
-      >
-        <Text>Retour au menu</Text>
-      </Button>
+    componentDidMount() {
+    }
 
-      <Button
-        mode="contained"
-        style={styles.bouton}
-        labelStyle={{
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: 15,
-          lineHeight: 26,
-        }}
-        onPress={() => navigation.navigate('CarnetScreen')}
-      >
-        <Text>Retour au carnet</Text>
-      </Button>
-    </View>
-  )
+
+    addCarnet = () => {
+        Fire.shared
+            .addMotCarnet({ content: this.state.content.trim()})
+            .then(ref => {
+                this.setState({ content: ""});
+                this.props.navigation.goBack();
+            })
+            .catch(error => {
+                alert(error);
+            });
+    };
+
+
+    render() {
+        return (
+            <SafeAreaView style={styles.container}>
+
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        autoFocus={true}
+                        multiline={true}
+                        numberOfLines={4}
+                        style={{ flex: 1 }}
+                        placeholder="Ajouter un mot sur le carnet"
+                        onChangeText={content => this.setState({ content })}
+                        value={this.state.content}
+                    ></TextInput>
+                </View>
+
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={this.addCarnet}>
+                        <Text style={{ fontWeight: "500" }}>Ajouter un mot sur le carnet</Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF9EC',
-    flex: 1,
-    resizeMode: 'cover',
-  },
-  itemContainer: {
-    marginTop: 50,
-  },
-  textAreaContainer: {
-    padding: 5,
-    marginTop: 80,
-  },
-  textArea: {
-    height: 150,
-    justifyContent: 'flex-start',
-  },
+    container: {
+        flex: 1, 
+        backgroundColor: '#FFF9EC',
+    },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 32,
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderTopWidth:1,
+        borderColor: "#D8D9DB"
+    },
+    inputContainer: {
+        margin: 32,
+        flexDirection: "row"
+    },
 
-  bouton: {
-    alignSelf: 'center',
-    width: 200,
-    marginTop: 30,
-    backgroundColor: '#FABE7C',
-    borderRadius: 10,
-  },
-  bouton_ret: {
-    alignSelf: 'center',
-    width: 200,
-    marginTop: 30,
-    borderRadius: 10,
-  },
-})
+});
