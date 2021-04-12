@@ -3,9 +3,16 @@ import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import Button from '../components/Button'
+import Fire from "../core/Fire";
+import { db } from '../core/Fire';
+
+
+const firebase = require("firebase");
+require("firebase/firestore");
+
 
 // temporary data until we pull from Firebase
-const posts = [
+/*const posts = [
     {
         id: "1",
         name: "Joe McKay",
@@ -42,13 +49,52 @@ const posts = [
         avatar: require("../assets/tempAvatar.jpg"),
         image: require("../assets/tempImage4.jpg")
     }
-];
+];*/
+
 
 export default class Blog extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.ref =  Fire.shared.firestore.collection('posts')
+        this.useref=
+        this.state={
+          dataSource : []
+        }
+      
+      }
+      componentDidMount(){
+        this.feed = this.ref.onSnapshot(this.feedPosts);
+      }
+      
+      feedPosts = (postSnapShot) =>{
+        const post = [];
+        postSnapShot.forEach((doc) => {
+        const {uid,text,timestamp,image} = doc.data();
+        const data=Fire.shared.firestore
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then(doc=>{
+          post.push({
+            avatar:doc.data().avatar
+            ,name:doc.data().name,uid,
+            
+            text,
+            timestamp,
+            image
+          })
+          this.setState({
+            dataSource : post,
+          });
+        })
+        });
+      }
+
     renderPost = post => {
         return (
             <View style={styles.feedItem}>
-                <Image source={post.avatar} style={styles.avatar} />
+                <Image source={{uri: post.avatar}} style={styles.avatar} />
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                         <View>
@@ -59,7 +105,7 @@ export default class Blog extends React.Component {
                         <Ionicons name="ellipsis-horizontal-outline" size={24} color="#73788B" />
                     </View>
                     <Text style={styles.post}>{post.text}</Text>
-                    <Image source={post.image} style={styles.postImage} resizeMode="cover" />
+                    <Image source={{uri: post.image}} style={styles.postImage} resizeMode="cover" />
                     <View style={{ flexDirection: "row" }}>
                         <Ionicons name="heart-outline" size={24} color="#73788B" style={{ marginRight: 16 }} />
                         <Ionicons name="chatbox-outline" size={24} color="#73788B" />
@@ -74,7 +120,7 @@ export default class Blog extends React.Component {
             <View style={styles.container}>
                 <FlatList
                     style={styles.feed}
-                    data={posts}
+                    data={this.state.dataSource}
                     renderItem={({ item }) => this.renderPost(item)}
                     keyExtractor={item => item.id}
                     showsVerticalScrollIndicator={false}

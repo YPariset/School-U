@@ -1,5 +1,6 @@
 import { FIREBASE_CONFIG } from '../core/config'
 import firebase from "firebase";
+import 'firebase/firestore';
 
 class Fire {
     constructor() {
@@ -26,26 +27,24 @@ class Fire {
     };
 
     
-    addPost = async ({ text, localUri }) => {
-        const remoteUri = await this.uploadPhotoAsync(localUri);
-
-        return new Promise((res, rej) => {
-            this.firestore
-                .collection("posts")
-                .add({
-                    text,
-                    uid: this.uid,
-                    timestamp: this.timestamp,
-                    image: remoteUri
-                })
-                .then(ref => {
-                    res(ref);
-                })
-                .catch(error => {
-                    rej(error);
-                });
-        });
-    };
+    addPost =async({text,localUri})=>{
+        const remoteUri=await this.uploadPhotoAsync(localUri,`photos/${this.uid}/${Date.now()}`)
+        return new Promise((res,rej)=>{
+            this.firestore.collection('posts').add({
+                text,
+                uid:this.uid,
+                timestamp:this.timestamp,
+                image:remoteUri
+            })
+            .then(ref=>{
+                res(ref)
+            })
+            .catch(error=>{
+                rej(error)
+            })
+            
+        })
+    }
 
     uploadPhotoAsync = async uri => {
         const path = `photos/${this.uid}/${Date.now()}.jpg`;
@@ -102,6 +101,7 @@ class Fire {
         firebase.auth().signOut();
     };
 
+
     get firestore() {
         return firebase.firestore();
     }
@@ -117,3 +117,4 @@ class Fire {
 
 Fire.shared = new Fire();
 export default Fire;
+export const db = firebase.firestore();
