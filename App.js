@@ -71,7 +71,10 @@ function CustomDrawerContent(props) {
 
       <DrawerItem
         label="Se déconnecter"
-        onPress={logoutUser}
+        onPress={() => {
+          logoutUser()
+          props.navigation.closeDrawer()
+        }}
         labelStyle={{
           color: '#E46472',
         }}
