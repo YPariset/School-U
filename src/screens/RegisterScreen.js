@@ -83,7 +83,7 @@ export default class RegisterScreen extends React.Component {
                         ></TextInput>
                     </View>
 
-                    <View style={{ marginTop: 32 }}>
+                    <View style={{ marginTop: 28 }}>
                         <Text style={styles.inputTitle}>Email Address</Text>
                         <TextInput
                             style={styles.input}
@@ -93,7 +93,7 @@ export default class RegisterScreen extends React.Component {
                         ></TextInput>
                     </View>
 
-                    <View style={{ marginTop: 32 }}>
+                    <View style={{ marginTop: 28 }}>
                         <Text style={styles.inputTitle}>Password</Text>
                         <TextInput
                             style={styles.input}
@@ -103,7 +103,7 @@ export default class RegisterScreen extends React.Component {
                             value={this.state.user.password}
                         ></TextInput>
                     </View>
-                    <View style={{ marginTop: 32 }}>
+                    <View style={{ marginTop: 28, marginBottom:30 }}>
                         <Text style={styles.inputTitle}>Rôle</Text>
                         <DropDownPicker
                             items={[
@@ -119,7 +119,7 @@ export default class RegisterScreen extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+                    <Text style={{ color: "#FFF", fontWeight: "500"}}>Sign up</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
