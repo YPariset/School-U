@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-native'
+import { Button, View } from 'react-native'
 import 'react-native-gesture-handler'
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
@@ -32,6 +32,7 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer'
 import { Icon } from 'native-base'
+import { logoutUser } from './src/api/auth-api'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -67,6 +68,17 @@ function CustomDrawerContent(props) {
         label="addChild"
         onPress={() => props.navigation.navigate('addChild')}
       />
+
+      <DrawerItem
+        label="Se déconnecter"
+        onPress={() => {
+          logoutUser()
+          props.navigation.closeDrawer()
+        }}
+        labelStyle={{
+          color: '#E46472',
+        }}
+      />
     </DrawerContentScrollView>
   )
 }
@@ -81,7 +93,11 @@ function StackNavigator({ navigation }) {
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
           headerLeft: () => (
-            <Icon style={{paddingLeft:15}} name="menu" onPress={() => navigation.openDrawer()} />
+            <Icon
+              style={{ paddingLeft: 15 }}
+              name="menu"
+              onPress={() => navigation.openDrawer()}
+            />
           ),
         }}
       />
@@ -139,7 +155,11 @@ function StackNavigator({ navigation }) {
         component={Classroom}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Message" component={Message} />
+      <Stack.Screen
+        name="Message"
+        component={Message}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
       <Stack.Screen
         name="AjouterMotCarnetScreen"
         component={AjouterMotCarnetScreen}

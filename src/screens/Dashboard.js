@@ -41,9 +41,9 @@ export default class Dashboard extends React.Component {
           </Button>
         </View>
 
-        <Button mode="outlined" onPress={logoutUser}>
+        {/* <Button mode="outlined" onPress={logoutUser}>
           Logout
-        </Button>
+        </Button> */}
       </View>
     )
   }
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingRight: 200,
         paddingLeft: 200,
-        paddingBottom: 20,
+        paddingBottom: 100,
         width: '100%',
         alignSelf: 'center',
         alignItems: 'center',
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF9EC',
         flex: 1,
         padding: 20,
-        paddingBottom: 50,
+        paddingBottom: 100,
         width: '100%',
         justifyContent: 'center',
       },

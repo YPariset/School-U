@@ -44,6 +44,7 @@ export default function LoginScreen({ navigation }) {
       <Logo />
       <Header>Bienvenue</Header>
       <TextInput
+        theme={{ colors: { primary: '#a4c9c8' } }}
         label="Email"
         returnKeyType="next"
         value={email.value}
@@ -56,6 +57,7 @@ export default function LoginScreen({ navigation }) {
         keyboardType="email-address"
       />
       <TextInput
+        theme={{ colors: { primary: '#a4c9c8' } }}
         label="Password"
         returnKeyType="done"
         value={password.value}
@@ -71,16 +73,18 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.forgot}>Mot de passe oublié ?</Text>
         </TouchableOpacity>
       </View>
-      <Button 
-      loading={loading} 
-      mode="contained" 
-      labelStyle={{ 
-        color: "white",
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      }}
-      onPress={onLoginPressed}>
+      <Button
+        loading={loading}
+        mode="contained"
+        style={styles.bouton}
+        labelStyle={{
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 15,
+          lineHeight: 26,
+        }}
+        onPress={onLoginPressed}
+      >
         Se connecter
       </Button>
       <View style={styles.row}>
@@ -111,5 +115,12 @@ const styles = StyleSheet.create({
   link: {
     fontWeight: 'bold',
     color: theme.colors.primary,
+  },
+  bouton: {
+    alignSelf: 'center',
+    width: 200,
+    marginTop: 30,
+    backgroundColor: '#6986C5',
+    borderRadius: 10,
   },
 })
