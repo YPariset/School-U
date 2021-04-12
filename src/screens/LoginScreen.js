@@ -1,115 +1,225 @@
-import React, { useState } from 'react'
-import { TouchableOpacity, StyleSheet, View } from 'react-native'
-import { Text } from 'react-native-paper'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import TextInput from '../components/TextInput'
-import BackButton from '../components/BackButton'
-import { theme } from '../core/theme'
-import { emailValidator } from '../helpers/emailValidator'
-import { passwordValidator } from '../helpers/passwordValidator'
-import { loginUser } from '../api/auth-api'
-import Toast from '../components/Toast'
+import React from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Platform } from "react-native";
+import * as firebase from "firebase";
 
-export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState({ value: '', error: '' })
-  const [password, setPassword] = useState({ value: '', error: '' })
-  const [loading, setLoading] = useState()
-  const [error, setError] = useState()
+export default class LoginScreen extends React.Component {
+    static navigationOptions = {
+        header: null
+    };
 
-  const onLoginPressed = async () => {
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
+    state = {
+        email: "",
+        password: "",
+        errorMessage: null
+    };
+
+    handleLogin = () => {
+        const { email, password } = this.state;
+
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch(error => this.setState({ errorMessage: error.message }));
+    };
+
+    render() {
+        LayoutAnimation.easeInEaseOut();
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content"></StatusBar>
+                <Image
+                    source={require("../assets/authHeader.png")}
+                    style={styles.imageHeader}
+                ></Image>
+                <Image
+                    source={require("../assets/authFooter.png")}
+                    style={styles.imageFooter}
+                ></Image>
+                <Image
+                    source={require("../assets/loginLogo.png")}
+                    style={styles.loginLogo}
+                ></Image>
+                <Text style={styles.greeting}>{`Hello again.\nWelcome back.`}</Text>
+
+                <View style={styles.errorMessage}>
+                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
+                </View>
+
+                <View style={styles.form}>
+                    <View>
+                        <Text style={styles.inputTitle}>Email Address</Text>
+                        <TextInput
+                            style={styles.input}
+                            autoCapitalize="none"
+                            onChangeText={email => this.setState({ email })}
+                            value={this.state.email}
+                        ></TextInput>
+                    </View>
+
+                    <View style={{ marginTop: 32 }}>
+                        <Text style={styles.inputTitle}>Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            secureTextEntry
+                            autoCapitalize="none"
+                            onChangeText={password => this.setState({ password })}
+                            value={this.state.password}
+                        ></TextInput>
+                    </View>
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{ alignSelf: "center", marginTop: 32 }}
+                    onPress={() => this.props.navigation.navigate("RegisterScreen")}
+                >
+                    <Text style={{ color: "#414959", fontSize: 13 }}>
+                        New to SocialApp? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Sign up</Text>
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        );
     }
-    setLoading(true)
-    const response = await loginUser({
-      email: email.value,
-      password: password.value,
-    })
-    if (response.error) {
-      setError(response.error)
-    }
-    setLoading(false)
-  }
-
-  return (
-    <Background>
-      <BackButton goBack={navigation.goBack} />
-      <Logo />
-      <Header>Bienvenue</Header>
-      <TextInput
-        label="Email"
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: '' })}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
-      <TextInput
-        label="Password"
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={(text) => setPassword({ value: text, error: '' })}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
-      />
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ResetPasswordScreen')}
-        >
-          <Text style={styles.forgot}>Mot de passe oublié ?</Text>
-        </TouchableOpacity>
-      </View>
-      <Button 
-      loading={loading} 
-      mode="contained" 
-      labelStyle={{ 
-        color: "white",
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      }}
-      onPress={onLoginPressed}>
-        Se connecter
-      </Button>
-      <View style={styles.row}>
-        <Text>Vous n'avez pas de compte ? </Text>
-        <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
-          <Text style={styles.link}>Créer un compte</Text>
-        </TouchableOpacity>
-      </View>
-      <Toast message={error} onDismiss={() => setError('')} />
-    </Background>
-  )
 }
 
 const styles = StyleSheet.create({
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
-  },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  forgot: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  },
-})
+    ...Platform.select({
+      web: {
+        container: {
+            flex: 1
+        },
+        imageHeader: {
+            flex: 1,
+            width: 450,
+            alignSelf: "center",
+        },
+        imageFooter: {
+            position: "absolute", 
+            flex: 1,
+            width: 450,
+            alignSelf: "center"
+        },
+        loginLogo: {
+            flex: 1,
+            width: 100,
+            maxWidth: 100,
+            alignSelf: "center",
+            zIndex: 1
+        
+        },
+        greeting: {
+           
+            fontSize: 18,
+            fontWeight: "400",
+            textAlign: "center"
+        },
+        form: {
+            marginBottom: 48,
+            marginHorizontal: 30
+        },
+        inputTitle: {
+            color: "#8A8F9E",
+            fontSize: 10,
+            textTransform: "uppercase"
+        },
+        input: {
+            borderBottomColor: "#8A8F9E",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            height: 40,
+            fontSize: 15,
+            color: "#161F3D"
+        },
+        button: {
+            marginHorizontal: 30,
+            backgroundColor: "#E9446A",
+            borderRadius: 4,
+            height: 52,
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        errorMessage: {
+            height: 72,
+            alignItems: "center",
+            justifyContent: "center",
+            marginHorizontal: 30
+        },
+        error: {
+            color: "#E9446A",
+            fontSize: 13,
+            fontWeight: "600",
+            textAlign: "center"
+        }
+  
+      },
+      ios: {
+        container: {
+            flex: 1
+        },
+        imageHeader: {
+            marginTop: -116, 
+            marginLeft: -50
+        },
+        imageFooter: {
+            position: "absolute", 
+            bottom: -325, 
+            right: -225
+        },
+        loginLogo: {
+            marginTop: -110, 
+            alignSelf: "center"
+        },
+        greeting: {
+            marginTop: -32,
+            fontSize: 18,
+            fontWeight: "400",
+            textAlign: "center"
+        },
+        form: {
+            marginBottom: 48,
+            marginHorizontal: 30
+        },
+        inputTitle: {
+            color: "#8A8F9E",
+            fontSize: 10,
+            textTransform: "uppercase"
+        },
+        input: {
+            borderBottomColor: "#8A8F9E",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            height: 40,
+            fontSize: 15,
+            color: "#161F3D"
+        },
+        button: {
+            marginHorizontal: 30,
+            backgroundColor: "#E9446A",
+            borderRadius: 4,
+            height: 52,
+            alignItems: "center",
+            justifyContent: "center"
+        },
+        errorMessage: {
+            height: 72,
+            alignItems: "center",
+            justifyContent: "center",
+            marginHorizontal: 30
+        },
+        error: {
+            color: "#E9446A",
+            fontSize: 13,
+            fontWeight: "600",
+            textAlign: "center"
+        }
+  
+      },
+      android: {
+  
+      }
+    })
+  });
+
+
