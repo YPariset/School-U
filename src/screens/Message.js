@@ -1,109 +1,87 @@
-import { Icon } from 'native-base'
-import React, { Component, useState, useCallback, useEffect } from 'react'
-import { View, StyleSheet, Text, Color } from 'react-native'
-import { GiftedChat, Bubble, Send } from 'react-native-gifted-chat'
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, Text, View,LogBox, TextInput, Button} from 'react-native';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GiftedChat } from 'react-native-gifted-chat';
 
-export default function Message({ navigation }) {
-  const [messages, setMessages] = useState([])
+const db = firebase.firestore();
+const chatsRef = db.collection('chats');
 
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Bonjour, comment allez vous?',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'Raymonde',
-          avatar:
-            'https://storage-dating.euranka.com/uploads/sites/5/2018/12/photo-profil-rencontre-2019.jpg',
-        },
-      },
-    ])
-  }, [])
+export default function Message() {
 
-  const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
+  const [ user, setUser ] = useState(null);
+  const  [name, setName ] = useState('');
+  const [ messages, setMessages ] = useState([]);
+
+  useEffect(()=>{
+    readUser();
+    const unsubscribe = chatsRef.onSnapshot(querySnapshot =>{
+      const messagesFirestore = querySnapshot
+            .docChanges()
+            .filter(({type})=> type === 'added')
+            .map(({doc})=>{
+              const message = doc.data()
+              return { ...message, createdAt: message.createdAt.toDate() }
+            }).sort((a, b) => b.createdAt.getTime()- a.createdAt.getTime())
+        appendMessages(messagesFirestore);
+    })
+    return () => unsubscribe();
+  },[]);
+
+  const appendMessages = useCallback((messages)=>{
+    setMessages((prevMsgs)=>GiftedChat.append(prevMsgs,messages))
+  },[messages]);
+
+  async function readUser(){
+    const user = await AsyncStorage.getItem('users')
+    if(user){
+      setUser(JSON.parse(user));
+    }
+  };
+  async function handlePress(){
+    const _id = Math.random().toString(36).substring(7);
+    const user = { _id, name };
+    await AsyncStorage.setItem('users',JSON.stringify(user));
+    setUser(user)
+  };
+  
+  async function handleSend (messages){
+    const writes = messages.map( msg => chatsRef.add(msg))
+    await Promise.all(writes)
+  }
+
+  if(!user){
+    return (
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder='Enter your name' value={name} onChangeText={setName}/>
+        <Button onPress={handlePress} title='Enter the chat'/>
+      </View>
     )
-  }, [])
-
+  };
   return (
-    <View style={{ backgroundColor: '#fff9ec', flex: 1 }}>
-      <GiftedChat
-        renderSend={(props) => {
-          return (
-            <Send {...props} textStyle={{ color: '#E46472' }}>
-              <View style={{ marginRight: 10, marginBottom: 5 }}>
-                <Icon name="ios-send" style={{ color: '#E46472' }} />
-              </View>
-            </Send>
-          )
-        }}
-        renderBubble={(props) => {
-          return (
-            <Bubble
-              {...props}
-              timeTextStyle={{ left: { color: 'white' } }}
-              textStyle={{
-                right: {
-                  color: 'white',
-                },
-                left: {
-                  color: 'white',
-                },
-              }}
-              wrapperStyle={{
-                left: {
-                  backgroundColor: '#E46472',
-                },
-                right: {
-                  backgroundColor: '#6986C5',
-                },
-              }}
-            />
-          )
-        }}
-        messages={messages}
-        onSend={(messages) => onSend(messages)}
-        user={{
-          _id: 1,
-        }}
+     <GiftedChat 
+        messages={messages} 
+        user={user}
+        onSend={handleSend}
       />
-    </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-  photo: {},
-  titre: {
-    marginLeft: 135,
-    marginBottom: 60,
-    fontWeight: 'bold',
-    fontSize: 23,
-  },
-  backgroundColor: {
-    backgroundColor: '#fff9ec',
-  },
-  title: {
-    marginTop: 60,
-    marginBottom: 500,
-  },
-  listItem: {
-    marginBottom: 20,
-    marginRight: 20,
-    marginLeft: 20,
-    borderRadius: 10,
-  },
-  name: {
-    fontWeight: 'bold',
-  },
   container: {
-    backgroundColor: '#FFF9EC',
     flex: 1,
-    resizeMode: 'cover',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:30,
   },
-  itemContainer: {
-    marginTop: 50,
-  },
-})
+  input:{
+    height:50,
+    width:'100%',
+    borderWidth:1,
+    marginBottom:20,
+    padding:15,
+    borderColor:'gray'
+  }
+});
