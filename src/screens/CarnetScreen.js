@@ -40,7 +40,8 @@ export default class CarnetScreen extends React.Component {
             content,
             timestamp,
           })
-          this.setState({
+          this.setState
+          ({
             dataSource : post,
           });
         })
@@ -71,7 +72,9 @@ export default class CarnetScreen extends React.Component {
                     style={styles.feed}
                     data={this.state.dataSource}
                     renderItem={({ item }) => this.renderPost(item)}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item, index) => {
+                      return  index.toString();
+                     }}
                     showsVerticalScrollIndicator={false}
                 ></FlatList>
                 <View style={styles.header}>
@@ -129,7 +132,6 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         fontSize: 11,
-        color: "#C4C6CE",
         marginTop: 4
     },
     post: {
