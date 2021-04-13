@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import Button from '../components/Button'
 import Fire from "../core/Fire";
-import { db } from '../core/Fire';
+
 
 
 const firebase = require("firebase");
@@ -121,8 +121,10 @@ export default class Blog extends React.Component {
                 <FlatList
                     style={styles.feed}
                     data={this.state.dataSource}
+                    keyExtractor={(item, index) => {
+                        return  index.toString();
+                       }}
                     renderItem={({ item }) => this.renderPost(item)}
-                    keyExtractor={item => item.id}
                     showsVerticalScrollIndicator={false}
                 ></FlatList>
                 <View style={styles.header}>
