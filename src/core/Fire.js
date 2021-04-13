@@ -14,6 +14,7 @@ class Fire {
             this.firestore
                 .collection("carnet")
                 .add({
+                    uid:this.uid,
                     content,
                     timestamp: this.timestamp,
                 })
