@@ -1,83 +1,146 @@
-import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import { ListItem } from 'react-native-elements'
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import React from "react";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import moment from "moment";
 import Button from '../components/Button'
-import { Header } from 'react-native-elements'
-import { Icon } from 'native-base'
+import Fire from "../core/Fire";
+import { db } from '../core/Fire';
 
-export default function CarnetScreen({ navigation }) {
-  const list = [
-    {
-      name: 'Mot du prof 1',
-      subtitle: 'date',
-    },
-    {
-      name: 'Mot du prof 2',
-      subtitle: 'date',
-    },
-  ]
 
-  return (
-    <View style={styles.container}>
-      {list.map((l, i) => (
-        <ListItem style={styles.itemContainer} key={i} bottomDivider>
-          <ListItem.Content>
-            <ListItem.Title style={{ fontSize: 18, paddingBottom: 10 }}>
-              {l.name}
-            </ListItem.Title>
-            <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-          </ListItem.Content>
-          <ListItem.Chevron />
-        </ListItem>
-      ))}
+const firebase = require("firebase");
+require("firebase/firestore");
 
-      <Button
-        mode="contained"
-        style={styles.bouton}
-        labelStyle={{
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: 15,
-          lineHeight: 26,
-        }}
-        onPress={() => navigation.navigate('StartScreen')}
-      >
-        <Text>Retour au menu </Text>
-      </Button>
 
-      <Button
-        style={styles.button}
-        onPress={() => navigation.navigate('AjouterMotCarnetScreen')}
-      >
-        <Ionicons
-          name="add-circle-outline"
-          size={30}
-          style={{ color: 'grey' }}
-        ></Ionicons>
-      </Button>
-    </View>
-  )
+export default class CarnetScreen extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.ref =  Fire.shared.firestore.collection('carnet')
+        this.useref=
+        this.state={
+          dataSource : []
+        }
+      
+      }
+      componentDidMount(){
+        this.feed = this.ref.onSnapshot(this.carnetPosts);
+      }
+      
+      carnetPosts = (postSnapShot) =>{
+        const post = [];
+        postSnapShot.forEach((doc) => {
+        const {uid,content,timestamp} = doc.data();
+        const data=Fire.shared.firestore
+        .collection('carnet')
+        .doc(uid)
+        .get()
+        .then(doc=>{
+          post.push({
+            uid,
+            content,
+            timestamp,
+          })
+          this.setState({
+            dataSource : post,
+          });
+        })
+        });
+      }
+
+    renderPost = post => {
+        return (
+            <View style={styles.carnetItem}>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                        <View>
+                            <Text style={styles.name}>{post.name}</Text>
+                            <Text style={styles.timestamp}>{moment(post.timestamp).format("DD-MM-YYYY HH:mm")}</Text>
+                        </View>
+                    </View>
+                    <Text style={styles.post}>{post.content}</Text>
+
+                </View>
+            </View>
+        );
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    style={styles.feed}
+                    data={this.state.dataSource}
+                    renderItem={({ item }) => this.renderPost(item)}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                ></FlatList>
+                <View style={styles.header}>
+                <Button
+                  onPress={() => this.props.navigation.navigate('AjouterMotCarnetScreen')}
+                >
+                <Ionicons
+                  name="add-circle-outline"
+                  size={30}
+                  style={{ color: 'grey'}}
+                ></Ionicons>
+                </Button>
+              </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF9EC',
-    flex: 1,
-    resizeMode: 'cover',
-  },
-  itemContainer: {
-    marginTop: 50,
-  },
-  button: {
-    backgroundColor: 'transparent',
-  },
-  bouton: {
-    alignSelf: 'center',
-    width: 200,
-    marginTop: 30,
-    backgroundColor: '#FABE7C',
-    borderRadius: 10,
-  },
-})
+    container: {
+        flex: 1,
+        backgroundColor: "#EBECF4"
+    },
+    header: {
+        height: 100,
+        backgroundColor: "#FFF",
+        alignItems: "center",
+        justifyContent: "center",
+        borderBottomWidth: 1,
+        borderBottomColor: "#EBECF4",
+        shadowColor: "#454D65",
+        shadowOffset: { height: 5 },
+        shadowRadius: 15,
+        shadowOpacity: 0.2,
+        zIndex: 1
+    },
+    headerTitle: {
+        fontSize: 50,
+        fontWeight: "800"
+    },
+    feed: {
+        marginHorizontal: 16
+    },
+    feedItem: {
+        backgroundColor: "#EBECF4",
+        borderRadius: 5,
+        padding: 8,
+        flexDirection: "row",
+        marginVertical: 8
+    },
+    name: {
+        fontSize: 15,
+        fontWeight: "500",
+        color: "#454D65"
+    },
+    timestamp: {
+        fontSize: 11,
+        color: "#C4C6CE",
+        marginTop: 4
+    },
+    post: {
+        marginTop: 16,
+        fontSize: 14,
+        color: "#838899"
+    },
+    postImage: {
+        width: undefined,
+        height: 150,
+        borderRadius: 5,
+        marginVertical: 16
+    }
+});

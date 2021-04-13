@@ -25,7 +25,6 @@ import {
   EditProfilScreen,
   addChild,
   PostScreen,
-
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
