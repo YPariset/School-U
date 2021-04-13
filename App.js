@@ -25,7 +25,6 @@ import {
   EditProfilScreen,
   addChild,
   PostScreen,
-  CarnetScreen2
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
