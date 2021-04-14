@@ -40,7 +40,7 @@ export default function Message() {
     }
   };
   async function handlePress(){
-    const _id = Math.random().toString(36).substring(7);
+    const _id = uid
     const user = { _id, name };
     await AsyncStorage.setItem('users',JSON.stringify(user));
     setUser(user)
