@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import Button from '../components/Button'
@@ -103,62 +103,193 @@ export default class Blog extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#EBECF4"
-    },
-    header: {
-        height: 100,
-        backgroundColor: "#FFF",
-        alignItems: "center",
-        justifyContent: "center",
-        borderBottomWidth: 1,
-        borderBottomColor: "#EBECF4",
-        shadowColor: "#454D65",
-        shadowOffset: { height: 5 },
-        shadowRadius: 15,
-        shadowOpacity: 0.2,
-        zIndex: 1
-    },
-    headerTitle: {
-        fontSize: 50,
-        fontWeight: "800"
-    },
-    feed: {
-        marginHorizontal: 16
-    },
-    feedItem: {
-        backgroundColor: "#FFF",
-        borderRadius: 5,
-        padding: 8,
-        flexDirection: "row",
-        marginVertical: 8
-    },
-    avatar: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-        marginRight: 16
-    },
-    name: {
-        fontSize: 15,
-        fontWeight: "500",
-        color: "#454D65"
-    },
-    timestamp: {
-        fontSize: 11,
-        color: "#C4C6CE",
-        marginTop: 4
-    },
-    post: {
-        marginTop: 16,
-        fontSize: 14,
-        color: "#838899"
-    },
-    postImage: {
-        width: undefined,
-        height: 150,
-        borderRadius: 5,
-        marginVertical: 16
-    }
-});
+    ...Platform.select({
+      web: {
+        container: {
+            flex: 1,
+            backgroundColor: "#FFF9EC"
+        },
+        header: {
+            height: 100,
+            backgroundColor: "#FFF9EC",
+            alignItems: "center",
+            justifyContent: "center",
+            borderBottomWidth: 1,
+            borderBottomColor: "#EBECF4",
+            shadowColor: "#454D65",
+            shadowOffset: { height: 5 },
+            shadowRadius: 15,
+            shadowOpacity: 0.2,
+            zIndex: 1
+        },
+        headerTitle: {
+            fontSize: 50,
+            fontWeight: "800"
+        },
+        feed: {
+            marginHorizontal: 16,
+            
+            
+        },
+        feedItem: {
+            backgroundColor: "#FFF",
+            borderRadius: 5,
+            padding: 8,
+            flexDirection: "row",
+            marginVertical: 8,
+            borderWidth: 1,
+            borderColor: "lightgrey"
+        },
+        avatar: {
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            marginRight: 16
+        },
+        name: {
+            fontSize: 15,
+            fontWeight: "500",
+            color: "#454D65"
+        },
+        timestamp: {
+            fontSize: 11,
+            color: "#C4C6CE",
+            marginTop: 4
+        },
+        post: {
+            marginTop: 16,
+            fontSize: 14,
+            color: "#838899"
+        },
+        postImage: {
+            width: 500,
+            height: 150,
+            borderRadius: 5,
+            marginVertical: 16
+        }
+  
+      },
+      ios: {
+        container: {
+            flex: 1,
+            backgroundColor: "#FFF"
+        },
+        header: {
+            height: 100,
+            backgroundColor: "#FFF9EC",
+            alignItems: "center",
+            justifyContent: "center",
+            borderBottomWidth: 1,
+            borderBottomColor: "#EBECF4",
+            shadowColor: "#454D65",
+            shadowOffset: { height: 5 },
+            shadowRadius: 15,
+            shadowOpacity: 0.2,
+            zIndex: 1
+        },
+        headerTitle: {
+            fontSize: 50,
+            fontWeight: "800"
+            
+        },
+        feed: {
+            marginHorizontal: 16
+        },
+        feedItem: {
+            backgroundColor: "#FFF",
+            borderRadius: 5,
+            padding: 8,
+            flexDirection: "row",
+            marginVertical: 8
+        },
+        avatar: {
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            marginRight: 16
+        },
+        name: {
+            fontSize: 15,
+            fontWeight: "500",
+            color: "#454D65"
+        },
+        timestamp: {
+            fontSize: 11,
+            color: "#C4C6CE",
+            marginTop: 4
+        },
+        post: {
+            marginTop: 16,
+            fontSize: 14,
+            color: "#838899"
+        },
+        postImage: {
+            width: undefined,
+            height: 150,
+            borderRadius: 5,
+            marginVertical: 16
+        }
+      },
+      android: {
+        container: {
+            flex: 1,
+            backgroundColor: "#EBECF4"
+        },
+        header: {
+            height: 100,
+            backgroundColor: "#FFF",
+            alignItems: "center",
+            justifyContent: "center",
+            borderBottomWidth: 1,
+            borderBottomColor: "#EBECF4",
+            shadowColor: "#454D65",
+            shadowOffset: { height: 5 },
+            shadowRadius: 15,
+            shadowOpacity: 0.2,
+            zIndex: 1
+        },
+        headerTitle: {
+            fontSize: 50,
+            fontWeight: "800"
+        },
+        feed: {
+            marginHorizontal: 16
+        },
+        feedItem: {
+            backgroundColor: "#FFF",
+            borderRadius: 5,
+            padding: 8,
+            flexDirection: "row",
+            marginVertical: 8
+        },
+        avatar: {
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            marginRight: 16
+        },
+        name: {
+            fontSize: 15,
+            fontWeight: "500",
+            color: "#454D65"
+        },
+        timestamp: {
+            fontSize: 11,
+            color: "#C4C6CE",
+            marginTop: 4
+        },
+        post: {
+            marginTop: 16,
+            fontSize: 14,
+            color: "#838899"
+        },
+        postImage: {
+            width: undefined,
+            height: 150,
+            borderRadius: 5,
+            marginVertical: 16
+        }
+      }
+    })
+  });
+

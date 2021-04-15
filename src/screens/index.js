@@ -16,6 +16,7 @@ export { default as EditProfilScreen } from './EditProfilScreen'
 export { default as addChild } from './addChild'
 export { default as PostScreen } from './PostScreen'
 export { default as AddClassCode } from './AddClassCode'
+export { default as CalendarScreen } from '../components/calendar/CalendarView'
 
 
 
