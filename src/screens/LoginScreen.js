@@ -112,9 +112,12 @@ const styles = StyleSheet.create({
       },
 
       loginLogo: {
-        marginTop: 100,
-        width: 110,
-        height: 125,
+        marginTop: 60,
+        marginBottom: 20,
+
+        paddingVertical: 110,
+        paddingHorizontal: 95,
+
         alignSelf: 'center',
       },
 
@@ -123,14 +126,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#474749',
         marginHorizontal: 10,
         width: 600,
-        height: 600,
+        height: 500,
 
-        marginTop: 30,
         paddingBottom: 20,
         borderRadius: 50,
       },
       form: {
-        marginVertical: 100,
+        marginVertical: 60,
         marginHorizontal: 30,
       },
       inputTitle: {

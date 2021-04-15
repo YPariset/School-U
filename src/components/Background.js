@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: 'auto',
         backgroundColor: theme.colors.surface,
       },
       container: {
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: '100%',
         backgroundColor: theme.colors.surface,
       },
       container: {
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: '100%',
         backgroundColor: theme.colors.surface,
       },
       container: {

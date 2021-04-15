@@ -72,20 +72,20 @@ const styles = StyleSheet.create({
       },
       craibView: {
         flex: 0,
-        marginTop: 200,
+        marginTop: 180,
         flexDirection: 'row',
         alignItems: 'flex-end',
         alignSelf: 'center',
       },
 
       craic: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 150,
       },
 
       craib: {
-        width: 200,
-        height: 150,
+        width: 0,
+        height: 0,
       },
       bouton: {
         alignSelf: 'center',
@@ -103,15 +103,17 @@ const styles = StyleSheet.create({
       },
       logo: {
         alignSelf: 'center',
-        width: 350,
-        height: 50,
+        width: 400,
+        height: 100,
         marginTop: 50,
         marginBottom: 50,
+        paddingHorizontal: 300,
       },
       para: {
         fontWeight: 'bold',
         fontSize: 20,
         marginBottom: 50,
+
         color: '#FFF9EC',
       },
     },
