@@ -76,6 +76,7 @@ function CustomDrawerContent(props) {
       />
 
       <DrawerItem
+        style={{paddingTop: 440, paddingLeft: 65}}
         label="Se déconnecter"
         onPress={() => {
           logoutUser()
