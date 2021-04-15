@@ -26,6 +26,7 @@ import {
   addChild,
   PostScreen,
   AddClassCode,
+  CalendarScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -74,6 +75,10 @@ function CustomDrawerContent(props) {
         label="AddClassCode"
         onPress={() => props.navigation.navigate('AddClassCode')}
       />
+      <DrawerItem
+        label="CalendarScreen"
+        onPress={() => props.navigation.navigate('CalendarScreen')}
+      />
 
       <DrawerItem
         label="Se déconnecter"
@@ -110,7 +115,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="Blog"
         component={Blog}
-        options={{ title: null, headerStyle: { backgroundColor: 'white' } }}
+        options={{ title: 'blog', headerStyle: { backgroundColor: '#FFF' } }}
       />
       <Stack.Screen
         name="CarnetScreen"
@@ -196,6 +201,11 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AddClassCode"
         component={AddClassCode}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
+      <Stack.Screen
+        name="CalendarScreen"
+        component={CalendarScreen}
         options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
     </Stack.Navigator>
