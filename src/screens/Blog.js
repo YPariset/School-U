@@ -122,7 +122,9 @@ export default class Blog extends React.Component {
                     style={styles.feed}
                     data={this.state.dataSource}
                     renderItem={({ item }) => this.renderPost(item)}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item, index) => {
+                        return  index.toString();
+                       }}
                     showsVerticalScrollIndicator={false}
                 ></FlatList>
                 <View style={styles.header}>
