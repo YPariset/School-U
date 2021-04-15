@@ -55,17 +55,6 @@ export default class RegisterScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <StatusBar barStyle="dark-content"></StatusBar>
-
-          {/* <TouchableOpacity
-            style={styles.back}
-            onPress={() => this.props.navigation.goBack()}
-          >
-            <Ionicons
-              name="arrow-back-outline"
-              size={32}
-              color="black"
-            ></Ionicons>
-          </TouchableOpacity> */}
           <View style={styles.inputView}>
             <Text
               style={styles.greeting}
