@@ -37,69 +37,68 @@ export default class LoginScreen extends React.Component {
     LayoutAnimation.easeInEaseOut()
 
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <StatusBar barStyle="light-content"></StatusBar>
-          <Image
-            source={require('../assets/authHeader.png')}
-            style={styles.imageHeader}
-          ></Image>
-          <Image
-            source={require('../assets/authFooter.png')}
-            style={styles.imageFooter}
-          ></Image>
-          <Image
-            source={require('../assets/loginLogo.png')}
-            style={styles.loginLogo}
-          ></Image>
-          <Text style={styles.greeting}>{`Hello again.\nWelcome back.`}</Text>
+      <View style={styles.container}>
+        <ScrollView>
+          <StatusBar barStyle="dark-content"></StatusBar>
+          <View style={{ marginTop: 80 }}>
+            <Image
+              source={require('../assets/logo_small.png')}
+              style={styles.loginLogo}
+            ></Image>
+            <View style={styles.formBack}>
+              <View style={styles.errorMessage}>
+                {this.state.errorMessage && (
+                  <Text style={styles.error}>{this.state.errorMessage}</Text>
+                )}
+              </View>
 
-          <View style={styles.errorMessage}>
-            {this.state.errorMessage && (
-              <Text style={styles.error}>{this.state.errorMessage}</Text>
-            )}
-          </View>
+              <View style={styles.form}>
+                <View>
+                  <Text style={styles.inputTitle}>Email Address</Text>
+                  <TextInput
+                    style={styles.input}
+                    autoCapitalize="none"
+                    onChangeText={(email) => this.setState({ email })}
+                    value={this.state.email}
+                  ></TextInput>
+                </View>
 
-          <View style={styles.form}>
-            <View>
-              <Text style={styles.inputTitle}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                onChangeText={(email) => this.setState({ email })}
-                value={this.state.email}
-              ></TextInput>
+                <View style={{ marginTop: 32 }}>
+                  <Text style={styles.inputTitle}>Password</Text>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    onChangeText={(password) => this.setState({ password })}
+                    value={this.state.password}
+                  ></TextInput>
+                </View>
+              </View>
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this.handleLogin}
+              >
+                <Text style={{ color: '#FFF', fontWeight: '500' }}>
+                  Sign in
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 32 }}
+                onPress={() => this.props.navigation.navigate('RegisterScreen')}
+              >
+                <Text style={{ color: 'white', fontSize: 13 }}>
+                  Pas encore de compte ?{' '}
+                  <Text style={{ fontWeight: '500', color: '#E46472' }}>
+                    Créez-en un
+                  </Text>
+                </Text>
+              </TouchableOpacity>
             </View>
-
-            <View style={{ marginTop: 32 }}>
-              <Text style={styles.inputTitle}>Password</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry
-                autoCapitalize="none"
-                onChangeText={(password) => this.setState({ password })}
-                value={this.state.password}
-              ></TextInput>
-            </View>
           </View>
-
-          <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-            <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign in</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{ alignSelf: 'center', marginTop: 32 }}
-            onPress={() => this.props.navigation.navigate('RegisterScreen')}
-          >
-            <Text style={{ color: '#414959', fontSize: 13 }}>
-              New to SocialApp?{' '}
-              <Text style={{ fontWeight: '500', color: '#E9446A' }}>
-                Sign up
-              </Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -109,50 +108,49 @@ const styles = StyleSheet.create({
     web: {
       container: {
         flex: 1,
+        backgroundColor: '#FFF9EC',
       },
-      imageHeader: {
-        flex: 1,
-        width: 450,
-        alignSelf: 'center',
-      },
-      imageFooter: {
-        position: 'absolute',
-        flex: 1,
-        width: 450,
-        alignSelf: 'center',
-      },
+
       loginLogo: {
-        flex: 1,
-        width: 100,
-        maxWidth: 100,
+        marginTop: 60,
+        marginBottom: 20,
+
+        paddingVertical: 110,
+        paddingHorizontal: 95,
+
         alignSelf: 'center',
-        zIndex: 1,
       },
-      greeting: {
-        fontSize: 18,
-        fontWeight: '400',
-        textAlign: 'center',
+
+      formBack: {
+        alignSelf: 'center',
+        backgroundColor: '#474749',
+        marginHorizontal: 10,
+        width: 600,
+        height: 500,
+
+        paddingBottom: 20,
+        borderRadius: 50,
       },
       form: {
-        marginBottom: 48,
+        marginVertical: 60,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
-        borderRadius: 4,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
@@ -172,47 +170,44 @@ const styles = StyleSheet.create({
     },
     ios: {
       container: {
+        backgroundColor: '#FFF9EC',
         flex: 1,
       },
-      imageHeader: {
-        marginTop: -116,
-        marginLeft: -50,
-      },
-      imageFooter: {
-        position: 'absolute',
-        bottom: -325,
-        right: -225,
-      },
+
       loginLogo: {
-        marginTop: -110,
+        marginTop: 100,
+        width: 110,
+        height: 125,
         alignSelf: 'center',
       },
-      greeting: {
-        marginTop: -32,
-        fontSize: 18,
-        fontWeight: '400',
-        textAlign: 'center',
+
+      formBack: {
+        backgroundColor: '#474749',
+        marginHorizontal: 10,
+        marginTop: 30,
+        paddingBottom: 20,
+        borderRadius: 50,
       },
       form: {
         marginBottom: 48,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
-        borderRadius: 4,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
@@ -234,25 +229,12 @@ const styles = StyleSheet.create({
       container: {
         flex: 1,
       },
-      imageHeader: {
-        marginTop: -116,
-        marginLeft: -50,
-      },
-      imageFooter: {
-        position: 'absolute',
-        bottom: -325,
-        right: -225,
-      },
+
       loginLogo: {
         marginTop: -110,
         alignSelf: 'center',
       },
-      greeting: {
-        marginTop: -32,
-        fontSize: 18,
-        fontWeight: '400',
-        textAlign: 'center',
-      },
+
       form: {
         marginBottom: 48,
         marginHorizontal: 30,

@@ -121,7 +121,6 @@ function StackNavigator({ navigation }) {
         }}
       />
 
-
       <Stack.Screen
         name="DiscussionList"
         component={DiscussionList}
@@ -182,12 +181,12 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AjouterArticle"
         component={AjouterArticle}
-        options={{ headerShown: false } }
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="PostScreen"
         component={PostScreen}
-        options={{ headerShown: false } }
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="addChild"

@@ -10,8 +10,8 @@ import { theme } from '../core/theme'
 export default function Background({ children }) {
   return (
     <ImageBackground
-      source={require('../assets/background01.png')}
-      resizeMode="repeat"
+      source={require('../assets/tableau2.jpeg')}
+      resizeMode="stretch"
       style={styles.background}
     >
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: 'auto',
         backgroundColor: theme.colors.surface,
       },
       container: {
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: '100%',
         backgroundColor: theme.colors.surface,
       },
       container: {
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
       background: {
         flex: 1,
         width: '100%',
+        height: '100%',
         backgroundColor: theme.colors.surface,
       },
       container: {

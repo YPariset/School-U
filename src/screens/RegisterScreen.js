@@ -52,27 +52,20 @@ export default class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <StatusBar barStyle="light-content"></StatusBar>
-          <Image
-            source={require('../assets/authHeader.png')}
-            style={styles.imageHeader}
-          ></Image>
-          <Image
-            source={require('../assets/authFooter.png')}
-            style={styles.imageFooter}
-          ></Image>
-          <TouchableOpacity
+      <View style={styles.container}>
+        <ScrollView>
+          <StatusBar barStyle="dark-content"></StatusBar>
+
+          {/* <TouchableOpacity
             style={styles.back}
             onPress={() => this.props.navigation.goBack()}
           >
             <Ionicons
               name="arrow-back-outline"
               size={32}
-              color="#FFF"
+              color="black"
             ></Ionicons>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={styles.inputView}>
             <Text
               style={styles.greeting}
@@ -88,7 +81,7 @@ export default class RegisterScreen extends React.Component {
               <Ionicons
                 name="ios-add"
                 size={40}
-                color="#FFF"
+                color="black"
                 style={{ marginTop: 6, marginLeft: 2 }}
               ></Ionicons>
             </TouchableOpacity>
@@ -99,93 +92,90 @@ export default class RegisterScreen extends React.Component {
               <Text style={styles.error}>{this.state.errorMessage}</Text>
             )}
           </View>
+          <View style={styles.formBack}>
+            <View style={styles.form}>
+              <View>
+                <Text style={styles.inputTitle}>Full Name</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(name) =>
+                    this.setState({ user: { ...this.state.user, name } })
+                  }
+                  value={this.state.user.name}
+                ></TextInput>
+              </View>
 
-          <View style={styles.form}>
-            <View>
-              <Text style={styles.inputTitle}>Full Name</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={(name) =>
-                  this.setState({ user: { ...this.state.user, name } })
-                }
-                value={this.state.user.name}
-              ></TextInput>
+              <View style={{ marginTop: 28 }}>
+                <Text style={styles.inputTitle}>Email Address</Text>
+                <TextInput
+                  style={styles.input}
+                  autoCapitalize="none"
+                  onChangeText={(email) =>
+                    this.setState({ user: { ...this.state.user, email } })
+                  }
+                  value={this.state.user.email}
+                ></TextInput>
+              </View>
+
+              <View style={{ marginTop: 28 }}>
+                <Text style={styles.inputTitle}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  secureTextEntry
+                  autoCapitalize="none"
+                  onChangeText={(password) =>
+                    this.setState({ user: { ...this.state.user, password } })
+                  }
+                  value={this.state.user.password}
+                ></TextInput>
+              </View>
+              <View style={{ marginTop: 28, marginBottom: 30 }}>
+                <Text style={styles.inputTitle}>Rôle</Text>
+                <DropDownPicker
+                  items={[
+                    { label: 'Parent', value: 'Parent' },
+                    { label: 'Enseignant', value: 'Enseignant' },
+                  ]}
+                  labelStyle={{ color: Platform.select({ web: 'white' }) }}
+                  defaultIndex={0}
+                  containerStyle={{
+                    marginTop: 10,
+                    height: 40,
+                  }}
+                  onChangeItem={(role) =>
+                    this.setState({ user: { ...this.state.user, role } })
+                  }
+                />
+              </View>
             </View>
 
-            <View style={{ marginTop: 28 }}>
-              <Text style={styles.inputTitle}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                onChangeText={(email) =>
-                  this.setState({ user: { ...this.state.user, email } })
-                }
-                value={this.state.user.email}
-              ></TextInput>
-            </View>
+            <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+              <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign up</Text>
+            </TouchableOpacity>
 
-            <View style={{ marginTop: 28 }}>
-              <Text style={styles.inputTitle}>Password</Text>
-              <TextInput
-                style={styles.input}
-                secureTextEntry
-                autoCapitalize="none"
-                onChangeText={(password) =>
-                  this.setState({ user: { ...this.state.user, password } })
-                }
-                value={this.state.user.password}
-              ></TextInput>
-            </View>
-            <View style={{ marginTop: 28, marginBottom: 30 }}>
-              <Text style={styles.inputTitle}>Rôle</Text>
-              <DropDownPicker
-                items={[
-                  { label: 'Parent', value: 'Parent' },
-                  { label: 'Enseignant', value: 'Enseignant' },
-                ]}
-                defaultIndex={0}
-                containerStyle={{ height: 40 }}
-                onChangeItem={(role) =>
-                  this.setState({ user: { ...this.state.user, role } })
-                }
-              />
-            </View>
-          </View>
-
-          <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-            <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign up</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{ alignSelf: 'center', marginTop: 32 }}
-            onPress={() => this.props.navigation.navigate('LoginScreen')}
-          >
-            <Text style={{ color: '#414959', fontSize: 13 }}>
-              Already have an account?{' '}
-              <Text style={{ fontWeight: '500', color: '#E9446A' }}>
-                Sign in
+            <TouchableOpacity
+              style={{ alignSelf: 'center', marginTop: 32 }}
+              onPress={() => this.props.navigation.navigate('LoginScreen')}
+            >
+              <Text style={{ color: 'white', fontSize: 13 }}>
+                Vous avez déjà un compte ?{' '}
+                <Text style={{ fontWeight: '500', color: '#E46472' }}>
+                  Sign in
+                </Text>
               </Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }
 const styles = StyleSheet.create({
   ...Platform.select({
     web: {
-      imageHeader: {
+      container: {
         flex: 1,
-        width: 450,
-        alignSelf: 'center',
-        position: 'absolute',
-      },
-      imageFooter: {
-        position: 'absolute',
-        flex: 1,
-        width: 450,
-        alignSelf: 'center',
+        backgroundColor: '#FFF9EC',
       },
       greeting: {
         marginTop: 32,
@@ -198,26 +188,38 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
       },
+      formBack: {
+        alignSelf: 'center',
+        backgroundColor: '#474749',
+        marginHorizontal: 10,
+        width: 600,
+        height: 600,
+
+        marginTop: 30,
+        paddingBottom: 20,
+        borderRadius: 50,
+      },
       form: {
-        marginBottom: 48,
+        marginTop: 80,
+        marginBottom: 10,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
-        borderRadius: 4,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
@@ -264,16 +266,9 @@ const styles = StyleSheet.create({
     ios: {
       container: {
         flex: 1,
+        backgroundColor: '#FFF9EC',
       },
-      imageHeader: {
-        marginTop: -116,
-        marginLeft: -50,
-      },
-      imageFooter: {
-        position: 'absolute',
-        bottom: -325,
-        right: -225,
-      },
+
       inputView: {
         position: 'absolute',
         top: 64,
@@ -285,28 +280,38 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         textAlign: 'center',
-        color: '#FFF',
+        color: 'black',
+      },
+      formBack: {
+        backgroundColor: '#474749',
+        marginTop: 250,
+        marginBottom: 100,
+        marginHorizontal: 10,
+        paddingBottom: 20,
+
+        borderRadius: 50,
       },
       form: {
+        marginTop: 50,
         marginBottom: 48,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
-        borderRadius: 4,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
@@ -353,6 +358,7 @@ const styles = StyleSheet.create({
     android: {
       container: {
         flex: 1,
+        backgroundColor: '#FFF9EC',
       },
       imageHeader: {
         marginTop: -116,
