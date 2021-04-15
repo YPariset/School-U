@@ -56,7 +56,7 @@ export default class RegisterScreen extends React.Component {
         <ScrollView>
           <StatusBar barStyle="dark-content"></StatusBar>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.back}
             onPress={() => this.props.navigation.goBack()}
           >
@@ -65,7 +65,7 @@ export default class RegisterScreen extends React.Component {
               size={32}
               color="black"
             ></Ionicons>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={styles.inputView}>
             <Text
               style={styles.greeting}
@@ -136,8 +136,12 @@ export default class RegisterScreen extends React.Component {
                     { label: 'Parent', value: 'Parent' },
                     { label: 'Enseignant', value: 'Enseignant' },
                   ]}
+                  labelStyle={{ color: Platform.select({ web: 'white' }) }}
                   defaultIndex={0}
-                  containerStyle={{ height: 40, marginTop: 10 }}
+                  containerStyle={{
+                    marginTop: 10,
+                    height: 40,
+                  }}
                   onChangeItem={(role) =>
                     this.setState({ user: { ...this.state.user, role } })
                   }
@@ -191,30 +195,31 @@ const styles = StyleSheet.create({
         width: 600,
         height: 600,
 
-        marginTop: 80,
+        marginTop: 30,
         paddingBottom: 20,
         borderRadius: 50,
       },
       form: {
-        marginBottom: 48,
+        marginTop: 80,
+        marginBottom: 10,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
         backgroundColor: '#a4c9c8',
-        borderRadius: 4,
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
@@ -306,7 +311,7 @@ const styles = StyleSheet.create({
       button: {
         marginHorizontal: 30,
         backgroundColor: '#a4c9c8',
-        borderRadius: 4,
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
