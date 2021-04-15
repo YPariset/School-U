@@ -56,7 +56,7 @@ function CustomDrawerContent(props) {
       />
       <DrawerItem
         label="Carnet de liaison"
-        onPress={() => props.navigation.navigate('CarnetScreen2')}
+        onPress={() => props.navigation.navigate('CarnetScreen')}
       />
       <DrawerItem
         label="Messagerie"

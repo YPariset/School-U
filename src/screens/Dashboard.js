@@ -1,11 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Platform, Text, Image } from 'react-native'
 import Button from '../components/Button'
-import { logoutUser } from '../api/auth-api'
-import { theme } from '../core/theme'
-import CardImageExample from '../components/Card'
-import { Icon } from 'native-base'
-import { Header } from 'react-native-elements'
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -16,6 +11,16 @@ export default class Dashboard extends React.Component {
 
       date: '',
     }
+    this.daysArray = [
+      'Dimanche',
+      'Lundi',
+      'Mardi',
+      'Mercredi',
+      'Jeudi',
+      'Vendredi',
+      'Samedi',
+      'Dimanche',
+    ]
   }
 
   componentDidMount() {
@@ -51,7 +56,7 @@ export default class Dashboard extends React.Component {
 
     // Checking if the Hour is less than equals to 11 then Set the Time format as AM.
     if (hour <= 11) {
-      TimeType = 'PM'
+      TimeType = ''
     } else {
       // If the Hour is Not less than equals to 11 then Set the Time format as PM.
       TimeType = ''
@@ -64,7 +69,7 @@ export default class Dashboard extends React.Component {
 
     // If hour value is 0 then by default set its value to 12, because 24 means 0 in 24 hours time format.
     if (hour == 0) {
-      hour = 12
+      hour = 0
     }
 
     // Getting the current minutes from date object.
@@ -98,17 +103,35 @@ export default class Dashboard extends React.Component {
       time: fullTime,
       date: fullDate,
     })
+
+    this.daysArray.map((item, key) => {
+      if (key == new Date().getDay()) {
+        this.setState({ currentDay: item })
+      }
+    })
   }
 
   showTime = () => {
     Alert.alert(this.state.time.toString())
   }
+
   render() {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.TextStyle}>{this.state.date}</Text>
-          <Text style={styles.TextStyle}> {this.state.time} </Text>
+          <View style={styles.blocDate}>
+            <View style={styles.jour}>
+              <Text style={styles.TextStyle1}>{this.state.currentDay}</Text>
+            </View>
+            <View style={styles.date}>
+              <Text style={styles.TextStyle1}>{this.state.date}</Text>
+            </View>
+          </View>
+          <View>
+            <View style={styles.heure}>
+              <Text style={styles.TextStyle2}> {this.state.time} </Text>
+            </View>
+          </View>
         </View>
         <View style={styles.formBack}>
           <View style={styles.bloc}>
@@ -192,9 +215,44 @@ const styles = StyleSheet.create({
       },
     },
     ios: {
+      blocDate: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 350,
+        padding: 20,
+        marginTop: 10,
+        backgroundColor: '#a4c9c8',
+        alignSelf: 'center',
+        borderRadius: 50,
+      },
+      jour: {
+        alignSelf: 'center',
+      },
+      date: {
+        alignSelf: 'center',
+      },
+
+      heure: {
+        marginTop: 30,
+        padding: 20,
+        backgroundColor: '#474749',
+        borderRadius: 50,
+        alignSelf: 'center',
+      },
+      TextStyle1: {
+        color: '#474749',
+        fontSize: 20,
+        fontWeight: 'normal',
+      },
+
+      TextStyle2: {
+        color: 'white',
+        fontSize: 40,
+        fontWeight: 'normal',
+      },
       formBack: {
         backgroundColor: '#474749',
-        marginTop: 200,
+        marginTop: 40,
         borderRadius: 50,
       },
       bloc: {
