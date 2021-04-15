@@ -1,14 +1,13 @@
-//import React in our code
 import React, {useState} from 'react';
 import { Form, Item, Input, Text, Container} from 'native-base';
+import { Platform } from 'react-native';
 import Button from '../components/Button'
 
-//import all the components we are going to use
+
 import {
     SafeAreaView,
     StyleSheet,
     View,
-    //Button,
     Image
 } from 'react-native';
 
@@ -48,7 +47,7 @@ const App = ({navigation}) => {
         
         <Button style={styles.buttonValider}
           labelStyle={styles.text} mode="outlined"
-          onPress={() => navigation.navigate('Dashboard')}
+          onPress={() => navigation.navigate('AddClassCode')}
         > Valider </Button>
         
         
@@ -121,7 +120,58 @@ const styles = StyleSheet.create({
                   },
                 },
                 web: {
+                  background: {
+                    backgroundColor: '#fff9ec',
+                  }, 
                   
+                  premierForm: {
+                    paddingTop: 30,
+                    paddingBottom: 100
+                  }, 
+ 
+                  ajoutEnfant: {
+                    marginBottom: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  text: {
+                    color: "white",
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    lineHeight: 26,
+                  },
+                  titre: {
+                    marginTop: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
+                  buttonAddNdChild: {
+                    marginTop: 70, 
+                    backgroundColor: "#FABE7C",
+                    width: '70%',
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  buttonValider: {
+                    backgroundColor: "#6986C5",
+                    borderRadius: 10,
+                    borderWidth: 0, 
+                    width: '90%', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
                 }
               }),
             });
