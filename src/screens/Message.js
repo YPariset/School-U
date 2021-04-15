@@ -16,6 +16,7 @@ export default function Message() {
 
   useEffect(()=>{
     readUser();
+    handlePress();
     const unsubscribe = chatsRef.onSnapshot(querySnapshot =>{
       const messagesFirestore = querySnapshot
             .docChanges()
@@ -40,8 +41,9 @@ export default function Message() {
     }
   };
   async function handlePress(){
-    //const _id = Math.random().toString(36).substring(7);
-    const user = firebase.auth().currentUser.uid;
+    const _id = firebase.auth().currentUser.uid;
+    const name = firebase.auth().currentUser.email;
+    const user = { _id, name };
     await AsyncStorage.setItem('users',JSON.stringify(user));
     setUser(user)
   };
@@ -51,13 +53,6 @@ export default function Message() {
     await Promise.all(writes)
   }
 
-  if(!user){
-    return (
-      <View style={styles.container}>
-        <Button onPress={handlePress} title='Enter the chat'/>
-      </View>
-    )
-  };
   return (
      <GiftedChat 
         messages={messages} 
