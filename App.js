@@ -25,6 +25,7 @@ import {
   EditProfilScreen,
   addChild,
   PostScreen,
+  AddClassCode,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -68,6 +69,10 @@ function CustomDrawerContent(props) {
       <DrawerItem
         label="addChild"
         onPress={() => props.navigation.navigate('addChild')}
+      />
+      <DrawerItem
+        label="AddClassCode"
+        onPress={() => props.navigation.navigate('AddClassCode')}
       />
 
       <DrawerItem
@@ -187,6 +192,11 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="addChild"
         component={addChild}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
+      <Stack.Screen
+        name="AddClassCode"
+        component={AddClassCode}
         options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
     </Stack.Navigator>

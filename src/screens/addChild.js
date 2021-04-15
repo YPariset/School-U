@@ -1,34 +1,35 @@
-import React, { Component } from 'react'
-import {
-  Container,
-  Header,
-  Content,
-  Form,
-  Item,
-  Input,
-  Text,
-} from 'native-base'
-import { Image, StyleSheet, Platform } from 'react-native'
+import React, {useState} from 'react';
+import { Form, Item, Input, Text, Container} from 'native-base';
+import { Platform } from 'react-native';
 import Button from '../components/Button'
 
-export default class FormExample extends Component {
-  render() {
-    return (
-      <Container style={{ backgroundColor: '#fff9ec' }}>
-        <Header style={styles.header}>
-          <Image
-            source={require('../assets/logo.png')}
-            style={{ backgroundColor: '#fff9ec' }}
-          />
-        </Header>
-        <Content style={styles.background}>
-          <Form>
-            <Item>
-              <Input placeholder="Nom de l'enfant " />
-            </Item>
+
+import {
+    SafeAreaView,
+    StyleSheet,
+    View,
+    Image
+} from 'react-native';
+
+const App = ({navigation}) => {
+  const [shouldShow, setShouldShow] = useState(false);
+  return (
+    <Container style={styles.background}>
+    <Text style={styles.titre}>Ajouter un enfant</Text>
+    <SafeAreaView >
+    <Form style={styles.premierForm}>
+    <Item>
+        <Input placeholder="Nom de l'enfant " />
+          </Item>
             <Item last>
-              <Input placeholder="Code de la classe " />
-            </Item>
+            <Input placeholder="Code de la classe " />
+        </Item>
+    </Form>
+      <View style={styles.container}>
+        {/*Here we will return the view when state is true 
+        and will return false if state is false*/}
+        {shouldShow ? (
+          <Form style={styles.secondForm}>
             <Text style={styles.ajoutEnfant}>Ajout d'un deuxieme enfant</Text>
             <Item>
               <Input placeholder="Nom de l'enfant " />
@@ -37,104 +38,142 @@ export default class FormExample extends Component {
               <Input placeholder="Code de la classe " />
             </Item>
           </Form>
-          <Button
-            style={styles.valider}
-            onPress={() => this.props.navigation.navigate('Dashboard')}
-            labelStyle={styles.text}
-            mode="outlined"
-          >
-            Valider
-          </Button>
-        </Content>
-      </Container>
-    )
-  }
-}
+        ) : null}
+        <Button style={styles.buttonAddNdChild}
+          labelStyle={styles.text} mode="outlined"
+          onPress={() => setShouldShow(!shouldShow)}
+        >Ajouter un second enfant</Button>
+
+        
+        <Button style={styles.buttonValider}
+          labelStyle={styles.text} mode="outlined"
+          onPress={() => navigation.navigate('AddClassCode')}
+        > Valider </Button>
+        
+        
+        
+      </View>
+      
+    </SafeAreaView>
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
-  ...Platform.select({
-    web: {
-      container: {
-        backgroundColor: '#FFF9EC',
-        flex: 1,
-        padding: 20,
-        paddingBottom: 50,
-        width: '100%',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
-      },
-      background: {
-        backgroundColor: '#fff9ec',
-      },
-      header: {
-        backgroundColor: '#fff9ec',
-      },
-      ajoutEnfant: {
-        marginTop: 35,
-        marginBottom: 20,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 18,
-        lineHeight: 26,
-      },
-      valider: {
-        backgroundColor: '#6986C5',
-        borderRadius: 10,
-        borderWidth: 0,
-        width: '30%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: 55,
-      },
-      text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
-    },
-    ios: {
-      container: {
-        backgroundColor: '#FFF9EC',
-        flex: 1,
-        padding: 20,
-        paddingBottom: 50,
-        width: '100%',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
-      },
-      background: {
-        backgroundColor: '#fff9ec',
-      },
-      header: {
-        backgroundColor: '#fff9ec',
-        marginTop: 30,
-        marginBottom: 30,
-      },
-      ajoutEnfant: {
-        marginTop: 35,
-        marginBottom: 20,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 18,
-        lineHeight: 26,
-      },
-      valider: {
-        backgroundColor: '#6986C5',
-        borderRadius: 10,
-        borderWidth: 0,
-        width: '70%',
-        marginLeft: 60,
-        marginTop: 55,
-      },
-      text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
-    },
-  }),
-})
+  ...Platform.select({ 
+                ios: {
+                  background: {
+                    backgroundColor: '#fff9ec',
+                  }, 
+                  buttonValider: {
+                    marginBottom: 200
+                  }, 
+                  premierForm: {
+                    paddingTop: 30,
+                    paddingBottom: 100
+                  }, 
+                  secondForm: {
+                    paddingBottom: 100,
+                  }, 
+                  ajoutEnfant: {
+                    marginBottom: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  text: {
+                    color: "white",
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    lineHeight: 26,
+                  },
+                  titre: {
+                    marginTop: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
+                  buttonAddNdChild: {
+                    marginTop: 100, 
+                    backgroundColor: "#FABE7C",
+                    width: '70%',
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  buttonValider: {
+                    backgroundColor: "#6986C5",
+                    borderRadius: 10,
+                    borderWidth: 0, 
+                    width: '90%', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
+                },
+                web: {
+                  background: {
+                    backgroundColor: '#fff9ec',
+                  }, 
+                  
+                  premierForm: {
+                    paddingTop: 30,
+                    paddingBottom: 100
+                  }, 
+ 
+                  ajoutEnfant: {
+                    marginBottom: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  text: {
+                    color: "white",
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    lineHeight: 26,
+                  },
+                  titre: {
+                    marginTop: 30,
+                    color: "black",
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    lineHeight: 26,
+                    textAlign: 'center', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
+                  buttonAddNdChild: {
+                    marginTop: 70, 
+                    backgroundColor: "#FABE7C",
+                    width: '70%',
+                    borderRadius: 10,
+                    borderWidth: 0,
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  }, 
+                  buttonValider: {
+                    backgroundColor: "#6986C5",
+                    borderRadius: 10,
+                    borderWidth: 0, 
+                    width: '90%', 
+                    marginRight: 'auto', 
+                    marginLeft: 'auto'
+                  },
+                }
+              }),
+            });
+
+export default App;
