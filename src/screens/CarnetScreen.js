@@ -4,8 +4,6 @@ import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import Button from '../components/Button'
 import Fire from "../core/Fire";
-import { db } from '../core/Fire';
-
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -15,7 +13,7 @@ export default class CarnetScreen extends React.Component {
 
     constructor(props){
         super(props)
-        this.ref =  Fire.shared.firestore.collection('carnet')
+        this.ref =  Fire.shared.firestore.collection('carnet').orderBy('timestamp', 'desc')
         this.useref=
         this.state={
           dataSource : []

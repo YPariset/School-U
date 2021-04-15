@@ -12,11 +12,21 @@ require("firebase/firestore");
 export default class PostScreen extends React.Component {
     state = {
         text: "",
-        image: null
+        image: null,
+        user:{}
     };
 
     componentDidMount() {
         this.getPhotoPermission();
+        const user=this.props.uid || Fire.shared.uid
+        this.unsubscribe=Fire.shared.firestore.collection('users').doc(user).onSnapshot(doc=>{
+          this.setState({user:doc.data()})
+        })
+  
+    }
+
+    componentWillUnmount(){
+        this.unsubscribe()
     }
 
     getPhotoPermission = async () => {
@@ -66,7 +76,7 @@ export default class PostScreen extends React.Component {
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <Image source={require("../assets/tempAvatar.jpg")} style={styles.avatar}></Image>
+                    <Image source={this.state.user.avatar?{uri:this.state.user.avatar}:null} style={styles.avatar}></Image>
                     <TextInput
                         autoFocus={true}
                         multiline={true}

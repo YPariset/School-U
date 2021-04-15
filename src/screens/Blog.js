@@ -56,14 +56,14 @@ export default class Blog extends React.Component {
 
     constructor(props){
         super(props)
-        this.ref =  Fire.shared.firestore.collection('posts')
+        this.ref =  Fire.shared.firestore.collection('posts').orderBy('timestamp', 'desc')
         this.useref=
         this.state={
           dataSource : []
         }
       
       }
-      componentDidMount(){
+      componentDidMount(){  
         this.feed = this.ref.onSnapshot(this.feedPosts);
       }
       

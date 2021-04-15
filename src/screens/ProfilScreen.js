@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import React from 'react';
+import React, { Component } from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {
   Avatar,
@@ -9,28 +9,42 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Header } from 'react-native-elements';
+import Fire from "../core/Fire";
 
 
-export default function ProfilScreen({ navigation }){
+export default class ProfilScreen extends Component{
+  state={
+    user:{}
+  }
+   unsubscribe=null
 
+   componentDidMount(){
+      const user=this.props.uid || Fire.shared.uid
+      this.unsubscribe=Fire.shared.firestore.collection('users').doc(user).onSnapshot(doc=>{
+        this.setState({user:doc.data()})
+      })
 
+   }
+
+   componentWillUnmount(){
+     this.unsubscribe()
+   }
+
+render() {
     return (
 
 <SafeAreaView style={styles.container}>
 <View style={styles.userInfoSection}>
 <View style={{flexDirection: 'row', marginTop:15}}>
 <Avatar.Image 
-            source={
-                require('../assets/dad_avatar.jpeg')
-            }
+            source={this.state.user.avatar?{uri:this.state.user.avatar}:null}
             size={80}
           />
 <View style={{marginLeft:20}}>
     <Title style={styles.title, {marginBottom: 5, marginTop:15}}>
-        John Doe
+    {this.state.user.name}
     </Title>
-    <Caption style={styles.caption}>@j_doe</Caption>
+    <Caption style={styles.caption}>@{this.state.user.name}</Caption>
 </View>
 </View>
 </View>
@@ -43,11 +57,11 @@ export default function ProfilScreen({ navigation }){
 </View>
 <View style={styles.row}>
     <Icon name='phone' size={20} color='#777777'></Icon>
-    <Text style={{color:'#777777', marginLeft:20}}>06 XX XX XX XX</Text>
+    <Text style={{color:'#777777', marginLeft:20}}>06 42 16 68 29</Text>
 </View>
 <View style={styles.row}>
     <Icon name='email' size={20} color='#777777'></Icon>
-    <Text style={{color:'#777777', marginLeft:20}}>johndoe@gmail.com</Text>
+    <Text style={{color:'#777777', marginLeft:20}}>{this.state.user.email}</Text>
 </View>
 </View>
 
@@ -70,7 +84,7 @@ export default function ProfilScreen({ navigation }){
         </View>
     </TouchableRipple>
 
-    <TouchableRipple onPress={()=>{navigation.navigate('EditProfilScreen')}}>
+    <TouchableRipple onPress={()=>{this.props.navigation.navigate('EditProfilScreen')}}>
         <View style={styles.menuItem}>
             <Icon name='account-edit-outline' color='#777777' size={25}></Icon>
             <Text style={styles.menuItemText}>Modifier le profil</Text>
@@ -88,7 +102,7 @@ export default function ProfilScreen({ navigation }){
 </SafeAreaView>
 
 )
-
+}
 }
 
 const styles = StyleSheet.create({

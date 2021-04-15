@@ -40,8 +40,8 @@ export default function Message() {
     }
   };
   async function handlePress(){
-    const _id = Math.random().toString(36).substring(7);
-    const user = { _id, name };
+    //const _id = Math.random().toString(36).substring(7);
+    const user = firebase.auth().currentUser.uid;
     await AsyncStorage.setItem('users',JSON.stringify(user));
     setUser(user)
   };
@@ -54,7 +54,6 @@ export default function Message() {
   if(!user){
     return (
       <View style={styles.container}>
-        <TextInput style={styles.input} placeholder='Enter your name' value={name} onChangeText={setName}/>
         <Button onPress={handlePress} title='Enter the chat'/>
       </View>
     )
