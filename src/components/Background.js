@@ -10,8 +10,8 @@ import { theme } from '../core/theme'
 export default function Background({ children }) {
   return (
     <ImageBackground
-      source={require('../assets/background01.png')}
-      resizeMode="repeat"
+      source={require('../assets/tableau2.jpeg')}
+      resizeMode="stretch"
       style={styles.background}
     >
       <KeyboardAvoidingView style={styles.container} behavior="padding">
