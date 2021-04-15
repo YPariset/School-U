@@ -15,5 +15,7 @@ export { default as ProfilScreen } from './ProfilScreen'
 export { default as EditProfilScreen } from './EditProfilScreen'
 export { default as addChild } from './addChild'
 export { default as PostScreen } from './PostScreen'
+export { default as AddClassCode } from './AddClassCode'
+
 
 
