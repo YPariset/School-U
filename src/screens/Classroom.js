@@ -39,7 +39,7 @@ export default class Classroom extends Component {
           <View style={styles.blocBout}>
             <View>
               <Text style={styles.bienvenue}>
-                Bienvenue, {this.state.user.name} !
+                Bienvenue, User !
               </Text>
             </View>
 

@@ -5,7 +5,8 @@ import moment from "moment";
 import Button from '../components/Button'
 import Fire from "../core/Fire";
 import { db } from '../core/Fire';
-
+import BlogButton from '../components/BlogButton'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -87,16 +88,10 @@ export default class Blog extends React.Component {
                     showsVerticalScrollIndicator={false}
                 ></FlatList>
                 <View style={styles.header}>
-                <Button
-                  onPress={() => this.props.navigation.navigate('PostScreen')}
-                >
-                <Ionicons
-                  name="add-circle-outline"
-                  size={30}
-                  style={{ color: 'grey'}}
-                ></Ionicons>
-                </Button>
               </View>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('PostScreen')}>
+              <BlogButton></BlogButton>  
+              </TouchableOpacity>
             </View>
         );
     }
