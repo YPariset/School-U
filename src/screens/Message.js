@@ -96,6 +96,7 @@ export default function Message() {
         messages={messages}
         user={user}
         onSend={handleSend}
+        placeholder="Tapez votre message..."
       />
     </View>
   )
