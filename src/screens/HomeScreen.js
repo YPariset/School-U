@@ -1,190 +1,28 @@
-import React from 'react'
-import { View, StyleSheet, Platform, Text, Image } from 'react-native'
-import Button from '../components/Button'
+/* eslint-disable class-methods-use-this */
+import React from 'react';
+import {View, StyleSheet, Platform, Text, Image  } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import CalendarScreen from './CalendarView';
+import Button from '../components/Button'
 import moment from 'moment';
+import { Ionicons } from "@expo/vector-icons";
 
-export default class Dashboard extends React.Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      time: '',
 
-      date: '',
-    }
-    this.daysArray = [
-      'Dimanche',
-      'Lundi',
-      'Mardi',
-      'Mercredi',
-      'Jeudi',
-      'Vendredi',
-      'Samedi',
-      'Dimanche',
-    ]
-  }
+class HomeScreen extends React.Component {
 
-  componentDidMount() {
-    this.Clock = setInterval(() => this.GetTime(), 1000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.Clock)
-  }
-
-  GetTime() {
-    // Creating variables to hold time.
-    var date,
-      TimeType,
-      hour,
-      minutes,
-      seconds,
-      fullTime,
-      day,
-      month,
-      year,
-      fullDate
-
-    // Creating Date() function object.
-    date = new Date()
-    day = date.getDate()
-    month = date.getMonth() + 1
-    year = date.getFullYear()
-    fullDate = day.toString() + '-' + month.toString() + '-' + year.toString()
-
-    // Getting current hour from Date object.
-    hour = date.getHours()
-
-    // Checking if the Hour is less than equals to 11 then Set the Time format as AM.
-    if (hour <= 11) {
-      TimeType = ''
-    } else {
-      // If the Hour is Not less than equals to 11 then Set the Time format as PM.
-      TimeType = ''
-    }
-
-    // IF current hour is grater than 12 then minus 12 from current hour to make it in 12 Hours Format.
-    if (hour > 24) {
-      hour = hour - 12
-    }
-
-    // If hour value is 0 then by default set its value to 12, because 24 means 0 in 24 hours time format.
-    if (hour == 0) {
-      hour = 0
-    }
-
-    // Getting the current minutes from date object.
-    minutes = date.getMinutes()
-
-    // Checking if the minutes value is less then 10 then add 0 before minutes.
-    if (minutes < 10) {
-      minutes = '0' + minutes.toString()
-    }
-
-    //Getting current seconds from date object.
-    seconds = date.getSeconds()
-
-    // If seconds value is less than 10 then add 0 before seconds.
-    if (seconds < 10) {
-      seconds = '0' + seconds.toString()
-    }
-
-    // Adding all the variables in fullTime variable.
-    fullTime =
-      hour.toString() +
-      ':' +
-      minutes.toString() +
-      ':' +
-      seconds.toString() +
-      ' ' +
-      TimeType.toString()
-
-    // Setting up fullTime variable in State.
-    this.setState({
-      time: fullTime,
-      date: fullDate,
-    })
-
-    this.daysArray.map((item, key) => {
-      if (key == new Date().getDay()) {
-        this.setState({ currentDay: item })
-      }
-    })
-  }
-
-  showTime = () => {
-    Alert.alert(this.state.time.toString())
-  }
-
-  rowHasChanged(r1, r2) {
-    return r1.name !== r2.name;
-  }
-
-  renderEmptyDate() {
-    return (
-      <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
-      </View>
-    );
-  }
-
-  renderItem(item) {
-    const labels =
-      item.labels &&
-      item.labels.map(label => (
-        <View
-          key={`label-${label}`}
-          style={{
-            padding: 5,
-            backgroundColor:
-              label === 'Urgent' ? "blue" : "red",
-            borderRadius: 3,
-          }}
-        >
-          <Text style={{ color: 'white' }}>{label}</Text>
-        </View>
-      ));
-
-    return (
-      <View style={styles.item}>
-        <View>
-          <Text
-            style={{
-              color: '#48506B',
-              fontFamily: fonts.primaryRegular,
-              marginBottom: 10,
-            }}
-          >
-            {item.name}
-          </Text>
-          <Text style={{ color: '#9B9B9B', fontFamily: fonts.primaryRegular }}>
-            {item.time}
-          </Text>
-        </View>
-
-        <View styleName="horizontal h-start">{labels}</View>
-      </View>
-    );
-  }
-
+  
   render() {
-    const { items, loadItems } = this.props;
     return (
-      <View style={styles.container}>
+      <Agenda
+  renderEmptyData = {() => {return (
+  <View style={styles.container}>
         <View>
           <View style={styles.blocDate}>
             <View style={styles.jour}>
-              <Text style={styles.TextStyle1}>{this.state.currentDay}</Text>
+              <Text style={styles.TextStyle1}>{moment().format('dddd')}</Text>
             </View>
             <View style={styles.date}>
-              <Text style={styles.TextStyle1}>{this.state.date}</Text>
-            </View>
-          </View>
-          <View>
-            <View style={styles.heure}>
-              <Text style={styles.TextStyle2}> {this.state.time} </Text>
+              <Text style={styles.TextStyle1}>{<Ionicons name="notifications" size={19} style={styles.calendrier}></Ionicons>}</Text>
             </View>
           </View>
         </View>
@@ -223,7 +61,22 @@ export default class Dashboard extends React.Component {
           </View>
         </View>
       </View>
-    )
+  );}}
+  markedDates={{
+    '2021-04-16': {selected: true, marked: true, selectedColor: '#a4c9c8'},
+
+  }}
+  hideKnob={false}
+  theme={{
+    agendaDayTextColor: 'yellow',
+    agendaDayNumColor: 'green',
+    agendaTodayColor: 'red',
+    agendaKnobColor: '#a4c9c8'
+  }}
+  // Agenda container style
+  style={{}}
+/>
+    );
   }
 }
 
@@ -267,6 +120,20 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+      },
+      item: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 10,
+      },
+      emptyDate: {
+        height: 15,
+        flex: 1,
+        paddingTop: 30,
       },
     },
     ios: {
@@ -360,6 +227,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 100,
         marginTop: 100,
       },
+      item: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 10,
+      },
+      emptyDate: {
+        height: 15,
+        flex: 1,
+        paddingTop: 30,
+      },
     },
     android: {
       blog: {
@@ -400,6 +281,31 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
       },
+      container: {
+        flex: 1,
+        backgroundColor: "blue",
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      item: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 10,
+      },
+      emptyDate: {
+        height: 15,
+        flex: 1,
+        paddingTop: 30,
+      },
     },
   }),
 })
+
+
+
+
+export default HomeScreen;

@@ -2,7 +2,6 @@ export { default as StartScreen } from './StartScreen'
 export { default as LoginScreen } from './LoginScreen'
 export { default as RegisterScreen } from './RegisterScreen'
 export { default as ResetPasswordScreen } from './ResetPasswordScreen'
-export { default as Dashboard } from './Dashboard'
 export { default as AuthLoadingScreen } from './AuthLoadingScreen'
 export { default as Classroom } from './Classroom'
 export { default as CarnetScreen } from './CarnetScreen'
@@ -16,7 +15,7 @@ export { default as EditProfilScreen } from './EditProfilScreen'
 export { default as addChild } from './addChild'
 export { default as PostScreen } from './PostScreen'
 export { default as AddClassCode } from './AddClassCode'
-export { default as CalendarScreen } from '../components/calendar/CalendarView'
+export { default as HomeScreen } from './HomeScreen'
 
 
 
