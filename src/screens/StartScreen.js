@@ -170,5 +170,58 @@ const styles = StyleSheet.create({
         color: '#FFF9EC',
       },
     },
+    android: {
+      craicView: {
+        flex: 0,
+        alignSelf: 'center',
+      },
+      craibView: {
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        alignSelf: 'center',
+      },
+
+      craic: {
+        width: '30%',
+        height: 'auto',
+        aspectRatio: 3 / 2,
+      },
+
+      craib: {
+        alignItems: 'flex-end',
+        marginTop: 100,
+        width: '30%',
+        height: 'auto',
+        aspectRatio: 3 / 2,
+      },
+      bouton: {
+        alignSelf: 'center',
+        width: 200,
+        marginTop: 30,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
+      },
+      bouton_creer: {
+        alignSelf: 'center',
+        width: 200,
+        marginTop: 30,
+        borderRadius: 10,
+        backgroundColor: '#FFF9EC',
+      },
+      logo: {
+        alignSelf: 'center',
+        width: 350,
+        height: 50,
+        marginTop: 50,
+        marginBottom: 50,
+      },
+      para: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginBottom: 50,
+        color: '#FFF9EC',
+      },
+    },
   }),
 })
