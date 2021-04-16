@@ -85,7 +85,12 @@ class Fire {
                 name: user.name,
                 email: user.email,
                 avatar: null,
-                role: user.role
+                role: user.role,
+                phone,
+                city,
+                country,
+                status,
+                kids 
             });
 
             if (user.avatar) {

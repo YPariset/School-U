@@ -53,11 +53,11 @@ render() {
 
 <View style={styles.row}>
     <Icon name='map-marker-radius' size={20} color='#777777'></Icon>
-    <Text style={{color:'#777777', marginLeft:20}}>Paris, France</Text>
+    <Text style={{color:'#777777', marginLeft:20}}>{this.state.user.city} {this.state.user.country}</Text>
 </View>
 <View style={styles.row}>
     <Icon name='phone' size={20} color='#777777'></Icon>
-    <Text style={{color:'#777777', marginLeft:20}}>06 42 16 68 29</Text>
+    <Text style={{color:'#777777', marginLeft:20}}>{this.state.user.phone}</Text>
 </View>
 <View style={styles.row}>
     <Icon name='email' size={20} color='#777777'></Icon>
@@ -68,11 +68,11 @@ render() {
 <View style={styles.infoBoxWrapper}>
     <View style={styles.infoBox}>
         <Title>Statut</Title>
-        <Caption>Cool dad 😎✌🏻</Caption>
+        <Caption>{this.state.user.status} 😎✌🏻</Caption>
     </View>
     <View style={styles.infoBox}>
         <Title>Mes enfants</Title>
-        <Caption>Papa de Louane, 10 ans</Caption>
+        <Caption>{this.state.user.kids}</Caption>
     </View>
 </View>
 <View style={styles.menuWrapper}>
