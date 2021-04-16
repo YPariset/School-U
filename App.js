@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Button, View, Platform, StyleSheet } from 'react-native'
 import 'react-native-gesture-handler'
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
@@ -78,7 +78,7 @@ function CustomDrawerContent(props) {
      
 
       <DrawerItem
-        style={{paddingTop: 440, paddingLeft: 65}}
+        style={styles.deconnecter}
         label="Se déconnecter"
         onPress={() => {
           logoutUser()
@@ -223,3 +223,26 @@ const App = () => {
   )
 }
 export default App
+
+const styles = StyleSheet.create({
+  ...Platform.select({ 
+                ios: {
+                    deconnecter: {
+                      paddingTop: 360,
+                      paddingLeft: 65,
+                    }
+                },
+                android: {
+                    deconnecter: {
+                      paddingTop: 360,
+                      paddingLeft: 65,
+                    }
+                },
+                web: {
+                    deconnecter: {
+                      paddingTop: 230, 
+                      paddingLeft: 65
+                    },
+                }
+        }),
+});
