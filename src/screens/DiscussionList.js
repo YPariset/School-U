@@ -6,22 +6,9 @@ import { Icon } from 'native-base'
 export default function DiscussionList({ navigation }) {
   const list = [
     {
-      name: 'Raymonde',
-      avatar_url:
-        'https://storage-dating.euranka.com/uploads/sites/5/2018/12/photo-profil-rencontre-2019.jpg',
-      subtitle: 'Maman de ...',
-    },
-    {
-      name: 'Cigismond',
-      avatar_url:
-        'https://wl-sympa.cf.tsp.li/resize/728x/jpg/f6e/ef6/b5b68253409b796f61f6ecd1f1.jpg',
-      subtitle: 'Papa de ...',
-    },
-    {
-      name: 'Fernand',
-      avatar_url:
-        'https://www.santelog.com/sites/santelog.com/www.santelog.com/files/images/accroche/fotolia_204690549_xs_vieu_beau.jpg',
-      subtitle: 'Papa de ...',
+      name: 'Classe Coding Factory',
+      avatar_url: 'https://pbs.twimg.com/profile_images/1336344105186680847/QPxaTQrx_400x400.jpg',
+      subtitle: 'Conversation de groupe',
     },
   ]
 

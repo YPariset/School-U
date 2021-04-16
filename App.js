@@ -64,7 +64,7 @@ function CustomDrawerContent(props) {
         onPress={() => props.navigation.navigate('DiscussionList')}
       />
       <DrawerItem
-        label="Profile"
+        label="Profil"
         onPress={() => props.navigation.navigate('ProfilScreen')}
       />
       <DrawerItem

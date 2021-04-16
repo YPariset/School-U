@@ -77,7 +77,7 @@ render() {
 </View>
 <View style={styles.menuWrapper}>
 
-    <TouchableRipple onPress={()=>{}}>
+    <TouchableRipple onPress={()=>{this.props.navigation.navigate('DiscussionList')}}>
         <View style={styles.menuItem}>
             <Icon name='share-outline' color='#777777' size={25}></Icon>
             <Text style={styles.menuItemText}>Contact me</Text>
