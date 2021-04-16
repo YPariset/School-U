@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         borderRadius: 50,
         width: 450,
-        height: 300
+        
       },
       bloc: {
         flexDirection: 'column',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: 450,
         padding: 20,
-        marginTop: 5,
+        marginTop: 15,
         backgroundColor: '#a4c9c8',
         alignSelf: 'center',
         borderRadius: 50,
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
       },
       logo: {
         alignSelf: 'center',
-        width: '90%',
+        width: '80%',
         height: 50,
         marginHorizontal: 100,
         marginTop: 100,

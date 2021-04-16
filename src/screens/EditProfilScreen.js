@@ -1,26 +1,111 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import React from 'react';
-import {View, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import React, { Component } from 'react';
+import {View, SafeAreaView, StyleSheet, TextInput, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import {
   Text,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons'
 import Feather from 'react-native-vector-icons/Feather';
 import { colors } from 'react-native-elements';
+import UserPermissions from '../helpers/UserPermissions'
+import * as ImagePicker from 'expo-image-picker'
+import Fire from "../core/Fire";
+import * as firebase from 'firebase'
 
 
 
-export default function EditProfilScreen({ navigation }){
 
+export default class EditProfilScreen extends Component {
+  state = {
+    user: {
+      name: '',
+      email: '',
+      password: '',
+      role: '',
+      avatar: '',
+    },
+  
+  }
 
+   componentDidMount(){
+    const user=this.props.uid || Fire.shared.uid
+    this.unsubscribe=Fire.shared.firestore.collection('users').doc(user).onSnapshot(doc=>{
+      this.setState({user:doc.data()})
+    })
+
+ }
+
+ handlePickAvatar = async () => {
+  UserPermissions.getCameraPermission()
+
+  let result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsEditing: true,
+    aspect: [4, 3],
+  })
+
+  if (!result.cancelled) {
+    this.setState({ user: { ...this.state.user, avatar: result.uri } })
+  }
+}
+
+ componentWillUnmount(){
+   this.unsubscribe()
+ }
+
+ updateUser() {
+  const updateDBRef = Fire.shared.firestore.collection('users').doc(uid);
+    updateDBRef.set({
+      avatar: this.state.avatar,
+      
+    }).then(doc=> {
+      this.setState({
+       
+        avatar: '',
+      
+      });
+      this.props.navigation.navigate('ProfilScreen');
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+      this.setState({
+        isLoading: false,
+      });
+    });
+}
+
+ deleteUser() {
+  const dbRef = firebase.firestore().collection('users').doc(this.props.route.params.userkey)
+    dbRef.delete().then((res) => {
+        console.log('Item removed from database')
+        this.props.navigation.navigate('ProfilScreen');
+    })
+}
+
+openTwoButtonAlert=()=>{
+  Alert.alert(
+    'Delete User',
+    'Are you sure?',
+    [
+      {text: 'Yes', onPress: () => this.deleteUser()},
+      {text: 'No', onPress: () => console.log('No item was removed'), style: 'cancel'},
+    ],
+    { 
+      cancelable: true 
+    }
+  );
+}
+
+  render() {
     return (
 
 <View style={styles.container}>
 
 <View style={{margin:20}}>
 <View style={{alignItems:'center'}}>
-<TouchableOpacity onPress={()=> {} }>
+<TouchableOpacity onPress={this.handlePickAvatar}>
 <View style={{
     height:100,
     width:100,
@@ -29,7 +114,7 @@ export default function EditProfilScreen({ navigation }){
     alignItems:'center'
 }}>
     <ImageBackground             
-        source={require('../assets/dad_avatar.jpeg')}
+        source={{ uri: this.state.user.avatar }}
         style={{height:100, width:100}}
         imageStyle={{borderRadius:15}}
     >
@@ -55,7 +140,7 @@ export default function EditProfilScreen({ navigation }){
 </TouchableOpacity>
 
 <Text style={{marginTop:10, fontSize:18, fontWeight:'bold'}}>
-    John Doe</Text>
+    {this.state.user.name}</Text>
 
 </View>
 
@@ -111,16 +196,18 @@ export default function EditProfilScreen({ navigation }){
 />
 </View>
 
-<TouchableOpacity style={styles.commandButton} onPress={()=>{}}>
+<TouchableOpacity style={styles.commandButton} onPress={this.updateUser}>
                 <Text style={styles.panelButton, {color:'#fff'}}>Valider les modifications</Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.commandDelete} onPress={this.deleteUser}>
+                <Text style={styles.panelDelete, {color:'#fff'}}>Supprimer un compte</Text>
 </TouchableOpacity>
 
 </View>
-
 </View>
 
 )
-
+              }
 }
 
 const styles = StyleSheet.create({
@@ -132,6 +219,13 @@ const styles = StyleSheet.create({
       padding: 15,
       borderRadius: 10,
       backgroundColor: '#6986C5',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    commandDelete: {
+      padding: 15,
+      borderRadius: 10,
+      backgroundColor: 'red',
       alignItems: 'center',
       marginTop: 10,
     },
@@ -174,6 +268,13 @@ const styles = StyleSheet.create({
       padding: 13,
       borderRadius: 10,
       backgroundColor: '#6986C5',
+      alignItems: 'center',
+      marginVertical: 7,
+    },
+    panelDelete: {
+      padding: 13,
+      borderRadius: 10,
+      backgroundColor: 'red',
       alignItems: 'center',
       marginVertical: 7,
     },
