@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, FlatList, Platform } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, Platform, Body, TouchableHighlight} from "react-native";
+import { ListItem, CheckBox,} from 'native-base'
 import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import Button from '../components/Button'
@@ -7,6 +8,9 @@ import Fire from "../core/Fire";
 import { db } from '../core/Fire';
 import BlogButton from '../components/BlogButton'
 import { TouchableOpacity } from "react-native-gesture-handler";
+const def = require('../assets/heart-hover.png');
+const spe = require('../assets/heart_full.png');
+
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -21,8 +25,8 @@ export default class Blog extends React.Component {
         this.state={
           dataSource : []
         }
-      
       }
+      
       componentDidMount(){  
         this.feed = this.ref.onSnapshot(this.feedPosts);
       }
@@ -54,16 +58,15 @@ export default class Blog extends React.Component {
     renderPost = post => {
         return (
             <View style={styles.feedItem}>
-                <Image source={{uri: post.avatar}} style={styles.avatar} />
                 <View style={{ flex: 1 }}>
+                <View style={{ flexDirection: "row"}}>
+                <Image source={{uri: post.avatar}} style={styles.avatar} />
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                         <View>
                             <Text style={styles.name}>{post.name}</Text>
                             <Text style={styles.timestamp}>{moment(post.timestamp).fromNow()}</Text>
                         </View>
-
-                        <Ionicons name="ellipsis-horizontal-outline" size={24} color="#73788B" />
-                    </View>
+                    </View></View>
                     <Text style={styles.post}>{post.text}</Text>
                     <Image source={{uri: post.image}} style={styles.postImage} resizeMode="cover" />
                     <View style={{ flexDirection: "row" }}>
@@ -99,32 +102,40 @@ export default class Blog extends React.Component {
 
 const styles = StyleSheet.create({
     ...Platform.select({
-      web: {
+    web: {
+        button:{
+            width: 10
+        },
+        heart: {
+            width: 10
+        },
+        heartColor: {
+            width: 10
+        },
         container: {
             flex: 1,
-            backgroundColor: "#FFF9EC"
+            backgroundColor: "#fff9ec"
         },
         header: {
-            height: 100,
-            backgroundColor: "#FFF9EC",
+            backgroundColor: "#fff9ec",
             alignItems: "center",
             justifyContent: "center",
             borderBottomWidth: 1,
-            borderBottomColor: "#EBECF4",
-            shadowColor: "#454D65",
-            shadowOffset: { height: 5 },
+            borderBottomColor: "#1fe0",
             shadowRadius: 15,
             shadowOpacity: 0.2,
-            zIndex: 1
-        },
+            zIndex: 1, 
+            borderRadius: 50,
+            marginRight: '47.5%',
+            marginLeft: '47.5%',
+        }, 
         headerTitle: {
             fontSize: 50,
-            fontWeight: "800"
+            fontWeight: "800"   
         },
         feed: {
             marginHorizontal: 16,
-            
-            
+            backgroundColor: "#FFF9EC",
         },
         feedItem: {
             backgroundColor: "#FFF",
@@ -132,70 +143,194 @@ const styles = StyleSheet.create({
             padding: 8,
             flexDirection: "row",
             marginVertical: 8,
+            backgroundColor: 'white',
+            marginTop: 10,
+            marginBottom: 10,
             borderWidth: 1,
-            borderColor: "lightgrey"
-        },
-        avatar: {
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            marginRight: 16
-        },
-        name: {
-            fontSize: 15,
-            fontWeight: "500",
-            color: "#454D65"
-        },
-        timestamp: {
-            fontSize: 11,
-            color: "#C4C6CE",
-            marginTop: 4
-        },
-        post: {
-            marginTop: 16,
-            fontSize: 14,
-            color: "#838899"
-        },
-        postImage: {
-            width: 500,
-            height: 150,
-            borderRadius: 5,
-            marginVertical: 16
-        }
-  
-      },
-      ios: {
-        container: {
-            flex: 1,
-            backgroundColor: "#FFF"
-        },
-        header: {
-            height: 100,
-            backgroundColor: "#FFF9EC",
-            alignItems: "center",
-            justifyContent: "center",
-            borderBottomWidth: 1,
-            borderBottomColor: "#EBECF4",
-            shadowColor: "#454D65",
-            shadowOffset: { height: 5 },
-            shadowRadius: 15,
-            shadowOpacity: 0.2,
-            zIndex: 1
-        },
-        headerTitle: {
-            fontSize: 50,
-            fontWeight: "800"
+            borderColor: "#474749",
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
             
         },
+        avatar: {
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            marginRight: 16
+        },
+        name: {
+            fontSize: 15,
+            fontWeight: "500",
+            color: "#454D65"
+        },
+        timestamp: {
+            fontSize: 11,
+            color: "#C4C6CE",
+            marginTop: 4
+        },
+        post: {
+            marginTop: 60,
+            fontSize: 14,
+            marginLeft: '60%',
+            color: "#838899"
+        },
+        postImage: {
+            width: '40%',
+            height: 200,
+            borderRadius: 5,
+            marginVertical: 16,
+            marginTop: -50
+        }
+      },
+    ios: {
+        button:{
+            width: 10
+        },
+        heart: {
+            width: 10
+        },
+        heartColor: {
+            width: 10
+        },
+        container: {
+            flex: 1,
+            backgroundColor: "#fff9ec"
+        },
+        header: {
+            backgroundColor: "#fff9ec",
+            alignItems: "center",
+            justifyContent: "center",
+            borderBottomWidth: 1,
+            borderBottomColor: "#1fe0",
+            shadowRadius: 15,
+            shadowOpacity: 0.2,
+            zIndex: 1, 
+            borderRadius: 50,
+            marginRight: 175,
+            marginLeft: 175
+        }, 
+        headerTitle: {
+            fontSize: 50,
+            fontWeight: "800"   
+        },
         feed: {
-            marginHorizontal: 16
+            marginHorizontal: 16,
+            backgroundColor: "#FFF9EC",
         },
         feedItem: {
             backgroundColor: "#FFF",
             borderRadius: 5,
             padding: 8,
             flexDirection: "row",
-            marginVertical: 8
+            marginVertical: 8,
+            backgroundColor: 'white',
+            marginTop: 10,
+            marginBottom: 10,
+            borderWidth: 1,
+            borderColor: "#474749",
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
+        },
+        avatar: {
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            marginRight: 16
+        },
+        name: {
+            fontSize: 15,
+            fontWeight: "500",
+            color: "#454D65"
+        },
+        timestamp: {
+            fontSize: 11,
+            color: "#C4C6CE",
+            marginTop: 4
+        },
+        post: {
+            marginTop: 16,
+            fontSize: 14,
+            color: "#838899"
+        },
+        postImage: {
+            width: undefined,
+            height: 150,
+            borderRadius: 5,
+            marginVertical: 16
+        }
+    },
+    android: {
+        button:{
+            width: 10
+        },
+        heart: {
+            width: 10
+        },
+        heartColor: {
+            width: 10
+        },
+        container: {
+            flex: 1,
+            backgroundColor: "#fff9ec"
+        },
+        header: {
+            backgroundColor: "#fff9ec",
+            alignItems: "center",
+            justifyContent: "center",
+            borderBottomWidth: 1,
+            borderBottomColor: "#1fe0",
+            shadowRadius: 15,
+            shadowOpacity: 0.2,
+            zIndex: 1, 
+            borderRadius: 50,
+            marginRight: 175,
+            marginLeft: 175
+        }, 
+        headerTitle: {
+            fontSize: 50,
+            fontWeight: "800"   
+        },
+        feed: {
+            marginHorizontal: 16,
+            backgroundColor: "#FFF9EC",
+        },
+        feedItem: {
+            backgroundColor: "#FFF",
+            borderRadius: 5,
+            padding: 8,
+            flexDirection: "row",
+            marginVertical: 8,
+            backgroundColor: 'white',
+            marginTop: 10,
+            marginBottom: 10,
+            borderWidth: 1,
+            borderColor: "#474749",
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
         },
         avatar: {
             width: 36,
@@ -225,66 +360,6 @@ const styles = StyleSheet.create({
             marginVertical: 16
         }
       },
-      android: {
-        container: {
-            flex: 1,
-            backgroundColor: "#EBECF4"
-        },
-        header: {
-            height: 100,
-            backgroundColor: "#FFF",
-            alignItems: "center",
-            justifyContent: "center",
-            borderBottomWidth: 1,
-            borderBottomColor: "#EBECF4",
-            shadowColor: "#454D65",
-            shadowOffset: { height: 5 },
-            shadowRadius: 15,
-            shadowOpacity: 0.2,
-            zIndex: 1
-        },
-        headerTitle: {
-            fontSize: 50,
-            fontWeight: "800"
-        },
-        feed: {
-            marginHorizontal: 16
-        },
-        feedItem: {
-            backgroundColor: "#FFF",
-            borderRadius: 5,
-            padding: 8,
-            flexDirection: "row",
-            marginVertical: 8
-        },
-        avatar: {
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            marginRight: 16
-        },
-        name: {
-            fontSize: 15,
-            fontWeight: "500",
-            color: "#454D65"
-        },
-        timestamp: {
-            fontSize: 11,
-            color: "#C4C6CE",
-            marginTop: 4
-        },
-        post: {
-            marginTop: 16,
-            fontSize: 14,
-            color: "#838899"
-        },
-        postImage: {
-            width: undefined,
-            height: 150,
-            borderRadius: 5,
-            marginVertical: 16
-        }
-      }
     })
-  });
+});
 
