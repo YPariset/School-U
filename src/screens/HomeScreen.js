@@ -1,88 +1,139 @@
 /* eslint-disable class-methods-use-this */
-import React from 'react';
-import {View, StyleSheet, Platform, Text, Image  } from 'react-native';
-import { Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
+import React from 'react'
+import { View, StyleSheet, Platform, Text, Image } from 'react-native'
+import {
+  Calendar,
+  CalendarList,
+  Agenda,
+  LocaleConfig,
+} from 'react-native-calendars'
 import Button from '../components/Button'
-import moment from 'moment';
-import { Ionicons } from "@expo/vector-icons";
+import moment from 'moment'
+import 'moment/locale/fr'
+import { Ionicons } from '@expo/vector-icons'
 
 LocaleConfig.locales['fr'] = {
-  monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-  monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-  dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-  dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-  today: 'Aujourd\'hui'
-};
-LocaleConfig.defaultLocale = 'fr';
+  monthNames: [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+  ],
+  monthNamesShort: [
+    'Janv.',
+    'Févr.',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juil.',
+    'Août',
+    'Sept.',
+    'Oct.',
+    'Nov.',
+    'Déc.',
+  ],
+  dayNames: [
+    'Dimanche',
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+  ],
+  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+  today: "Aujourd'hui",
+}
+LocaleConfig.defaultLocale = 'fr'
 
 class HomeScreen extends React.Component {
-
-  
   render() {
     return (
-      <Agenda style={styles.agenda}
-  renderEmptyData = {() => {return (
-  <View style={styles.container}>
-        <View>
-          <View style={styles.blocDate}>
-            <View style={styles.jour}>
-              <Text style={styles.TextStyle1}>{moment().calendar()}</Text>
-            </View>
-            <View style={styles.date}>
-              <Text style={styles.TextStyle1}>{<Ionicons name="notifications" size={19} style={styles.calendrier}></Ionicons>}</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.formBack}>
-          <View style={styles.bloc}>
-            <Button
-              style={styles.blog}
-              onPress={() => this.props.navigation.navigate('Blog')}
-              labelStyle={styles.text}
-              mode="outlined"
-            >
-              Blog
-            </Button>
-              <Button
-                style={styles.carnet}
-                onPress={() => this.props.navigation.navigate('CarnetScreen')}
-                labelStyle={styles.text}
-                mode="outlined"
-              >
-                Carnet
-              </Button>
-              <Button
-                style={styles.messagerie}
-                onPress={() => this.props.navigation.navigate('DiscussionList')}
-                labelStyle={styles.text}
-                mode="outlined"
-              >
-                Messagerie
-              </Button>
+      <Agenda
+        style={styles.agenda}
+        renderEmptyData={() => {
+          return (
+            <View style={styles.container}>
               <View>
+                <View style={styles.blocDate}>
+                  <View style={styles.jour}>
+                    <Text style={styles.TextStyle1}>{moment().calendar()}</Text>
+                  </View>
+                  <View style={styles.date}>
+                    <Text style={styles.TextStyle1}>
+                      {
+                        <Ionicons
+                          name="notifications"
+                          size={19}
+                          style={styles.calendrier}
+                        ></Ionicons>
+                      }
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.formBack}>
+                <View style={styles.bloc}>
+                  <Button
+                    style={styles.blog}
+                    onPress={() => this.props.navigation.navigate('Blog')}
+                    labelStyle={styles.text}
+                    mode="outlined"
+                  >
+                    Blog
+                  </Button>
+                  <Button
+                    style={styles.carnet}
+                    onPress={() =>
+                      this.props.navigation.navigate('CarnetScreen')
+                    }
+                    labelStyle={styles.text}
+                    mode="outlined"
+                  >
+                    Carnet
+                  </Button>
+                  <Button
+                    style={styles.messagerie}
+                    onPress={() =>
+                      this.props.navigation.navigate('DiscussionList')
+                    }
+                    labelStyle={styles.text}
+                    mode="outlined"
+                  >
+                    Messagerie
+                  </Button>
+                  <View></View>
+                  <Image
+                    source={require('../assets/logo.png')}
+                    style={styles.logo}
+                  ></Image>
+                </View>
+              </View>
             </View>
-            <Image
-              source={require('../assets/logo.png')}
-              style={styles.logo}
-            ></Image>
-          </View>
-        </View>
-      </View>
-  );}}
-
-  markedDates={{
-    '2021-04-16': {selected: true, marked: true, selectedColor: '#a4c9c8'},
-
-  }}
-  hideKnob={false}
-  theme={{
-    
-   
-  }}
-  // Agenda container style
-  style={{}}
-/>
-    );
+          )
+        }}
+        markedDates={{
+          '2021-04-16': {
+            selected: true,
+            marked: true,
+            selectedColor: '#a4c9c8',
+          },
+        }}
+        hideKnob={false}
+        theme={{}}
+        // Agenda container style
+        style={{}}
+      />
+    )
   }
 }
 
@@ -94,13 +145,12 @@ const styles = StyleSheet.create({
         marginTop: 40,
         borderRadius: 50,
         width: 450,
-        height: 300
       },
       bloc: {
         flexDirection: 'column',
         alignItems: 'center',
         alignContent: 'center',
-        paddingTop: 40,
+        paddingTop: 60,
         marginBottom: 40,
       },
       blocDate: {
@@ -166,10 +216,10 @@ const styles = StyleSheet.create({
       },
       logo: {
         alignSelf: 'center',
-        width: '90%',
+        width: 370,
         height: 50,
         marginHorizontal: 100,
-        marginTop: 100,
+        marginTop: 80,
       },
     },
     ios: {
@@ -360,7 +410,4 @@ const styles = StyleSheet.create({
   }),
 })
 
-
-
-
-export default HomeScreen;
+export default HomeScreen
