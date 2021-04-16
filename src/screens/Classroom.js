@@ -32,10 +32,10 @@ export default class Classroom extends Component {
   return (
     <View style={styles.container} >
       <Text>Bienvenue, {this.state.user.name} !</Text>  
-      <Button style={styles.classe1} labelStyle={styles.text} mode="outlined" onPress={() => this.props.navigation.navigate('Dashboard')}>
+      <Button style={styles.classe1} labelStyle={styles.text} mode="outlined" onPress={() => this.props.navigation.navigate('HomeScreen')}>
         Coding Factory
       </Button>
-      <Button style={styles.classe2} onPress={() => navigation.navigate('Dashboard')} labelStyle={styles.text} mode="outlined">
+      <Button style={styles.classe2} onPress={() => navigation.navigate('HomeScreen')} labelStyle={styles.text} mode="outlined">
         Classe 2
       </Button>
       </View>

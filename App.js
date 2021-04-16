@@ -26,7 +26,7 @@ import {
   addChild,
   PostScreen,
   AddClassCode,
-  CalendarScreen,
+  HomeScreen,
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -49,7 +49,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <DrawerItem
         label="Home"
-        onPress={() => props.navigation.navigate('Dashboard')}
+        onPress={() => props.navigation.navigate('HomeScreen')}
       />
       <DrawerItem
         label="Blog"
@@ -75,10 +75,7 @@ function CustomDrawerContent(props) {
         label="AddClassCode"
         onPress={() => props.navigation.navigate('AddClassCode')}
       />
-      <DrawerItem
-        label="CalendarScreen"
-        onPress={() => props.navigation.navigate('CalendarScreen')}
-      />
+     
 
       <DrawerItem
         style={{paddingTop: 440, paddingLeft: 65}}
@@ -99,8 +96,8 @@ function StackNavigator({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="AuthLoadingScreen" screenOptions={{}}>
       <Stack.Screen
-        name="Dashboard"
-        component={Dashboard}
+        name="HomeScreen"
+        component={HomeScreen}
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
@@ -202,11 +199,6 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AddClassCode"
         component={AddClassCode}
-        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
-      />
-      <Stack.Screen
-        name="CalendarScreen"
-        component={CalendarScreen}
         options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
     </Stack.Navigator>
