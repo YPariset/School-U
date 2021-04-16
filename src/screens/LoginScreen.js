@@ -227,34 +227,44 @@ const styles = StyleSheet.create({
     },
     android: {
       container: {
+        backgroundColor: '#FFF9EC',
         flex: 1,
       },
 
       loginLogo: {
-        marginTop: -110,
+        marginTop: 40,
+        width: 110,
+        height: 125,
         alignSelf: 'center',
       },
 
+      formBack: {
+        backgroundColor: '#474749',
+        marginHorizontal: 10,
+        marginTop: 30,
+        paddingBottom: 20,
+        borderRadius: 50,
+      },
       form: {
         marginBottom: 48,
         marginHorizontal: 30,
       },
       inputTitle: {
-        color: '#8A8F9E',
+        color: 'white',
         fontSize: 10,
         textTransform: 'uppercase',
       },
       input: {
-        borderBottomColor: '#8A8F9E',
+        borderBottomColor: 'white',
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        color: '#161F3D',
+        color: 'white',
       },
       button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
-        borderRadius: 4,
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center',
