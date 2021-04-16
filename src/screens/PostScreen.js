@@ -5,6 +5,7 @@ import * as Permissions from "expo-permissions";
 import { Ionicons } from "@expo/vector-icons";
 import Fire from "../core/Fire";
 import * as ImagePicker from "expo-image-picker";
+import Button from '../components/Button'
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -70,11 +71,10 @@ export default class PostScreen extends React.Component {
                     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                         <Ionicons name="md-arrow-back" size={24} color="#D8D9DB"></Ionicons>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.handlePost}>
-                        <Text style={{ fontWeight: "500" }}>Post</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.titrePage}>Ajouter un mot sur le blog</Text>
+                    
                 </View>
-
+                <View style={styles.postMessage}>
                 <View style={styles.inputContainer}>
                     <Image source={this.state.user.avatar?{uri:this.state.user.avatar}:null} style={styles.avatar}></Image>
                     <TextInput
@@ -82,7 +82,7 @@ export default class PostScreen extends React.Component {
                         multiline={true}
                         numberOfLines={4}
                         style={{ flex: 1 }}
-                        placeholder="Want to share something?"
+                        placeholder="Ajouter un mot sur le blog"
                         onChangeText={text => this.setState({ text })}
                         value={this.state.text}
                     ></TextInput>
@@ -91,10 +91,18 @@ export default class PostScreen extends React.Component {
                 <TouchableOpacity style={styles.photo} onPress={this.pickImage}>
                     <Ionicons name="md-camera" size={32} color="#D8D9DB"></Ionicons>
                 </TouchableOpacity>
-
-                <View style={{ marginHorizontal: 32, marginTop: 32, height: 150 }}>
+</View>
+                <View style={{ marginHorizontal: 32, height: 150 }}>
                     <Image source={{ uri: this.state.image }} style={{ width: "100%", height: "100%" }}></Image>
                 </View>
+                <Button
+                style={styles.buttonAdd}
+                onPress={this.handlePost}
+                labelStyle={styles.text}
+                mode="outlined"
+              >
+                Ajouter un mot sur le blog
+              </Button>
             </SafeAreaView>
         );
     }
@@ -102,8 +110,15 @@ export default class PostScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#fff9ec",
     },
+    titrePage: {
+        paddingRight: 100,
+        fontWeight: 'bold',
+        fontSize: 15,
+        lineHeight: 26,
+    }, 
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -113,17 +128,60 @@ const styles = StyleSheet.create({
         borderBottomColor: "#D8D9DB"
     },
     inputContainer: {
-        margin: 32,
-        flexDirection: "row"
+        marginTop: 10,
+        flexDirection: "row", 
+        
+        
     },
     avatar: {
         width: 48,
         height: 48,
         borderRadius: 24,
-        marginRight: 16
+        marginRight: 4
     },
     photo: {
         alignItems: "flex-end",
-        marginHorizontal: 32
-    }
+        marginHorizontal: 32, 
+        marginRight: 5, 
+        marginTop: 130, 
+        
+        
+    }, 
+    postMessage: {
+        backgroundColor: 'white',
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 20, 
+        borderColor: "#a4c9c8",
+        borderRadius: 10,
+        marginRight: 30, 
+        marginLeft: 30,
+        shadowColor: "#000",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 8,
+        
+        
+                        
+    }, 
+    buttonAdd: {
+        backgroundColor: '#FABE7C',
+        borderRadius: 10,
+        width: '80%',
+        borderWidth: 0,
+        marginRight: 'auto', 
+        marginLeft: 'auto', 
+        marginTop: -50
+    }, 
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 15,
+        lineHeight: 26,
+    },
 });

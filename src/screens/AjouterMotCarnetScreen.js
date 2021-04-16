@@ -41,7 +41,7 @@ export default class AjouterMotCarnetScreen extends React.Component {
                         style={styles.TexteInput}
                         autoFocus={true}
                         multiline={true}
-                        numberOfLines={4}
+                        numberOfLines={15}
                         
                         placeholder=" Ajouter un mot sur le carnet"
                         onChangeText={content => this.setState({ content })}
@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
                     }, 
                     inputContainer: {
                         backgroundColor: 'white',
-                        marginTop: 30,
-                        marginBottom: 15,
+                        marginTop: 20,
+                        marginBottom: 4,
                         borderWidth: 1,
                         borderColor: "#6986C5",
                         borderRadius: 10,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
                         shadowOpacity: 0.27,
                         shadowRadius: 4.65,
                         elevation: 8,
-                        paddingBottom: 130,
+                        
                     }, 
                     header: {
                         paddingBottom: 800,

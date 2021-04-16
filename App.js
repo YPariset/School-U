@@ -116,7 +116,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="Blog"
         component={Blog}
-        options={{ title: 'blog', headerStyle: { backgroundColor: '#FFF' } }}
+        options={{ title: 'Blog', headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen
         name="CarnetScreen"
@@ -176,7 +176,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="AjouterMotCarnetScreen"
         component={AjouterMotCarnetScreen}
-        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+        options={{headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
       <Stack.Screen
