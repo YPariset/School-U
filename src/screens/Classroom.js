@@ -53,7 +53,7 @@ export default class Classroom extends Component {
             </Button>
             <Button
               style={styles.classe2}
-              onPress={() => navigation.navigate('HomeScreen')}
+              onPress={() => this.props.navigation.navigate('HomeScreen')}
               labelStyle={styles.text}
               mode="outlined"
             >
