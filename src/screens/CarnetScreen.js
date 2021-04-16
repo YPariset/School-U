@@ -192,8 +192,198 @@ const styles = StyleSheet.create({
                 
                 
                 },
+                android: {
+                  container: {
+                    flex: 1,
+                    backgroundColor: "#fff9ec"
+                  },
+                  header: {
+                      backgroundColor: "#fff9ec",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderBottomWidth: 1,
+                      borderBottomColor: "#1fe0",
+                      shadowRadius: 15,
+                      shadowOpacity: 0.2,
+                      zIndex: 1, 
+                      borderRadius: 50,
+                      marginRight: 175,
+                      marginLeft: 175
+                  },
+                  headerTitle: {
+                      fontSize: 50,
+                      fontWeight: "800"
+                  },
+                  feed: {
+                      marginHorizontal: 16
+                  },
+                  feedItem: {
+                      backgroundColor: "#EBECF4",
+                      borderRadius: 5,
+                      padding: 8,
+                      flexDirection: "row",
+                      marginVertical: 8
+                  },
+                  name: {
+                      fontSize: 15,
+                      fontWeight: "500",
+                      color: "#454D65"
+                  },
+                  timestamp: {
+                      fontSize: 11,
+                      marginTop: 5,
+                      paddingLeft: 8,
+                      fontWeight: 'bold'
+                  },
+                  timestampHours: {
+                      fontSize: 11,
+                      marginTop: -17,
+                      paddingLeft: 40
+                  },
+                  post: {
+                      //marginTop: -5,
+                      marginBottom: 30,
+                      paddingLeft: 80,
+                      paddingRight: 9,
+                      textAlign: 'justify',
+                      fontSize: 18,
+                      color: "#838899", 
+                      
+                  },
+                  postImage: {
+                      width: undefined,
+                      height: 150,
+                      borderRadius: 5,
+                      marginVertical: 16,
+
+                  }, 
+                  messagesCarnet: {
+                    backgroundColor: 'white',
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderWidth: 1,
+                    borderColor: "#6986C5",
+                    borderRadius: 10,
+                    shadowColor: "#000",
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 3,
+                    },
+                    shadowOpacity: 0.27,
+                    shadowRadius: 4.65,
+                    elevation: 8,
+                  },
+                  buttonPlus: {
+                    color: 'grey',
+
+                  }, 
+                  button: {
+                    marginTop: 10, 
+                  }, 
+                  calendrier: {
+                    marginTop: 5,
+                    color: 'grey',
+                    marginLeft: 8
+                  }
+                }, 
                 web: {
-                  
+                  container: {
+                    flex: 1,
+                    backgroundColor: "#fff9ec"
+                  },
+                  header: {
+                      backgroundColor: "#fff9ec",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderBottomWidth: 1,
+                      borderBottomColor: "#1fe0",
+                      shadowRadius: 15,
+                      shadowOpacity: 0.2,
+                      zIndex: 1, 
+                      borderRadius: 50,
+                      marginRight: '47.5%',
+                      marginLeft: '47.5%',
+                      
+                  },
+                  headerTitle: {
+                      fontSize: 50,
+                      fontWeight: "800"
+                  },
+                  feed: {
+                      marginHorizontal: 16
+                  },
+                  feedItem: {
+                      backgroundColor: "#EBECF4",
+                      borderRadius: 5,
+                      padding: 8,
+                      flexDirection: "row",
+                      marginVertical: 8
+                  },
+                  name: {
+                      fontSize: 15,
+                      fontWeight: "500",
+                      color: "#454D65"
+                  },
+                  timestamp: {
+                      fontSize: 11,
+                      marginTop: 5,
+                      paddingLeft: 8,
+                      fontWeight: 'bold'
+                  },
+                  timestampHours: {
+                      fontSize: 11,
+                      marginTop: -17,
+                      paddingLeft: 40
+                  },
+                  post: {
+                      //marginTop: -5,
+                      marginBottom: 30,
+                      paddingLeft: 80,
+                      paddingRight: 9,
+                      textAlign: 'justify',
+                      fontSize: 18,
+                      color: "#838899", 
+                      
+                  },
+                  postImage: {
+                      width: undefined,
+                      height: 150,
+                      borderRadius: 5,
+                      marginVertical: 16,
+
+                  }, 
+                  messagesCarnet: {
+                    backgroundColor: 'white',
+                    marginTop: 30,
+                    marginBottom: 15,
+                    borderWidth: 1,
+                    borderColor: "#6986C5",
+                    borderRadius: 10,
+                    marginRight: 30, 
+                    marginLeft: 30,
+                    shadowColor: "#000",
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 3,
+                    },
+                    shadowOpacity: 0.27,
+                    shadowRadius: 4.65,
+                    elevation: 8,
+                  },
+                  buttonPlus: {
+                    color: 'grey',
+
+                  }, 
+                  button: {
+                    marginTop: 10, 
+                  }, 
+                  calendrier: {
+                    marginTop: 5,
+                    color: 'grey',
+                    marginLeft: 8
+                  }
                 }
               }),
             });
