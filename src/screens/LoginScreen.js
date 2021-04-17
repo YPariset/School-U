@@ -30,7 +30,11 @@ export default class LoginScreen extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch((error) => this.setState({ errorMessage: error.message }))
+      .catch((error) =>
+        this.setState({
+          errorMessage: 'Adresse mail ou  mot de passe  invalide',
+        })
+      )
   }
 
   render() {

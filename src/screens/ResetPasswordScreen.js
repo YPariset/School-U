@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
       form: {
         marginTop: 30,
         alignSelf: 'center',
-        width: 350,
+        width: 320,
       },
       bouton: {
         alignSelf: 'center',
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
       form: {
         marginTop: 50,
         alignSelf: 'center',
-        width: 380,
+        width: 400,
       },
       bouton: {
         alignSelf: 'center',
