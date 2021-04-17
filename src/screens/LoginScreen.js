@@ -30,7 +30,11 @@ export default class LoginScreen extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch((error) => this.setState({ errorMessage: error.message }))
+      .catch((error) =>
+        this.setState({
+          errorMessage: 'Adresse mail ou  mot de passe  invalide',
+        })
+      )
   }
 
   render() {
@@ -54,7 +58,7 @@ export default class LoginScreen extends React.Component {
 
               <View style={styles.form}>
                 <View>
-                  <Text style={styles.inputTitle}>Email Address</Text>
+                  <Text style={styles.inputTitle}>Email </Text>
                   <TextInput
                     style={styles.input}
                     autoCapitalize="none"
@@ -64,7 +68,7 @@ export default class LoginScreen extends React.Component {
                 </View>
 
                 <View style={{ marginTop: 32 }}>
-                  <Text style={styles.inputTitle}>Password</Text>
+                  <Text style={styles.inputTitle}>Mot de passe</Text>
                   <TextInput
                     style={styles.input}
                     secureTextEntry
@@ -80,7 +84,7 @@ export default class LoginScreen extends React.Component {
                 onPress={this.handleLogin}
               >
                 <Text style={{ color: '#FFF', fontWeight: '500' }}>
-                  Sign in
+                  S'identifier
                 </Text>
               </TouchableOpacity>
 
@@ -92,6 +96,19 @@ export default class LoginScreen extends React.Component {
                   Pas encore de compte ?{' '}
                   <Text style={{ fontWeight: '500', color: '#E46472' }}>
                     Créez-en un
+                  </Text>
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 32 }}
+                onPress={() =>
+                  this.props.navigation.navigate('ResetPasswordScreen')
+                }
+              >
+                <Text style={{ color: 'white', fontSize: 13 }}>
+                  Mot de passe oublié ?{' '}
+                  <Text style={{ fontWeight: '500', color: '#E46472' }}>
+                    Cliquez ici
                   </Text>
                 </Text>
               </TouchableOpacity>
@@ -232,9 +249,9 @@ const styles = StyleSheet.create({
       },
 
       loginLogo: {
-        marginTop: 40,
+        marginTop: 5,
         width: 110,
-        height: 125,
+        height: 127,
         alignSelf: 'center',
       },
 

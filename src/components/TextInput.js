@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Platform } from 'react-native'
 import { TextInput as Input } from 'react-native-paper'
 import { theme } from '../core/theme'
 
@@ -22,21 +22,67 @@ export default function TextInput({ errorText, description, ...props }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    marginVertical: 12,
-  },
-  input: {
-    backgroundColor: theme.colors.surface,
-  },
-  description: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-    paddingTop: 8,
-  },
-  error: {
-    fontSize: 13,
-    color: theme.colors.error,
-    paddingTop: 8,
-  },
+  ...Platform.select({
+    ios: {
+      container: {
+        width: '100%',
+        marginVertical: 12,
+      },
+      input: {
+        backgroundColor: theme.colors.surface,
+      },
+      description: {
+        fontSize: 13,
+        color: theme.colors.secondary,
+        paddingTop: 8,
+        marginLeft: 15,
+      },
+      error: {
+        fontSize: 13,
+        color: theme.colors.error,
+        paddingTop: 8,
+      },
+    },
+    android: {
+      container: {
+        width: '100%',
+        marginVertical: 12,
+      },
+      input: {
+        backgroundColor: theme.colors.surface,
+      },
+      description: {
+        fontSize: 13,
+        color: theme.colors.secondary,
+        paddingTop: 8,
+        marginLeft: 15,
+      },
+      error: {
+        fontSize: 13,
+        color: theme.colors.error,
+        paddingTop: 8,
+      },
+    },
+    web: {
+      container: {
+        width: '100%',
+        marginVertical: 12,
+      },
+      input: {
+        backgroundColor: theme.colors.surface,
+      },
+      description: {
+        alignSelf: 'center',
+        fontSize: 14,
+        color: theme.colors.secondary,
+        paddingTop: 8,
+        marginTop: 20,
+      },
+      error: {
+        fontSize: 13,
+        color: theme.colors.error,
+        paddingTop: 8,
+      },
+    },
+  }),
 })

@@ -5,8 +5,9 @@ import {
   SafeAreaView,
   Platform,
   TextInput,
+  Text,
 } from 'react-native'
-import { Input, Item, Text, Form } from 'native-base'
+import { Input, Item, Form } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Button from '../components/Button'
 

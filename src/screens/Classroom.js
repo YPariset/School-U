@@ -39,7 +39,7 @@ export default class Classroom extends Component {
           <View style={styles.blocBout}>
             <View>
               <Text style={styles.bienvenue}>
-                Bienvenue, user !
+                Bienvenue, {this.state.user.name} !
               </Text>
             </View>
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
       fondBloc: {
         backgroundColor: '#474749',
-        height: 300,
+        height: 350,
         width: 500,
         borderRadius: 50,
         marginTop: 60,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         width: 300,
         borderRadius: 10,
         borderWidth: 0,
-        marginTop: 30,
+        marginTop: 40,
       },
       text: {
         color: 'white',
