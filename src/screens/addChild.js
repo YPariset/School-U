@@ -33,24 +33,26 @@ const App = ({ navigation }) => {
               </Item>
             </Form>
           ) : null}
-          <Button
-            style={styles.buttonAddNdChild}
-            labelStyle={styles.text}
-            mode="outlined"
-            onPress={() => setShouldShow(!shouldShow)}
-          >
-            Ajouter un second enfant
-          </Button>
+          <View style={styles.fondBout}>
+            <Button
+              style={styles.buttonAddNdChild}
+              labelStyle={styles.text}
+              mode="outlined"
+              onPress={() => setShouldShow(!shouldShow)}
+            >
+              Ajouter un second enfant
+            </Button>
 
-          <Button
-            style={styles.buttonValider}
-            labelStyle={styles.text}
-            mode="outlined"
-            onPress={() => navigation.navigate('AddClassCode')}
-          >
-            {' '}
-            Valider{' '}
-          </Button>
+            <Button
+              style={styles.buttonValider}
+              labelStyle={styles.text}
+              mode="outlined"
+              onPress={() => navigation.navigate('AddClassCode')}
+            >
+              {' '}
+              Valider{' '}
+            </Button>
+          </View>
         </View>
       </SafeAreaView>
     </Container>
@@ -63,9 +65,14 @@ const styles = StyleSheet.create({
       background: {
         backgroundColor: '#fff9ec',
       },
-      buttonValider: {
-        marginBottom: 200,
+      fondBout: {
+        alignSelf: 'center',
+        width: 400,
+        height: 200,
+        borderRadius: 50,
+        backgroundColor: '#474749',
       },
+
       premierForm: {
         paddingTop: 30,
         paddingBottom: 100,
@@ -100,19 +107,19 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
       },
       buttonAddNdChild: {
-        marginTop: 100,
-        backgroundColor: '#FABE7C',
-        width: '70%',
+        marginTop: 45,
+        backgroundColor: '#E46472',
+        width: 300,
         borderRadius: 10,
         borderWidth: 0,
         marginRight: 'auto',
         marginLeft: 'auto',
       },
       buttonValider: {
-        backgroundColor: '#6986C5',
+        backgroundColor: '#a4c9c8',
         borderRadius: 10,
-        borderWidth: 0,
-        width: '90%',
+
+        width: 300,
         marginRight: 'auto',
         marginLeft: 'auto',
       },

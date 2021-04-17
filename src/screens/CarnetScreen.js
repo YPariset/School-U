@@ -92,7 +92,7 @@ export default class CarnetScreen extends React.Component {
             this.props.navigation.navigate('AjouterMotCarnetScreen')
           }
         >
-          <CarnetButton></CarnetButton>
+          <CarnetButton navigation={this.props.navigation}></CarnetButton>
         </TouchableOpacity>
       </View>
     )

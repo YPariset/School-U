@@ -100,6 +100,7 @@ function StackNavigator({ navigation }) {
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: 'Home',
+
           headerLeft: () => (
             <Icon
               style={{ paddingLeft: 15 }}
@@ -116,6 +117,7 @@ function StackNavigator({ navigation }) {
           title: 'Blog',
           headerStyle: { backgroundColor: '#FFF9EC' },
           headerTitleStyle: { color: '#6986C5' },
+          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
@@ -125,6 +127,7 @@ function StackNavigator({ navigation }) {
           title: 'Carnet de liaison',
           headerStyle: { backgroundColor: '#FFF9EC' },
           headerTitleStyle: { color: '#FABE7C' },
+          headerTintColor: 'black',
         }}
       />
 
@@ -135,14 +138,16 @@ function StackNavigator({ navigation }) {
           title: 'Messagerie',
           headerStyle: { backgroundColor: '#FFF9EC' },
           headerTitleStyle: { color: '#E46472' },
+          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
         name="ProfilScreen"
         component={ProfilScreen}
         options={{
-          title: 'Profile',
+          title: 'Profil',
           headerStyle: { backgroundColor: '#FFF9EC' },
+          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
@@ -174,8 +179,10 @@ function StackNavigator({ navigation }) {
         name="Message"
         component={Message}
         options={{
+          title: 'Messages',
           headerStyle: { backgroundColor: '#FFF9EC' },
           headerTitleStyle: { color: '#E46472' },
+          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
@@ -184,9 +191,19 @@ function StackNavigator({ navigation }) {
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
           headerTitleStyle: { color: '#FABE7C' },
+          headerTintColor: 'black',
+          title: '',
         }}
       />
-      <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
+      <Stack.Screen
+        name="EditProfilScreen"
+        component={EditProfilScreen}
+        options={{
+          headerStyle: { backgroundColor: '#FFF9EC' },
+          title: 'Edit profil',
+          headerTintColor: 'black',
+        }}
+      />
       <Stack.Screen
         name="ResetPasswordScreen"
         component={ResetPasswordScreen}
@@ -200,7 +217,11 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="PostScreen"
         component={PostScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerStyle: { backgroundColor: '#FFF9EC' },
+          title: '',
+          headerTintColor: 'black',
+        }}
       />
       <Stack.Screen
         name="addChild"
@@ -208,6 +229,7 @@ function StackNavigator({ navigation }) {
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
           title: '',
+          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
@@ -215,7 +237,8 @@ function StackNavigator({ navigation }) {
         component={AddClassCode}
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
-          title: 'Ajouter code de classe',
+          title: '',
+          headerTintColor: 'black',
         }}
       />
     </Stack.Navigator>

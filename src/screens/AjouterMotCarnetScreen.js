@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         marginRight: 'auto',
         marginLeft: 'auto',
+        marginTop: 80,
       },
       text: {
         color: 'white',
