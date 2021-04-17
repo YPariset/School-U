@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
       },
       postImage: {
         width: '40%',
-        height: 200,
+        height: 800,
         borderRadius: 5,
         marginVertical: 16,
         marginTop: -50,
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
       },
       postImage: {
         width: undefined,
-        height: 150,
+        height: 400,
         borderRadius: 5,
         marginVertical: 16,
       },
@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
       },
       postImage: {
         width: undefined,
-        height: 150,
+        height: 350,
         borderRadius: 5,
         marginVertical: 16,
       },

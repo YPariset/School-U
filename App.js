@@ -36,6 +36,7 @@ import {
 } from '@react-navigation/drawer'
 import { Icon } from 'native-base'
 import { logoutUser } from './src/api/auth-api'
+import { setStatusBarHidden } from 'expo-status-bar'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -158,7 +159,12 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="StartScreen"
         component={StartScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          navigationOptions: ({ navigation }) => ({
+            drawerLockMode: 'locked-closed',
+          }),
+        }}
       />
       <Stack.Screen
         name="LoginScreen"

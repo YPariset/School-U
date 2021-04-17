@@ -49,7 +49,7 @@
     "react-native-svg": "^12.1.0",
     "react-native-touchable-scale": "^2.1.2",
     "react-native-web": "^0.14.4",
-    "react-navigation": "^4.4.4",
+    "react-navigation": "github:martnu/react-navigation#pass-down-drawer-lock-mode",
     "react-navigation-drawer": "^2.7.0",
     "react-navigation-stack": "^2.10.4",
     "tcomb-form-native": "^0.6.20"
