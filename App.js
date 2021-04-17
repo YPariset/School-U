@@ -48,7 +48,7 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
-        label="Home"
+        label="Accueil"
         onPress={() => props.navigation.navigate('HomeScreen')}
       />
       <DrawerItem
@@ -99,7 +99,7 @@ function StackNavigator({ navigation }) {
         component={HomeScreen}
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
-          title: 'Home',
+          title: 'Accueil',
 
           headerLeft: () => (
             <Icon
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     },
     android: {
       deconnecter: {
-        paddingTop: 360,
+        paddingTop: 250,
         paddingLeft: 65,
       },
     },

@@ -58,7 +58,7 @@ export default class RegisterScreen extends React.Component {
           <View style={styles.inputView}>
             <Text
               style={styles.greeting}
-            >{`Hello!\nSign up to get started.`}</Text>
+            >{`Bonjour!\nEnregistrez vous pour commencer.`}</Text>
             <TouchableOpacity
               style={styles.avatarPlaceholder}
               onPress={this.handlePickAvatar}
@@ -84,7 +84,7 @@ export default class RegisterScreen extends React.Component {
           <View style={styles.formBack}>
             <View style={styles.form}>
               <View>
-                <Text style={styles.inputTitle}>Full Name</Text>
+                <Text style={styles.inputTitle}>Nom</Text>
                 <TextInput
                   style={styles.input}
                   onChangeText={(name) =>
@@ -95,7 +95,7 @@ export default class RegisterScreen extends React.Component {
               </View>
 
               <View style={{ marginTop: 28 }}>
-                <Text style={styles.inputTitle}>Email Address</Text>
+                <Text style={styles.inputTitle}>Email </Text>
                 <TextInput
                   style={styles.input}
                   autoCapitalize="none"
@@ -107,7 +107,7 @@ export default class RegisterScreen extends React.Component {
               </View>
 
               <View style={{ marginTop: 28 }}>
-                <Text style={styles.inputTitle}>Password</Text>
+                <Text style={styles.inputTitle}>Mot de passe</Text>
                 <TextInput
                   style={styles.input}
                   secureTextEntry
@@ -125,7 +125,19 @@ export default class RegisterScreen extends React.Component {
                     { label: 'Parent', value: 'Parent' },
                     { label: 'Enseignant', value: 'Enseignant' },
                   ]}
-                  labelStyle={{ color: Platform.select({ web: 'white' }) }}
+                  placeholder="Selectionnez votre statut"
+                  placeholderStyle={{
+                    color: Platform.select({
+                      web: 'white',
+                      android: 'black',
+                    }),
+                  }}
+                  labelStyle={{
+                    color: Platform.select({ web: 'white' }),
+                  }}
+                  itemStyle={{}}
+                  arrowSize={Platform.select({ web: 30 })}
+                  arrowColor={Platform.select({ web: 'white' })}
                   defaultIndex={0}
                   containerStyle={{
                     marginTop: 10,
@@ -139,7 +151,9 @@ export default class RegisterScreen extends React.Component {
             </View>
 
             <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-              <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign up</Text>
+              <Text style={{ color: '#FFF', fontWeight: '500' }}>
+                S'enregistrer
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -149,7 +163,7 @@ export default class RegisterScreen extends React.Component {
               <Text style={{ color: 'white', fontSize: 13 }}>
                 Vous avez déjà un compte ?{' '}
                 <Text style={{ fontWeight: '500', color: '#E46472' }}>
-                  Sign in
+                  S'identifier
                 </Text>
               </Text>
             </TouchableOpacity>

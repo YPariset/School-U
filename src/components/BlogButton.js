@@ -90,5 +90,23 @@ const styles = StyleSheet.create({
         color: 'white',
       },
     },
+    web: {
+      button: {
+        height: 30,
+        width: 'auto',
+        alignSelf: 'center',
+        marginTop: 2,
+        marginBottom: 15,
+        backgroundColor: '#6986C5',
+      },
+      text: {
+        paddingLeft: 5,
+        paddingRight: 5,
+        alignSelf: 'center',
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: 'white',
+      },
+    },
   }),
 })

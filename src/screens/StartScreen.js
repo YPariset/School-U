@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 50,
         paddingHorizontal: 300,
+        marginLeft: -10,
       },
       para: {
         fontWeight: 'bold',

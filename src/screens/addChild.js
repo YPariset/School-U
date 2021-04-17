@@ -128,12 +128,21 @@ const styles = StyleSheet.create({
       background: {
         backgroundColor: '#fff9ec',
       },
+      fondBout: {
+        alignSelf: 'center',
+        width: 400,
+        height: 220,
+        borderRadius: 50,
+        backgroundColor: '#474749',
+      },
 
       premierForm: {
         paddingTop: 30,
         paddingBottom: 100,
       },
-
+      secondForm: {
+        paddingBottom: 100,
+      },
       ajoutEnfant: {
         marginBottom: 30,
         color: 'black',
@@ -161,19 +170,83 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
       },
       buttonAddNdChild: {
-        marginTop: 70,
-        backgroundColor: '#FABE7C',
-        width: '70%',
+        marginTop: 45,
+        backgroundColor: '#E46472',
+        width: 300,
         borderRadius: 10,
         borderWidth: 0,
         marginRight: 'auto',
         marginLeft: 'auto',
       },
       buttonValider: {
-        backgroundColor: '#6986C5',
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
+
+        width: 300,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        marginTop: 20,
+      },
+    },
+    android: {
+      background: {
+        backgroundColor: '#fff9ec',
+      },
+      fondBout: {
+        alignSelf: 'center',
+        width: 350,
+        height: 200,
+        borderRadius: 50,
+        backgroundColor: '#474749',
+      },
+
+      premierForm: {
+        paddingTop: 30,
+        paddingBottom: 50,
+      },
+      secondForm: {
+        paddingBottom: 50,
+      },
+      ajoutEnfant: {
+        marginBottom: 30,
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 26,
+        textAlign: 'center',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+      },
+      text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 15,
+        lineHeight: 26,
+      },
+      titre: {
+        marginTop: 20,
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 18,
+        lineHeight: 26,
+        textAlign: 'center',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+      },
+      buttonAddNdChild: {
+        marginTop: 35,
+        backgroundColor: '#E46472',
+        width: 300,
         borderRadius: 10,
         borderWidth: 0,
-        width: '90%',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+      },
+      buttonValider: {
+        backgroundColor: '#a4c9c8',
+        borderRadius: 10,
+
+        width: 300,
         marginRight: 'auto',
         marginLeft: 'auto',
       },
