@@ -27,6 +27,7 @@ import {
   PostScreen,
   AddClassCode,
   HomeScreen,
+  CreateClass
 } from './src/screens'
 import { FIREBASE_CONFIG } from './src/core/config'
 import {
@@ -201,6 +202,13 @@ function StackNavigator({ navigation }) {
         component={AddClassCode}
         options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
+
+      <Stack.Screen
+        name="CreateClass"
+        component={CreateClass}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
+      />
+
     </Stack.Navigator>
   )
 }

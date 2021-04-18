@@ -34,10 +34,19 @@ export default class Classroom extends Component {
   render() {
     let isParent = 'Parent'
     let TheClassroomButton
+    let AddChild
+    let AddClass
     let role = this.state.user.role.label
 
     if (isParent != this.state.user.role.label) {
-      TheClassroomButton = null
+      AddClass = (
+        <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('CreateClass')}
+        mode="outlined"
+        >
+      <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter une classe</Text>
+      </TouchableOpacity>
+          )
     } else {
       TheClassroomButton = (
         <Button
@@ -49,6 +58,14 @@ export default class Classroom extends Component {
         <Text>CLASSROOM N°2</Text>
       </Button>
       )
+        AddChild = (
+      <TouchableOpacity
+      onPress={() => this.props.navigation.navigate('addChild')}
+      mode="outlined"
+      >
+    <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter un enfant</Text>
+    </TouchableOpacity>
+        )
     }
     return (
       <View style={styles.container}>
@@ -72,8 +89,10 @@ export default class Classroom extends Component {
             >
               Coding Factory
             </Button>
-
             <View>{TheClassroomButton}</View>
+            <View>{AddChild}</View>
+            <View>{AddClass}</View>
+            
           </View>
         </View>
       </View>

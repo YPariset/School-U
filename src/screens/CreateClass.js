@@ -11,17 +11,22 @@ import { Input, Item, Form } from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Button from '../components/Button'
 
-function AddClassCode({ navigation }) {
+function CreateClass({ navigation }) {
+    var arr = [];
+    while(arr.length < 50){
+    var random = Math.floor(Math.random() * 100) + 1;
+    if(arr.indexOf(random) === -1) arr.push(random);
+}
   return (
     <View style={styles.container}>
       <View style={styles.fondBloc}>
         <View>
-          <Text style={styles.titre}>Ajoutez un code de classe</Text>
+          <Text style={styles.titre}>Ajoutez un nom à votre classe</Text>
           <SafeAreaView>
             <View style={styles.form}>
               <View>
-                <Text style={styles.inputTitle}>Entrez votre code</Text>
-                <TextInput style={styles.input}></TextInput>
+              <TextInput style={styles.input} placeholder='Entrez un nom à votre classe' placeholderTextColor='#808080'></TextInput>
+                <Text style={styles.inputTitle}> Code de la classe : {random}</Text>
               </View>
             </View>
 
@@ -77,6 +82,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         textTransform: 'uppercase',
+        marginTop:15
       },
       input: {
         borderBottomColor: 'white',
@@ -135,6 +141,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         textTransform: 'uppercase',
+        marginTop:15
       },
       input: {
         borderBottomColor: 'white',
@@ -193,6 +200,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
         textTransform: 'uppercase',
+        marginTop:15
       },
       input: {
         borderBottomColor: 'white',
@@ -278,4 +286,4 @@ const styles = StyleSheet.create({
   }),
 })
 
-export default AddClassCode
+export default CreateClass

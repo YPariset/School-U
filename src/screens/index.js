@@ -16,6 +16,6 @@ export { default as addChild } from './addChild'
 export { default as PostScreen } from './PostScreen'
 export { default as AddClassCode } from './AddClassCode'
 export { default as HomeScreen } from './HomeScreen'
-
+export { default as CreateClass } from './CreateClass'
 
 
