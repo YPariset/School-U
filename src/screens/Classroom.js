@@ -7,7 +7,6 @@ import CardImageExample from '../components/Card'
 import { Icon } from 'native-base'
 import { Header } from 'react-native-elements'
 import Fire from '../core/Fire'
-import ClassroomButton from '../components/ClassroomButton'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class Classroom extends Component {
@@ -33,6 +32,24 @@ export default class Classroom extends Component {
   }
 
   render() {
+    let isParent = 'Parent'
+    let TheClassroomButton
+    let role = this.state.user.role.label
+
+    if (isParent != this.state.user.role.label) {
+      TheClassroomButton = null
+    } else {
+      TheClassroomButton = (
+        <Button
+        labelStyle={styles.text}
+        style={styles.classe2}
+        onPress={() => this.props.navigation.navigate('HomeScreen')}
+        mode="outlined"
+      >
+        <Text>CLASSROOM N°2</Text>
+      </Button>
+      )
+    }
     return (
       <View style={styles.container}>
         <Image
@@ -55,14 +72,8 @@ export default class Classroom extends Component {
             >
               Coding Factory
             </Button>
-            <Button
-              style={styles.classe2}
-              labelStyle={styles.text}
-              onPress={() => this.props.navigation.navigate('HomeScreen')}
-              mode="outlined"
-            >
-          <ClassroomButton navigation={this.props.navigation}></ClassroomButton>
-            </Button>
+
+            <View>{TheClassroomButton}</View>
           </View>
         </View>
       </View>
