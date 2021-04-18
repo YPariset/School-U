@@ -43,7 +43,10 @@ export default class Classroom extends Component {
         <Button
         onPress={() => this.props.navigation.navigate('CreateClass')}
         mode="outlined"
-        style={{backgroundColor: "transparent"}}
+        style={{backgroundColor: "transparent",
+        width: 300,
+        borderRadius: 10,
+        borderWidth: 1,}}
         >
       <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter une classe</Text>
       </Button>
@@ -60,12 +63,16 @@ export default class Classroom extends Component {
       </Button>
       )
         AddChild = (
-      <Button
-      onPress={() => this.props.navigation.navigate('addChild')}
-      mode="outlined"
-      >
-    <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter un enfant</Text>
-    </Button>
+          <Button
+          onPress={() => this.props.navigation.navigate('CreateClass')}
+          mode="outlined"
+          style={{backgroundColor: "transparent",
+          width: 300,
+          borderRadius: 10,
+          borderWidth: 1,}}
+          >
+        <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter une classe</Text>
+        </Button>
         )
     }
     return (
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
   ...Platform.select({
     web: {
       loginLogo: {
-        marginTop: 140,
+        marginTop: 50,
         marginBottom: 20,
 
         paddingVertical: 110,
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
 
       fondBloc: {
         backgroundColor: '#474749',
-        height: 280,
+        height: 340,
         width: 500,
         borderRadius: 50,
         marginTop: 60,
@@ -144,7 +151,7 @@ const styles = StyleSheet.create({
         width: 300,
         borderRadius: 10,
         borderWidth: 0,
-        marginTop: 40,
+        marginTop: 20,
       },
       text: {
         color: 'white',
