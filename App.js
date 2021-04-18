@@ -66,17 +66,8 @@ function CustomDrawerContent(props) {
         label="Profil"
         onPress={() => props.navigation.navigate('ProfilScreen')}
       />
-      <DrawerItem
-        label="Ajouter Enfant"
-        onPress={() => props.navigation.navigate('addChild')}
-      />
-      <DrawerItem
-        label="Ajouter code de classe"
-        onPress={() => props.navigation.navigate('AddClassCode')}
-      />
 
       <DrawerItem
-        style={styles.deconnecter}
         label="Se déconnecter"
         onPress={() => {
           logoutUser()

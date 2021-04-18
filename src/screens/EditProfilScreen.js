@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     commandDelete: {
       padding: 15,
       borderRadius: 10,
-      backgroundColor: 'red',
+      backgroundColor: '#E46472',
       alignItems: 'center',
       marginTop: 10,
     },

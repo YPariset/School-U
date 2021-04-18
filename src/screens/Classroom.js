@@ -64,14 +64,14 @@ export default class Classroom extends Component {
       )
         AddChild = (
           <Button
-          onPress={() => this.props.navigation.navigate('CreateClass')}
+          onPress={() => this.props.navigation.navigate('addChild')}
           mode="outlined"
           style={{backgroundColor: "transparent",
           width: 300,
           borderRadius: 10,
           borderWidth: 1,}}
           >
-        <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter une classe</Text>
+        <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter un enfant</Text>
         </Button>
         )
     }
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
 
       fondBloc: {
         backgroundColor: '#474749',
-        height: 300,
+        height: 350,
         width: 400,
         borderRadius: 50,
         marginTop: 60,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
 
       fondBloc: {
         backgroundColor: '#474749',
-        height: 350,
+        height: 370,
         width: 350,
         borderRadius: 50,
         marginTop: 60,
