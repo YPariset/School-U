@@ -14,7 +14,9 @@ import Fire from "../core/Fire";
 
 export default class ProfilScreen extends Component{
   state={
-    user:{}
+    user:{
+      role:{}
+    }
   }
    unsubscribe=null
 
@@ -68,11 +70,7 @@ render() {
 <View style={styles.infoBoxWrapper}>
     <View style={styles.infoBox}>
         <Title>Statut</Title>
-        <Caption>Cool dad 😎✌🏻</Caption>
-    </View>
-    <View style={styles.infoBox}>
-        <Title>Mes enfants</Title>
-        <Caption>Papa de Louane, 10 ans</Caption>
+        <Caption>{this.state.user.role.label}</Caption>
     </View>
 </View>
 <View style={styles.menuWrapper}>
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
       height: 100,
     },
     infoBox: {
-      width: '50%',
+      width: '100%',
       alignItems: 'center',
       justifyContent: 'center',
     },

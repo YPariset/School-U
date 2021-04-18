@@ -36,7 +36,6 @@ import {
 } from '@react-navigation/drawer'
 import { Icon } from 'native-base'
 import { logoutUser } from './src/api/auth-api'
-import { setStatusBarHidden } from 'expo-status-bar'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -49,7 +48,7 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
-        label="Accueil"
+        label="Home"
         onPress={() => props.navigation.navigate('HomeScreen')}
       />
       <DrawerItem
@@ -69,13 +68,14 @@ function CustomDrawerContent(props) {
         onPress={() => props.navigation.navigate('ProfilScreen')}
       />
       <DrawerItem
-        label="Ajouter Enfant"
+        label="addChild"
         onPress={() => props.navigation.navigate('addChild')}
       />
       <DrawerItem
-        label="Ajouter code de classe"
+        label="AddClassCode"
         onPress={() => props.navigation.navigate('AddClassCode')}
       />
+     
 
       <DrawerItem
         style={styles.deconnecter}
@@ -100,8 +100,7 @@ function StackNavigator({ navigation }) {
         component={HomeScreen}
         options={{
           headerStyle: { backgroundColor: '#FFF9EC' },
-          title: 'Accueil',
-
+          title: 'Home',
           headerLeft: () => (
             <Icon
               style={{ paddingLeft: 15 }}
@@ -114,12 +113,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="Blog"
         component={Blog}
-        options={{
-          title: 'Blog',
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTitleStyle: { color: '#6986C5' },
-          headerTintColor: 'black',
-        }}
+        options={{ title: 'Blog', headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen
         name="CarnetScreen"
@@ -127,8 +121,6 @@ function StackNavigator({ navigation }) {
         options={{
           title: 'Carnet de liaison',
           headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTitleStyle: { color: '#FABE7C' },
-          headerTintColor: 'black',
         }}
       />
 
@@ -138,17 +130,14 @@ function StackNavigator({ navigation }) {
         options={{
           title: 'Messagerie',
           headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTitleStyle: { color: '#E46472' },
-          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
         name="ProfilScreen"
         component={ProfilScreen}
         options={{
-          title: 'Profil',
+          title: 'Profile',
           headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTintColor: 'black',
         }}
       />
       <Stack.Screen
@@ -159,12 +148,7 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="StartScreen"
         component={StartScreen}
-        options={{
-          headerShown: false,
-          navigationOptions: ({ navigation }) => ({
-            drawerLockMode: 'locked-closed',
-          }),
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="LoginScreen"
@@ -184,32 +168,14 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="Message"
         component={Message}
-        options={{
-          title: 'Messages',
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTitleStyle: { color: '#E46472' },
-          headerTintColor: 'black',
-        }}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen
         name="AjouterMotCarnetScreen"
         component={AjouterMotCarnetScreen}
-        options={{
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          headerTitleStyle: { color: '#FABE7C' },
-          headerTintColor: 'black',
-          title: '',
-        }}
+        options={{headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
-      <Stack.Screen
-        name="EditProfilScreen"
-        component={EditProfilScreen}
-        options={{
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          title: 'Edit profil',
-          headerTintColor: 'black',
-        }}
-      />
+      <Stack.Screen name="EditProfilScreen" component={EditProfilScreen} />
       <Stack.Screen
         name="ResetPasswordScreen"
         component={ResetPasswordScreen}
@@ -223,29 +189,17 @@ function StackNavigator({ navigation }) {
       <Stack.Screen
         name="PostScreen"
         component={PostScreen}
-        options={{
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          title: '',
-          headerTintColor: 'black',
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="addChild"
         component={addChild}
-        options={{
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          title: '',
-          headerTintColor: 'black',
-        }}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
       <Stack.Screen
         name="AddClassCode"
         component={AddClassCode}
-        options={{
-          headerStyle: { backgroundColor: '#FFF9EC' },
-          title: '',
-          headerTintColor: 'black',
-        }}
+        options={{ headerStyle: { backgroundColor: '#FFF9EC' } }}
       />
     </Stack.Navigator>
   )
@@ -271,24 +225,24 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({
-  ...Platform.select({
-    ios: {
-      deconnecter: {
-        paddingTop: 360,
-        paddingLeft: 65,
-      },
-    },
-    android: {
-      deconnecter: {
-        paddingTop: 250,
-        paddingLeft: 65,
-      },
-    },
-    web: {
-      deconnecter: {
-        paddingTop: 230,
-        paddingLeft: 65,
-      },
-    },
-  }),
-})
+  ...Platform.select({ 
+                ios: {
+                    deconnecter: {
+                      paddingTop: 360,
+                      paddingLeft: 65,
+                    }
+                },
+                android: {
+                    deconnecter: {
+                      paddingTop: 360,
+                      paddingLeft: 65,
+                    }
+                },
+                web: {
+                    deconnecter: {
+                      paddingTop: 230, 
+                      paddingLeft: 65
+                    },
+                }
+        }),
+});
