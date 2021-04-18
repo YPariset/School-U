@@ -105,7 +105,7 @@ openTwoButtonAlert=()=>{
 
 <View style={{margin:20}}>
 <View style={{alignItems:'center'}}>
-<TouchableOpacity onPress={this.handlePickAvatar}>
+<TouchableOpacity onPress={(this.handlePickAvatar)}>
 <View style={{
     height:100,
     width:100,
@@ -114,7 +114,8 @@ openTwoButtonAlert=()=>{
     alignItems:'center'
 }}>
     <ImageBackground             
-        source={{ uri: this.state.user.avatar }}
+        source={this.state.user.avatar?{uri:this.state.user.avatar}:null}
+        size={80}
         style={{height:100, width:100}}
         imageStyle={{borderRadius:15}}
     >
