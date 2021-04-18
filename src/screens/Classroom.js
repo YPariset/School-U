@@ -7,10 +7,14 @@ import CardImageExample from '../components/Card'
 import { Icon } from 'native-base'
 import { Header } from 'react-native-elements'
 import Fire from '../core/Fire'
+import ClassroomButton from '../components/ClassroomButton'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class Classroom extends Component {
   state = {
-    user: {},
+    user: {
+      role:{}
+    },
   }
   unsubscribe = null
 
@@ -53,11 +57,11 @@ export default class Classroom extends Component {
             </Button>
             <Button
               style={styles.classe2}
-              onPress={() => this.props.navigation.navigate('HomeScreen')}
               labelStyle={styles.text}
+              onPress={() => this.props.navigation.navigate('HomeScreen')}
               mode="outlined"
             >
-              Classe 2
+          <ClassroomButton navigation={this.props.navigation}></ClassroomButton>
             </Button>
           </View>
         </View>
