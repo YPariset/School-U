@@ -40,12 +40,13 @@ export default class Classroom extends Component {
 
     if (isParent != this.state.user.role.label) {
       AddClass = (
-        <TouchableOpacity
+        <Button
         onPress={() => this.props.navigation.navigate('CreateClass')}
         mode="outlined"
+        style={{backgroundColor: "transparent"}}
         >
       <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter une classe</Text>
-      </TouchableOpacity>
+      </Button>
           )
     } else {
       TheClassroomButton = (
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
 
       fondBloc: {
         backgroundColor: '#474749',
-        height: 350,
+        height: 280,
         width: 500,
         borderRadius: 50,
         marginTop: 60,
