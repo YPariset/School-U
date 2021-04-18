@@ -60,12 +60,12 @@ export default class Classroom extends Component {
       </Button>
       )
         AddChild = (
-      <TouchableOpacity
+      <Button
       onPress={() => this.props.navigation.navigate('addChild')}
       mode="outlined"
       >
     <Text style={{ fontWeight: '500', color: '#FFF', marginTop:10 }}> Ajouter un enfant</Text>
-    </TouchableOpacity>
+    </Button>
         )
     }
     return (
