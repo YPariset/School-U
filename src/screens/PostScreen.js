@@ -91,7 +91,7 @@ export default class PostScreen extends React.Component {
             <TextInput
               autoFocus={true}
               multiline={true}
-              numberOfLines={4}
+              numberOfLines={7}
               style={{ flex: 1 }}
               placeholder="Ajouter un mot sur le blog"
               onChangeText={(text) => this.setState({ text })}
@@ -103,10 +103,10 @@ export default class PostScreen extends React.Component {
             <Ionicons name="md-camera" size={32} color="#D8D9DB"></Ionicons>
           </TouchableOpacity>
         </View>
-        <View style={{ marginHorizontal: 32, height: 150 }}>
+        <View style={styles.tailleImageContainer}>
           <Image
             source={{ uri: this.state.image }}
-            style={{ width: '100%', height: '100%' }}
+            style={styles.tailleImage}
           ></Image>
         </View>
         <Button
@@ -125,214 +125,250 @@ export default class PostScreen extends React.Component {
 const styles = StyleSheet.create({
   ...Platform.select({
     ios: {
-      container: {
-        flex: 1,
-        backgroundColor: '#fff9ec',
-      },
-      titrePage: {
-        paddingRight: 100,
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
-      header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 32,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#D8D9DB',
-      },
-      inputContainer: {
-        marginTop: 10,
-        flexDirection: 'row',
-      },
-      avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        marginRight: 4,
-      },
-      photo: {
-        alignItems: 'flex-end',
-        marginHorizontal: 32,
-        marginRight: 5,
-        marginTop: 130,
-      },
-      postMessage: {
-        backgroundColor: 'white',
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 20,
-        borderColor: '#a4c9c8',
-        borderRadius: 10,
-        marginRight: 30,
-        marginLeft: 30,
-        shadowColor: '#000',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 3,
+        tailleImageContainer: { 
+            marginHorizontal: 32, 
+            height: 150 
         },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 8,
-      },
-      buttonAdd: {
-        backgroundColor: '#6986C5',
-        borderRadius: 10,
-        width: '80%',
-        borderWidth: 0,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        marginTop: -50,
-      },
-      text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
+        tailleImage: { 
+            width: '100%', 
+            height: '100%', 
+            marginTop: 20, 
+            borderRadius: 10
+        },
+        container: {
+            flex: 1,
+            backgroundColor: '#fff9ec',
+        },
+        titrePage: {
+            paddingRight: 100,
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
+        header: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingHorizontal: 32,
+            paddingVertical: 12,
+            borderBottomWidth: 1,
+            borderBottomColor: '#D8D9DB',
+        },
+        inputContainer: {
+            marginTop: 20,
+            flexDirection: 'row',
+        },
+        avatar: {
+            width: 48,
+            height: 48,
+            borderRadius: 24,
+            marginRight: 7,
+            marginLeft: 7
+        },
+        photo: {
+            alignItems: 'flex-end',
+            marginHorizontal: 32,
+            marginRight: 5,
+            marginTop: 70,
+        },
+        postMessage: {
+            backgroundColor: 'white',
+            marginLeft: 20,
+            marginRight: 20,
+            marginTop: 20,
+            borderColor: '#a4c9c8',
+            borderRadius: 10,
+            marginRight: 30,
+            marginLeft: 30,
+            shadowColor: '#000',
+            shadowColor: '#000',
+            shadowOffset: {
+            width: 0,
+            height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
+        },
+        buttonAdd: {
+            backgroundColor: '#6986C5',
+            borderRadius: 10,
+            width: '80%',
+            borderWidth: 0,
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            marginTop: 70,
+        },
+        text: {
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
     },
     android: {
-      container: {
-        flex: 1,
-        backgroundColor: '#fff9ec',
-      },
-      titrePage: {
-        paddingRight: 100,
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
-      header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 32,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#D8D9DB',
-      },
-      inputContainer: {
-        marginTop: 10,
-        flexDirection: 'row',
-      },
-      avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        marginRight: 4,
-      },
-      photo: {
-        alignItems: 'flex-end',
-        marginHorizontal: 32,
-        marginRight: 5,
-        marginTop: 130,
-      },
-      postMessage: {
-        backgroundColor: 'white',
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 20,
-        borderColor: '#a4c9c8',
-        borderRadius: 10,
-        marginRight: 30,
-        marginLeft: 30,
-        shadowColor: '#000',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 3,
+        tailleImageContainer: { 
+            marginHorizontal: 32, 
+            height: 150 
         },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 8,
-      },
-      buttonAdd: {
-        backgroundColor: '#6986C5',
-        borderRadius: 10,
-        width: '80%',
-        borderWidth: 0,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        marginTop: -50,
-      },
-      text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
+        tailleImage: { 
+            width: '100%', 
+            height: '100%', 
+            marginTop: 20, 
+            borderRadius: 10
+        },
+        container: {
+            flex: 1,
+            backgroundColor: '#fff9ec',
+        },
+        titrePage: {
+            paddingRight: 100,
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
+        header: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingHorizontal: 32,
+            paddingVertical: 12,
+            borderBottomWidth: 1,
+            borderBottomColor: '#D8D9DB',
+        },
+        inputContainer: {
+            marginTop: 10,
+            flexDirection: 'row',
+        },
+        avatar: {
+            width: 48,
+            height: 48,
+            borderRadius: 24,
+            marginRight: 7,
+            marginLeft: 7
+        },
+        photo: {
+            alignItems: 'flex-end',
+            marginHorizontal: 32,
+            marginRight: 5,
+            marginTop: 130,
+        },
+        postMessage: {
+            backgroundColor: 'white',
+            marginLeft: 20,
+            marginRight: 20,
+            marginTop: 20,
+            borderColor: '#a4c9c8',
+            borderRadius: 10,
+            marginRight: 30,
+            marginLeft: 30,
+            shadowColor: '#000',
+            shadowColor: '#000',
+            shadowOffset: {
+            width: 0,
+            height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
+        },
+        buttonAdd: {
+            backgroundColor: '#6986C5',
+            borderRadius: 10,
+            width: '80%',
+            borderWidth: 0,
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            marginTop: -50,
+        },
+        text: {
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
     },
     web: {
-      container: {
-        flex: 1,
-        backgroundColor: '#fff9ec',
-      },
-      titrePage: {
-        paddingRight: 100,
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
-      header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 32,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#D8D9DB',
-      },
-      inputContainer: {
-        marginTop: 10,
-        flexDirection: 'row',
-      },
-      avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        marginRight: 4,
-      },
-      photo: {
-        alignItems: 'flex-end',
-        marginHorizontal: 32,
-        marginRight: 5,
-        marginTop: 130,
-      },
-      postMessage: {
-        backgroundColor: 'white',
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 20,
-        borderColor: '#a4c9c8',
-        borderRadius: 10,
-        marginRight: 30,
-        marginLeft: 30,
-        shadowColor: '#000',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 3,
+        tailleImageContainer: { 
+            marginHorizontal: 50, 
+            height: '100%',  
         },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 8,
-      },
-      buttonAdd: {
-        backgroundColor: '#6986C5',
-        borderRadius: 10,
-        width: 300,
-        borderWidth: 0,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        marginTop: -50,
-      },
-      text: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        lineHeight: 26,
-      },
+        tailleImage: { 
+            width: '50%', 
+            height: '50%', 
+            marginTop: 30, 
+            paddingTop: 60,
+            borderRadius: 10
+        },
+        container: {
+            flex: 1,
+            backgroundColor: '#fff9ec',
+            width: '100%'
+            
+        },
+        titrePage: {
+            paddingRight: 100,
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
+        header: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingHorizontal: 32,
+            paddingVertical: 12,
+            borderBottomWidth: 1,
+            borderBottomColor: '#D8D9DB',
+        },
+        inputContainer: {
+            marginTop: 10,
+            flexDirection: 'row',
+        },
+        avatar: {
+            width: 48,
+            height: 48,
+            borderRadius: 24,
+            marginRight: 7,
+            marginLeft: 7
+        },
+        photo: {
+            alignItems: 'flex-end',
+            marginHorizontal: 32,
+            marginRight: 5,
+            marginTop: 70,
+        },
+        postMessage: {
+            backgroundColor: 'white',
+            marginLeft: 20,
+            marginRight: 20,
+            marginTop: 20,
+            borderColor: '#a4c9c8',
+            borderRadius: 10,
+            marginRight: 30,
+            marginLeft: 30,
+            shadowColor: '#000',
+            shadowColor: '#000',
+            shadowOffset: {
+            width: 0,
+            height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
+            elevation: 8,
+        },
+        buttonAdd: {
+            backgroundColor: '#6986C5',
+            borderRadius: 10,
+            width: 300,
+            borderWidth: 0,
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            marginTop: -400
+        },
+        text: {
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 15,
+            lineHeight: 26,
+        },
     },
   }),
 })
