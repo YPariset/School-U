@@ -187,10 +187,11 @@ const styles = StyleSheet.create({
       buttonAdd: {
         backgroundColor: '#FABE7C',
         borderRadius: 10,
-        width: '80%',
+        width: 400,
         borderWidth: 0,
         marginRight: 'auto',
         marginLeft: 'auto',
+        marginTop: 200,
       },
       text: {
         color: 'white',
