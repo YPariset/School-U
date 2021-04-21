@@ -16,7 +16,7 @@ const App = ({ navigation }) => {
             <Input placeholder="Nom de l'enfant " />
           </Item>
           <Item last>
-            <Input placeholder="Code de la classe " />
+            <Input placeholder="Nom de la classe " />
           </Item>
         </Form>
         <View style={styles.container}>
@@ -29,7 +29,7 @@ const App = ({ navigation }) => {
                 <Input placeholder="Nom de l'enfant " />
               </Item>
               <Item last>
-                <Input placeholder="Code de la classe " />
+                <Input placeholder="Nom de la classe " />
               </Item>
             </Form>
           ) : null}
