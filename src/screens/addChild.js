@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Form, Item, Input, Text, Container } from 'native-base'
-import { Platform } from 'react-native'
+import { Form, Item, Input, Container } from 'native-base'
+import { Platform, Text } from 'react-native'
 import Button from '../components/Button'
 
 import { SafeAreaView, StyleSheet, View, Image } from 'react-native'
