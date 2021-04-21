@@ -35,6 +35,9 @@ import {
 import { Icon } from 'native-base'
 import { logoutUser } from './src/api/auth-api'
 import { setStatusBarHidden } from 'expo-status-bar'
+import { LogBox } from 'react-native'
+
+LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -149,7 +152,7 @@ function StackNavigator({ navigation }) {
         name="StartScreen"
         component={StartScreen}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
       <Stack.Screen
@@ -233,7 +236,7 @@ function StackNavigator({ navigation }) {
           headerTintColor: 'black',
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="CreateClass"
         component={CreateClass}
         options={{
